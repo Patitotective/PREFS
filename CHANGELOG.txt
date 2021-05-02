@@ -1,0 +1,22 @@
+Change Log
+==========
+
+0.001 (01/05/2021)
+-------------------
+- First Release
+
+0.002 (01/05/2021)
+-------------------
+- Name change
+
+0.003 (02/05/2021)
+-------------------
+- Added python interpreter for pref values (using ast library)
+
+0.004 (02/05/2021)
+-------------------
+- Now in class PREFS argument prefs you must pass a lambda: function for not execute the function always, only when file is lost.
+
+0.0045 (02/05/2021)
+-------------------
+- Fixed error with lambda.
