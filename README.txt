@@ -13,11 +13,9 @@ age="21"
 -------------------------------------------------------------------------------------------------------------------------------------------
 Syntaxis:
 
-First you have to create an instance of the class «PREFS»:
+First you have to create an instance of the class PREFS:
+UserPrefs = PREFS.PREFS(prefs = {"age": 21, "username": "Patitotective"})
 
-from this you'll call the two methods:
+from this you could call the two methods:
 ReadPrefs(): It will return a dictionarie with your prefs (key and value).
-WritePrefs(): It requires two arguments, first the name of the pref that you want to change (if pref exists) or create it doesn't (like dictionarie).
-
-
-This is a very simple library that creates, write and read prefs (file for store information that don't be lost when program ends)
+WritePrefs(): It requires two arguments, first the name of the pref that you want to change (if pref exists) or create it doesn't (like a dictionarie).
