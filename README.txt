@@ -19,3 +19,11 @@ UserPrefs = PREFS.PREFS(prefs = {"age": 21, "username": "Patitotective"})
 from this you could call the two methods:
 ReadPrefs(): It will return a dictionarie with your prefs (key and value).
 WritePrefs(): It requires two arguments, first the name of the pref that you want to change (if pref exists) or create it doesn't (like a dictionarie).
+-------------------------------------------------------------------------------------------------------------------------------------------
+Installation:
+
+pip3 install PREFS
+-------------------------------------------------------------------------------------------------------------------------------------------
+Complete Documentation:
+
+https://prefs.readthedocs.io/en/latest/
