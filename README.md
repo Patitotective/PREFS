@@ -1,6 +1,6 @@
 <p align="center">
-	PREFS
-	=======
+  <a href="https://prefs.readthedocs.io/en/latest/" target="blank">
+  ## PREFS
 </p>
 
 [![CircleCI](https://circleci.com/gh/brainhubeu/hadron.svg?style=svg)](https://circleci.com/gh/brainhubeu/hadron)
