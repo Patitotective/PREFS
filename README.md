@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://prefs.readthedocs.io/en/latest/" target="blank">
-  <img src="./logo1.png" alt="PREFS Logo" /></a>
+  <img src="logo1.png" alt="PREFS Logo" /></a>
 </p>
 
 ## Why?
