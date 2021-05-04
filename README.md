@@ -36,6 +36,4 @@ On Mac and Linux:
 
 ## Documentation
 
-PREFS documentation can be found at [prefs.readthedocs.io](https://prefs.readthedocs.io/en/latest/)
-
-## Getting Started
+PREFS documentation can be found at [prefs.readthedocs.io](https://prefs.readthedocs.io/en/latest/) with more examples and information.
