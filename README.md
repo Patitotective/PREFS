@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://prefs.readthedocs.io/en/latest/" target="blank">
-  ## PREFS
+  <img src="./logo3.png" alt="Hadron Logo" /></a>
 </p>
 
 [![CircleCI](https://circleci.com/gh/brainhubeu/hadron.svg?style=svg)](https://circleci.com/gh/brainhubeu/hadron)
