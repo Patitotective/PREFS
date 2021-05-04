@@ -3,17 +3,22 @@
   <img src="./logo.png" alt="PREFS Logo" /></a>
 </p>
 
-[![CircleCI](https://circleci.com/gh/brainhubeu/hadron.svg?style=svg)](https://circleci.com/gh/brainhubeu/hadron)
-
 ## Why?
 
-**Hadron's purpose is to facilitate the building of Node.js applications:**
+**PREFS's purpose is to facilitate the process of store information, like prefs or user information (that don't will lost when program ends).**
 
-### Low-level framework-agnostic
+### Store Prefs:
 
-Your application is built independently from other frameworks (Express, Koa). Hadron creates a layer between HTTP requests and your app written in plain Javascript.
+The main (and unique) feature is store prefs, read them and also (re)write.
+It creates a .txt file where, like dictionary structure, your prefs will be stored, like this:
 
-Hadron abstracts away underlying request and response objects, providing simple data structures as input/output of your routes' handlers, making them simple to test and easy to deal with.
+firstEntry="02/05/2021"
+
+theme="Dark"
+
+username="Patitotective"
+
+age="21"
 
 ### Dependency injection
 
