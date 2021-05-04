@@ -1,7 +1,3 @@
-.. PREFS documentation master file, created by
-   sphinx-quickstart on Sun May  2 18:17:06 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 .. raw:: html
 
    <p align="center">
@@ -11,6 +7,9 @@
 
    </p>
 
+PREFS DOCUMENTATION
+===================
+
 Why?
 ----
 
@@ -18,7 +17,7 @@ Why?
 user information (that don't will lost when program ends).**
 
 Store Prefs:
-~~~~~~~~~~~~
+------------
 
 The main feature is store prefs, read them and also (re)write. It
 creates a .txt file where, like dictionary structure, your prefs will be
@@ -32,7 +31,7 @@ stored, like this:
     age="21"
 
 Syntaxis:
-~~~~~~~~~
+---------
 
 First you have to create an instance of the class PREFS:
 
@@ -62,3 +61,21 @@ Documentation
 PREFS documentation can be found at
 `prefs.readthedocs.io <https://prefs.readthedocs.io/en/latest/>`__ with
 more examples and information.
+
+Guide
+^^^^^
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   license
+   help
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
