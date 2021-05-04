@@ -55,12 +55,6 @@ On windows: ``pip install PREFS``
 
 On Mac and Linux: ``pip3 install PREFS``
 
-Documentation
--------------
-
-PREFS documentation can be found at
-`prefs.readthedocs.io <https://prefs.readthedocs.io/en/latest/>`__ with
-more examples and information.
 
 Guide
 ^^^^^
