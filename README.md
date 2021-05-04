@@ -6,6 +6,13 @@
 ## Why?
 **PREFS's purpose is to facilitate the process of store information, user information (that don't will lost when program ends).**
 
+## Installation:
+On windows:
+```pip install PREFS```
+
+On Mac and Linux:
+```pip3 install PREFS```
+
 ### Store Prefs:
 The main feature is store prefs, read them and also (re)write.
 It creates a .txt file where, like dictionary structure, your prefs will be stored, like this:
@@ -27,13 +34,8 @@ from this you could call the two methods:
 
 ```WritePrefs()```: It requires two arguments, first the name of the pref that you want to change (if pref exists) or create it doesn't (like a dictionarie).
 
-## Installation:
-On windows:
-```pip install PREFS```
 
-On Mac and Linux:
-```pip3 install PREFS```
 
 ## Documentation
 
-PREFS documentation can be found at [prefs.readthedocs.io](https://prefs.readthedocs.io/en/latest/) with more examples and information.
+PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki with more examples and information.
