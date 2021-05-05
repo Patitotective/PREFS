@@ -13,6 +13,8 @@ On windows:
 On Mac and Linux:
 ```pip3 install PREFS```
 
+Also if you want to see the code you can download `__init__.py`, i sometimes forgot to upload the code, so for get the latest version check https://pypi.org/project/PREFS/.
+
 ## Store Prefs
 The main feature is to store preferences, read and write them.
 It creates a .txt file where in a dictionary like structure, your prefs will be stored, i.e.:
@@ -37,4 +39,4 @@ from this you could call the two methods:
 
 ## Documentation
 
-PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki with more examples and information.
+PREFS documentation can be found at [PREFS DOCUMENTATION](https://github.com/Patitotective/PREFS/wiki) with more examples and information.
