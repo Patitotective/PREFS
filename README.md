@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://prefs.readthedocs.io/en/latest/" target="blank">
+  <a href="https://github.com/Patitotective/PREFS/wiki" target="blank">
   <img src="logo1.png" alt="PREFS Logo" /></a>
 </p>
 
