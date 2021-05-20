@@ -4,7 +4,8 @@
 </p>
 
 ## Why?
-_PREFS's purpose is to facilitate the process of store information, user information (that won't get lost when you close the program)._
+_PREFS's purpose is to facilitate the process of store information, user information (that won't get lost when you close the program).
+Prefs is the abreviation of preferences, usually user preferences, but also you can store whatever you want.
 
 ## Installation:
 On windows:
