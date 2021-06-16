@@ -3,118 +3,153 @@ import ast
 import os
 
 class PREFS(object):
-    """docstring for PREFS"""
-    def __init__(self, prefs, filename = "prefs", separator = "=", ender = "\n", interpret = False, dictionary = False):
-        super(PREFS, self).__init__()
-        self.prefs = prefs
-        self.filename = filename
-        self.separator = separator
-        self.ender = ender
-        self.interpret = interpret
-        self.dictionary = dictionary
+	"""PREFS is for store user preferences, like username, theme, etcetera.
+		Is very user friendly and has a few functionas that you will understand fastly, also creates a total human readable file (without any compression)"""
+		
+	def __init__(self, prefs: dict, filename: str="prefs", extension: str="txt", separator: str="=", ender: str="\n", interpret: bool=False, dictionary: bool=False, debug: bool=False):
+		super(PREFS, self).__init__()
+		self.prefs = prefs
+		self.filename = filename
+		self.separator = separator
+		self.ender = ender
+		self.interpret = interpret
+		self.dictionary = dictionary
+		self.debug = debug
+		self.extension = extension
 
-        self.ReadPrefs()
-        
-    def ReadPrefs(self):
-        try:
-            prefsTXT = open(f"{self.filename}.txt", "r")
-            
-            content = {}
-            lines = prefsTXT.readlines()
+		self.ReadPrefs()
+		
+	def ReadPrefs(self):
+		try:
+			if self.debug: print(f"Trying to read {self.filename}")
 
-            #Do something with the file
-            if not self.dictionary:
-                if len(lines) > 1:
-                    e = 0
-                    for line in lines:
-                        lines[e] = line.replace(self.ender, "")
-                        e += 1
+			prefsTXT = open(f"{self.filename}.{self.extension}", "r")
+			
+			content = {}
+			lines = prefsTXT.readlines()
+			lines1 = []
 
-                    for line in lines:
-                        if not self.interpret:
-                            content[line.split(self.separator, 1)[0]] = line.split(self.separator, 1)[1]
-                        elif self.interpret:
-                            content[line.split(self.separator, 1)[0]] = ast.literal_eval(line.split(self.separator, 1)[1])
+			if not self.dictionary:
+				if len(lines) > 1:
+					e = 0
+					for line in lines:
+						lines1.append(line.replace(self.ender, ""))
 
-                elif len(lines) == 1:
-                    line = lines[0].split(self.ender)
-                    line.pop()
-                    for i in line:
+						if not self.interpret:
+							content[lines1[e].split(self.separator, 1)[0]] = lines1[e].split(self.separator, 1)[1]
+						elif self.interpret:
+							content[ lines1[e].split(self.separator, 1)[0] ] = ast.literal_eval( lines1[e].split(self.separator, 1)[1] )
 
-                        if not self.interpret:
-                            content[i.split(self.separator, 1)[0]] = i.split(self.separator, 1)[1]
-                        elif self.interpret:
-                            content[i.split(self.separator, 1)[0]] = ast.literal_eval(i.split(self.separator, 1)[1])
+						e += 1
 
-            elif self.dictionary:
-                content = ast.literal_eval(lines[0])
+				elif len(lines) == 1:
+					content = self.ReadOneLine(lines)
 
-            prefsTXT.close()
-            return content
 
-        except FileNotFoundError:
-            try:
-                self.CreatePrefs(self.prefs())
-            except TypeError:
-                self.CreatePrefs(self.prefs)
+			elif self.dictionary:
+				content = ast.literal_eval(lines[0])
 
-    def CreatePrefs(self, prefs):
-        try:
-            prefsTXT = open(f"{self.filename}.txt","w+")
-        except FileNotFoundError:
-            os.mkdir(self.filename.split("/")[0])
-            prefsTXT = open(f"{self.filename}.txt","w+")
+			prefsTXT.close()
 
-        if not self.dictionary:
-            for i in prefs.items():
-                prefsTXT.write(f"{i[0]}={i[1]}{self.ender}")
+			if self.debug: print(f"Read {self.filename}")
 
-        elif self.dictionary:
-            prefsTXT.write(str(prefs))
+			return content
 
-        prefsTXT.close()
+		except FileNotFoundError:
+			if self.debug: print(f"File not found. Trying to create {self.filename}")
+			if (callable(self.prefs)): self.CreatePrefs(self.prefs())
+			else: self.CreatePrefs(self.prefs)
 
-        self.ReadPrefs()
+	def ReadOneLine(self, lines: list):
+		result = {}        
 
-    def WritePrefs(self, pref, value):
-        content = self.ReadPrefs()
-        content[pref] = value
+		line = lines[0].split(self.ender)
+		line.pop()
+		for i in line:
+			if not self.interpret:
+				result[i.split(self.separator, 1)[0]] = i.split(self.separator, 1)[1]
+			elif self.interpret:
+				result[i.split(self.separator, 1)[0]] = ast.literal_eval(i.split(self.separator, 1)[1])        
 
-        if not self.dictionary:
-            text = ""
-            for item in content.items():
-                text += f"{item[0]}{self.separator}{item[1]}{self.ender}"
+		return result
 
-        elif self.dictionary:
-            text = str(content)
+	def CreatePrefs(self, prefs: dict):
+		if "/" in self.filename:
+			for e, i in enumerate(self.filename.split("/")):
+				if e == len(self.filename.split("/") - 1): break 
+				os.mkdir(i)
 
-        prefsTXT = open(f"{self.filename}.txt","w+")
-        prefsTXT.write(text)
-        prefsTXT.close()
+		prefsTXT = open(f"{self.filename}.{self.extension}","w+")
 
-        self.ReadPrefs()
+		if self.debug: print(f"Creating {self.filename}")
 
-    def ReWritePrefs(self, prefs = None):
-        if os.path.exists(f"{self.filename}.txt"):
-            os.remove(f"{self.filename}.txt")
-            if not self.dictionary:
-                try:
-                    self.CreatePrefs(prefs)
-                except AttributeError:
-                    self.CreatePrefs(self.prefs)
-            elif self.dictionary:
-                if not isinstance(prefs, dict):
-                    self.CreatePrefs(self.prefs)
-                if isinstance(prefs, dict):
-                    self.CreatePrefs(prefs)
+		if not self.dictionary:
+			for i in prefs.items():
+				if isinstance(i[1], str) and self.interpret: prefsTXT.write(f"{i[0]}=\"{i[1]}\"{self.ender}")
+				else: prefsTXT.write(f"{i[0]}={i[1]}{self.ender}")
 
-        self.ReadPrefs()
-            
-    def ChangeFilename(self, filename):
-        self.filename = filename
+		elif self.dictionary:
+			prefsTXT.write(str(prefs))
 
-        self.ReadPrefs()
+		prefsTXT.close()
 
-    def DeleteFile(self):
-        if os.path.exists(f"{self.filename}.txt"):
-            os.remove(f"{self.filename}.txt")
+		if self.debug: print(f"{self.filename} created")
+
+		self.ReadPrefs()
+
+	def WritePrefs(self, pref: str, value: any):
+		if self.debug: print(f"Trying to write {pref} with {value} value in {self.filename}")
+		content = self.ReadPrefs()
+		content[pref] = value
+
+		if not self.dictionary:
+			text = ""
+			for item in content.items():
+				text += f"{item[0]}{self.separator}{item[1]}{self.ender}"
+
+		elif self.dictionary:
+			text = str(content)
+
+		prefsTXT = open(f"{self.filename}","w+")
+		prefsTXT.write(text)
+		prefsTXT.close()
+
+		if self.debug: print(f"Writed {pref} with {value} value in {self.filename}")
+
+		self.ReadPrefs()
+
+	def ReWritePrefs(self, prefs: dict = None):
+		if os.path.exists(f"{self.filename}.{self.extension}"):
+
+			if self.debug: print(f"Trying to write {self.prefs} in {self.filename}")
+
+			os.remove(f"{self.filename}.{self.extension}")
+			if prefs == None:
+				self.CreatePrefs(self.prefs)
+			else:
+				self.CreatePrefs(prefs)
+
+			if self.debug: print(f"Writed {self.prefs} in {self.filename}")
+
+		else: raise FileNotFoundError("Cannot write unexistent prefs")
+
+		self.ReadPrefs()
+			
+	def ChangeFilename(self, filename: str):
+		if not os.path.exists(f"{self.filename}.{self.extension}"): raise FileNotFoundError("Cannot change the name of a file that doesn't exists")
+		if self.debug: print(f"Trying to change {self.filename} name to {filename}")
+		os.rename(self.filename+"."+self.extension, filename+"."+self.extension)
+		self.filename = filename
+
+		if self.debug: print(f"Changed filename to {self.filename}")
+
+		# self.ReadPrefs()
+
+	def DeleteFile(self):
+		if os.path.exists(f"{self.filename}.{self.extension}"):
+			if self.debug: print(f"Trying to remove {self.filename}")
+			os.remove(f"{self.filename}.{self.extension}")
+			if self.debug: print(f"Removed {self.filename}")
+			return
+
+		raise FileNotFoundError("Can't delete unexistent file")

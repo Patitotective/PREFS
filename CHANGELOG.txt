@@ -25,7 +25,6 @@ Change Log
 -------------------
 - Now you can choose your prefs ender, line break is predetermined, remember don't put a character that is on your prefs because program fails.
 
-
 0.0.6 (04/05/2021)
 -------------------
 - Set max split as 1.
@@ -33,3 +32,15 @@ Change Log
 0.0.65 (04/05/2021)
 -------------------
 - Added ChangeFilename() function and ReWritePrefs() function.
+
+0.0.80 (05/06/2021)
+-------------------
+- Added dictionary write mode and support path file.
+
+0.0.81 (05/06/2021)
+-------------------
+- Fixed little issues.
+
+0.0.85 (05/06/2021)
+-------------------
+- Fixed path support, fixed ChangeFilename function, added debug parameter.
