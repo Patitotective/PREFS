@@ -16,7 +16,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
   name='PREFS',
   version='0.0.85',
-  description='A simple program that creates, read and write prefs',
+  description='A simple program that writes and reads prefs',
   long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
   url='https://github.com/Patitotective/PREFS',  
   author='Cristobal Riaga',

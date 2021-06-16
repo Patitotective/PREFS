@@ -26,7 +26,7 @@ age="21"
 ### Syntaxis:
 First you have to create an instance of the class PREFS (each class is a new file):
 ```
-UserPrefs = PREFS.PREFS(prefs = {"age": 21, "username": "Patitotective"})
+UserPrefs = PREFS.PREFS(prefs = {"firstEntry": today, username": "Patitotective", "theme": "Dark", "age": 21})
 ```
 from this you can call two main methods:
 
