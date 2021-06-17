@@ -1,4 +1,6 @@
 #!/usr/bin/python
+
+#Libraries
 import ast
 import os
 
@@ -6,7 +8,21 @@ class PREFS(object):
 	"""PREFS is for store user preferences, like username, theme, etcetera.
 		Is very user friendly and has a few functionas that you will understand fastly, also creates a total human readable file (without any compression)"""
 		
-	def __init__(self, prefs: dict, filename: str="prefs", extension: str="txt", separator: str="=", ender: str="\n", interpret: bool=False, dictionary: bool=False, debug: bool=False):
+	def __init__(self, prefs: dict, filename: str="prefs", extension: str="txt", separator: str="=", ender: str="\n", 
+		interpret: bool=False, dictionary: bool=False, debug: bool=False):
+		
+		"""
+			Args:
+				prefs: dict = A dictionary with the default preferences.
+				filename: str (optional, "prefs" as default) = The path with the name of the file.
+				extension: str (optinal, "txt" as default) = The extension of the file.
+				separator: str (optional, "=" as default) = The character between the key and value in the file.
+				ender: str (optional, "\n" line break as default) = The character at the end of each key:value.
+				interpret: bool (optional, False as default) = Do you want to interpret the value stored, if True you could write a dictionary and read as dictioary, if False all will be returned as string.
+				dictionary: bool (optional, False as default) = If True the file will be a python dictionary (avoid any error at reading), if False it will be human readble.
+				debug: bool (optional, False as default) = If True print messages of all operations.
+		"""
+		
 		super(PREFS, self).__init__()
 		self.prefs = prefs
 		self.filename = filename
@@ -20,6 +36,15 @@ class PREFS(object):
 		self.ReadPrefs()
 		
 	def ReadPrefs(self):
+		"""
+			Try to read the prefs and if the file doesn't exist call the CreatePrefs function.
+
+			Args:
+				None
+
+			Returns:
+				A dictionary with all the prefs.
+		"""
 		try:
 			if self.debug: print(f"Trying to read {self.filename}")
 
@@ -61,6 +86,16 @@ class PREFS(object):
 			else: self.CreatePrefs(self.prefs)
 
 	def ReadOneLine(self, lines: list):
+		"""
+			With a list of lines, read the first line and return it as a dictionary.
+
+			Args:
+				lines: list = The list of lines where you want to read the first one.
+
+			Returns:
+				A dictionary.
+		"""
+
 		result = {}        
 
 		line = lines[0].split(self.ender)
@@ -74,6 +109,15 @@ class PREFS(object):
 		return result
 
 	def CreatePrefs(self, prefs: dict):
+		"""
+			Creates a file with the prefs that you pass.
+
+			Args:
+				prefs: dict = The prefs that will write in the file.
+
+			Returns:
+				None
+		"""
 		if "/" in self.filename:
 			for e, i in enumerate(self.filename.split("/")):
 				if e == len(self.filename.split("/") - 1): break 
@@ -98,6 +142,17 @@ class PREFS(object):
 		self.ReadPrefs()
 
 	def WritePrefs(self, pref: str, value: any):
+		"""
+			Change the pref that you pass with the value that you pass, if doesn't exist, new pref.
+
+			Args:
+				pref: str = the name of the pref that you want to change, if it doesn't exist, it will create it.
+
+			Returns:
+				None
+
+		"""
+
 		if self.debug: print(f"Trying to write {pref} with {value} value in {self.filename}")
 		content = self.ReadPrefs()
 		content[pref] = value
@@ -119,6 +174,15 @@ class PREFS(object):
 		self.ReadPrefs()
 
 	def ReWritePrefs(self, prefs: dict = None):
+		"""
+			Changes the prefs with the prefs that you pass or if you don't pass nothing reset the current prefs (with the values at initializing).
+			
+			Args:
+				prefs: dict (optional) = New prefs, if empty reset prefs.
+
+			Returns:
+				None  
+		"""
 		if os.path.exists(f"{self.filename}.{self.extension}"):
 
 			if self.debug: print(f"Trying to write {self.prefs} in {self.filename}")
@@ -136,6 +200,16 @@ class PREFS(object):
 		self.ReadPrefs()
 			
 	def ChangeFilename(self, filename: str):
+		"""Changes the name of the file but you still has the last name when you initializing the class,
+			so it won't find the file and will create it,
+
+			Args:
+				filename: str = the new name of the file.
+
+			Returns:
+				None
+
+			"""
 		if not os.path.exists(f"{self.filename}.{self.extension}"): raise FileNotFoundError("Cannot change the name of a file that doesn't exists")
 		if self.debug: print(f"Trying to change {self.filename} name to {filename}")
 		os.rename(self.filename+"."+self.extension, filename+"."+self.extension)
