@@ -41,6 +41,10 @@ Change Log
 -------------------
 - Fixed little issues.
 
-0.0.85 (05/06/2021)
+0.0.85 (16/06/2021)
 -------------------
 - Fixed path support, fixed ChangeFilename function, added debug parameter.
+
+0.0.86 (17/06/2021)
+-------------------
+- Added docstring.
