@@ -1,17 +1,13 @@
-import PREFS
+import PREFS # Importing PREFS library
 
-prefs = {"theme": "light", "lang": "en"} # Defining default prefs
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs") # Creating PREFS instance to create prefs file
+prefs = {"lang": "en", "theme": "light", "lastPath": ""} # Defining default prefs
+UserPrefs = PREFS.PREFS(prefs) # Creating PREFS class instance
 
-UserPrefs.OverWritePrefs() # Overwriting the prefs with the default prefs
+print(UserPrefs.file) # Printing the prefs using file attribute
 
-UserPrefs.ConvertToJson() # Converts the prefs file to json file
-print(PREFS.ReadJsonFile("Prefs/prefs")) # Reads the converted json file
+# print(UserPrefs.file["theme"]) # Printing theme pref
 
-print(UserPrefs.ReadPrefs()) # Printing the prefs
+UserPrefs.WritePrefs("theme", "dark") # Changing theme pref to dark
+UserPrefs.WritePrefs("lastFile", "audio.wav") # Creating lastFile pref and setting it's value to audio.Wav
 
-UserPrefs.WritePrefs("theme", "dark") # Changing the theme pref from light to dark
-
-print(UserPrefs.ReadPrefs()) # Printing the prefs again
-
-PREFS.GetStats()
+print(UserPrefs.file) # Printing the prefs using file attribute

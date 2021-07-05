@@ -23,7 +23,7 @@ with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
 
 setup(
   name="PREFS",
-  version="0.0.95",
+  version="0.1.0",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
@@ -33,7 +33,7 @@ setup(
   long_description=open("docs/README.md").read(),
   download_url="https://github.com/Patitotective/PREFS", 
   classifiers=classifiers,
-  platforms= ["Windows", "Linux"],
+  platforms= ["Windows", "Linux", "MacOS"],
   keywords=["prefs", "preferences"],  
   license="MIT", 
   packages=find_packages(),

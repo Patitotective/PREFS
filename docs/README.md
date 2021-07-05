@@ -14,7 +14,7 @@
 On windows:
 `pip install PREFS`
 
-On Mac and Linux:
+On MacOS and Linux:
 `pip3 install PREFS`
 
 ### Syntax:
