@@ -3,10 +3,11 @@
 ![Python Version](https://img.shields.io/pypi/pyversions/prefs)
 [![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
 [![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
+![Stars](https://img.shields.io/github/stars/patitotective/prefs)
 
 ## Why?
 
-**PREFS's purpose is to facilitate the process of store and manage user preferences, simple but useful library..**
+**PREFS's purpose is to facilitate the process of store and manage user preferences, simple but useful library.**
 
 ## Installation:
 
