@@ -23,7 +23,7 @@ with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
 
 setup(
   name="PREFS",
-  version="0.0.93",
+  version="0.0.95",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 

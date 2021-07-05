@@ -8,6 +8,7 @@ Doesn't require any other library.
 
 Content:
 	PREFS (class): Instance this class to create a prefs file.
+	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
 
 """
 
@@ -15,6 +16,8 @@ Content:
 #Libraries
 import ast
 import os
+import json
+import warnings
 from os import path
 
 class PREFS(object): 
@@ -91,25 +94,23 @@ class PREFS(object):
 			lines = prefsTXT.readlines()
 			lines1 = []
 
+			if lines[0] != "#PREFS\n": raise TypeError("Cannot read the file, check the file ('#PREFS' must be the first line)")
+
 			if not self.dictionary:
-				if len(lines) > 1:
-					e = 0
-					for line in lines:
-						lines1.append(line.replace(self.ender, ""))
+				e = 0
+				for line in lines:
+					if line[0] == "#": continue
+					lines1.append(line.replace(self.ender, ""))
 
-						if not self.interpret:
-							content[lines1[e].split(self.separator, 1)[0]] = lines1[e].split(self.separator, 1)[1]
-						elif self.interpret:
-							content[ lines1[e].split(self.separator, 1)[0] ] = ast.literal_eval( lines1[e].split(self.separator, 1)[1] )
+					if not self.interpret:
+						content[lines1[e].split(self.separator, 1)[0]] = lines1[e].split(self.separator, 1)[1]
+					elif self.interpret:
+						content[ lines1[e].split(self.separator, 1)[0] ] = ast.literal_eval( lines1[e].split(self.separator, 1)[1] )
 
-						e += 1
-
-				elif len(lines) == 1:
-					content = self.ReadOneLine(lines)
-
+					e += 1
 
 			elif self.dictionary:
-				content = ast.literal_eval(lines[0])
+				content = ast.literal_eval(lines[1])
 
 			prefsTXT.close()
 
@@ -122,29 +123,6 @@ class PREFS(object):
 			if self.debug: print(f"File not found. Trying to create {self.filename}")
 			if (callable(self.prefs)): self.CreatePrefs(self.prefs())
 			else: self.CreatePrefs(self.prefs)
-
-	def ReadOneLine(self, lines: list) -> dict:
-		"""
-			With a list of lines, read the first line and return it as a dictionary.
-
-			Args:
-				lines (list): The list of lines where you want to read the first one.
-				
-			Returns:
-				A dictionary.
-		"""
-
-		result = {}        
-
-		line = lines[0].split(self.ender)
-		line.pop()
-		for i in line:
-			if not self.interpret:
-				result[i.split(self.separator, 1)[0]] = i.split(self.separator, 1)[1]
-			elif self.interpret:
-				result[i.split(self.separator, 1)[0]] = ast.literal_eval(i.split(self.separator, 1)[1])        
-
-		return result
 
 	def CreatePrefs(self, prefs: dict) -> None:
 		"""
@@ -164,6 +142,8 @@ class PREFS(object):
 		prefsTXT = open(f"{self.filename}.{self.extension}","w+")
 
 		if self.debug: print(f"Creating {self.filename}")
+
+		prefsTXT.write("#PREFS\n")
 
 		if not self.dictionary:
 			for i in prefs.items():
@@ -196,17 +176,7 @@ class PREFS(object):
 		content = self.ReadPrefs()
 		content[pref] = value
 
-		if not self.dictionary:
-			text = ""
-			for item in content.items():
-				text += f"{item[0]}{self.separator}{item[1]}{self.ender}"
-
-		elif self.dictionary:
-			text = str(content)
-
-		prefsTXT = open(f"{self.filename}.{self.extension}","w+")
-		prefsTXT.write(text)
-		prefsTXT.close()
+		self.CreatePrefs(content)
 
 		if self.debug: print(f"Writed {pref} with {value} value in {self.filename}")
 
@@ -275,3 +245,44 @@ class PREFS(object):
 			return
 
 		raise FileNotFoundError("Can't delete unexistent file")
+
+	def ConvertToJson(self, filename: str="", extension: str="json") -> None:
+		"""Converts the prefs file to a json file.
+		
+		Args:
+			filename (str, optional=""): As default the same name as your prefs file but with .json extension.
+			extension (str, option="json"): json file extension.
+
+		Returns:
+			None
+		"""
+		filename = self.filename if filename == "" else filename
+
+		if self.debug: print(f"Trying to dump {filename}.{extension}")
+
+		with open(f"{filename}.{extension}", "w") as outfile: 
+		    json.dump(self.file, outfile)
+				
+		if not os.path.isfile(f"{filename}.{extension}"): warnings.RuntimeWarning(f"Can't find {filename}.{extension}")
+
+		if self.debug: print(f"Successfuly created {filename}.{extension}")
+
+def ReadJsonFile(filename: str, extension: str="json"):
+	"""Reads Json files and returns it's value.
+
+	Note:
+		Object (dict) expected.
+
+	Args:
+		filename (str): The name of the json file to read
+		extension (str, optional="json"): The extension of the json file.
+
+	Returns:
+		dict
+	"""
+
+	file = open(f"{filename}.{extension}", "r")
+	data = json.load(file)
+	file.close()
+
+	return data

@@ -31,6 +31,12 @@ The main methods are:
 
 -   `WritePrefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to asign to the pref.
 
+-   `ConvertToJson()`: Converts the prefs file to a json one (with the same filename)
+
+Methods outside PREFS class:
+
+-   `ReadJsonFile()`: Requires the filename to read the json file.
+
 ## Documentation
 
 PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki with more examples and information.
