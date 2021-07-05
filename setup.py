@@ -1,31 +1,43 @@
 from setuptools import setup, find_packages
  
 classifiers = [
-  'Development Status :: 5 - Production/Stable',
-  'Intended Audience :: Education',
-  'Operating System :: Microsoft :: Windows :: Windows 10',
-  'License :: OSI Approved :: MIT License',
-  'Programming Language :: Python :: 3'
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Education",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",  
+  "Operating System :: Microsoft :: Windows :: Windows 10",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: POSIX :: Linux",  
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.6", 
+  "Programming Language :: Python :: 3.7", 
+  "Programming Language :: Python :: 3.8", 
+  "Programming Language :: Python :: 3.9", 
+  "Topic :: Software Development :: Libraries :: Python Modules", 
 ]
  
 from os import path
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-  name='PREFS',
-  version='0.0.87',
-  description='A simple program that writes and reads prefs',
-  long_description=open('README.md').read() + '\n\n' + open('CHANGELOG.txt').read(),
-  url='https://github.com/Patitotective/PREFS',  
-  author='Cristobal Riaga',
-  author_email='cristobalriaga@gmail.com',
-  license='MIT', 
+  name="PREFS",
+  version="0.0.90",
+  author="Cristobal Riaga",
+  author_email="cristobalriaga@gmail.com",
+  maintainer="Cristobal Riaga", 
+  maintainer_email="cristobalriaga@gmail.com",
+  url="https://github.com/Patitotective/PREFS",  
+  description="A simple but useful python library that helps you to manage user preferences",
+  long_description=open("Docs/README.md").read(),
+  download_url="https://github.com/Patitotective/PREFS", 
   classifiers=classifiers,
-  keywords='prefs', 
+  platforms= ["Windows", "Linux"],
+  keywords=["prefs", "preferences"],  
+  license="MIT", 
   packages=find_packages(),
-  install_requires=[''], 
+  install_requires=[""], 
 
-  long_description_content_type='text/markdown'
+  long_description_content_type="text/markdown"
 )
