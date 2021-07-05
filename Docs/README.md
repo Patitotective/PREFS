@@ -2,7 +2,7 @@
 
 ![Python Version](https://img.shields.io/pypi/pyversions/prefs)
 [![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
-[![Downloads](https://static.pepy.tech/personalized-badge/prefs?period=total&units=international_system&left_color=black&right_color=red&left_text=Downloads)](https://pepy.tech/project/prefs)
+[![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
 
 ## Why?
 
