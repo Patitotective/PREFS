@@ -37,6 +37,7 @@ The main methods are:
 Methods outside PREFS class:
 
 -   `ReadJsonFile()`: Requires the filename to read the json file.
+-   `GetStats()`: Returns and prints the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
 
 ## Documentation
 

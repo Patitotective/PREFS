@@ -26,9 +26,13 @@ def test_json():
 
 	assert UserPrefs.file == data
 
+def test_stats():
+	PREFS.GetStats()
 
 if __name__ == "__main__":
 	test_reading_overwrite()
 	test_writeprefs()
 	test_json()
+	test_stats()
+
 	test_changefilename_deletefile() # This will delete the file so most times you will see no file

@@ -9,6 +9,7 @@ Doesn't require any other library.
 Content:
 	PREFS (class): Instance this class to create a prefs file.
 	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
+	GetStats(function): Shows you the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
 
 """
 
@@ -18,6 +19,7 @@ import ast
 import os
 import json
 import warnings
+import pypistats
 from os import path
 
 class PREFS(object): 
@@ -286,3 +288,37 @@ def ReadJsonFile(filename: str, extension: str="json"):
 	file.close()
 
 	return data
+
+def GetStats(mode: str="overall", period: str="", mirrors: bool=None, version: str="", os: str="", format: str="markdown"):
+	"""Shows you the stats of the PREFS library using pypistats (https://pypi.org/project/pypistats/).
+	
+	Args:
+		mode (str, optional="overall"): [recent, overall, python_major, python_minor, system]
+		period (str, optional): [day, week, month]
+		format (str, optional): [json, markdown, rst, html]
+		mirrors (bool, optional): Show overall stats with mirrors.
+		version (str): Python version to show stats. 
+
+	Returns:
+		str: pypistats string with prefs stats
+	"""
+	if mode == "overall":
+		data = pypistats.overall("prefs", mirrors=mirrors, format=format)
+		print(data)
+		return data
+	elif mode == "recent":
+		data = pypistats.recent("prefs", period, format=format)
+		print(data)
+		return data
+	elif mode == "python_major":
+		data = pypistats.python_major("prefs", version=version, format=format)
+		print(data)
+		return data
+	elif mode == "python_minor":
+		data = pypistats.python_minor("prefs", version=version, format=format)
+		print(data)
+		return data
+	elif mode == "system":
+		data = pypistats.system("prefs", os=os, format=format)
+		print(data)
+		return data		
