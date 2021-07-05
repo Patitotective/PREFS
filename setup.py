@@ -18,19 +18,19 @@ classifiers = [
  
 from os import path
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
+with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
   name="PREFS",
-  version="0.0.90",
+  version="0.0.93",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
   maintainer_email="cristobalriaga@gmail.com",
   url="https://github.com/Patitotective/PREFS",  
   description="A simple but useful python library that helps you to manage user preferences",
-  long_description=open("Docs/README.md").read(),
+  long_description=open("docs/README.md").read(),
   download_url="https://github.com/Patitotective/PREFS", 
   classifiers=classifiers,
   platforms= ["Windows", "Linux"],

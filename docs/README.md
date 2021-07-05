@@ -27,9 +27,9 @@ UserPrefs = PREFS.PREFS(prefs = {"theme": "light", "lang": "en"})
 
 The main methods are:
 
-- `ReadPrefs()`: Returns a dictionary with your prefs.
+-   `ReadPrefs()`: Returns a dictionary with your prefs.
 
-- `WritePrefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to asign to the pref.
+-   `WritePrefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to asign to the pref.
 
 ## Documentation
 
@@ -37,9 +37,9 @@ PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki 
 
 ## Links
 
-- Github page: https://github.com/Patitotective/PREFS
-- Pypi page: https://pypi.org/project/PREFS/
-- Contact me:
+-   Github page: https://github.com/Patitotective/PREFS
+-   Pypi page: https://pypi.org/project/PREFS/
 
-- Discord: **patitotective#0127**
-- Gmail: **cristobalriaga@gmail.com**
+-   Contact me:
+    -   Discord: **patitotective#0127**
+    -   Email: **cristobalriaga@gmail.com**
