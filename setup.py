@@ -23,7 +23,7 @@ with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
 
 setup(
   name="PREFS",
-  version="0.1.0",
+  version="0.1.1",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
@@ -37,7 +37,7 @@ setup(
   keywords=["prefs", "preferences"],  
   license="MIT", 
   packages=find_packages(),
-  install_requires=[""], 
+  install_requires=["pypistats"], 
 
   long_description_content_type="text/markdown"
 )
