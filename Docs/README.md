@@ -1,5 +1,9 @@
 ![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/Images/logo1.png?raw=true)
 
+![Python Version](https://img.shields.io/pypi/pyversions/prefs)
+[![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
+[![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
+
 ## Why?
 
 **PREFS's purpose is to facilitate the process of store information, user information (that won't get lost when the program ends).**
