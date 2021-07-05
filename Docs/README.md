@@ -22,7 +22,7 @@ PREFS library has inside a class also called PREFS, you have to create an instan
 This class has one required parameter, which is a dictionary with the default preferences, default means the preferences that all users will have at first time.
 
 ```Python
-UserPrefs = PREFS.PREFS(prefs = {"firstEntry": today, "username": "Patitotective", "theme": "Dark", "age": 21})
+UserPrefs = PREFS.PREFS(prefs = {"theme": "light", "lang": "en"})
 ```
 
 The main methods are:
@@ -37,9 +37,9 @@ PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki 
 
 ## Links
 
-Github page: https://github.com/Patitotective/PREFS
-Pypi page: https://pypi.org/project/PREFS/  
-Contact me:
+- Github page: https://github.com/Patitotective/PREFS
+- Pypi page: https://pypi.org/project/PREFS/
+- Contact me:
 
 - Discord: **patitotective#0127**
 - Gmail: **cristobalriaga@gmail.com**

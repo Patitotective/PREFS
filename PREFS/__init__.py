@@ -6,7 +6,8 @@ It has simple functions that you will understand fastly, also creates a total hu
 
 Doesn't require any other library.
 
-Only contains the PREFS class.
+Content:
+	PREFS (class): Instance this class to create a prefs file.
 
 """
 
@@ -17,41 +18,49 @@ import os
 from os import path
 
 class PREFS(object): 
-	"""
-	PREFS class creates a file to store and manage user preferences.
+	"""PREFS class creates a file to store and manage user preferences.
+	
+	Attributes:
+		file(dict): easier way to get the ReadPrefs() returns value (to get the prefs).
 
 	Methods:
-	----------
-	ReadPrefs() -> dict
-		Returns a dictionary reading the file where the prefs are stored, if this file doesn't exist it will create it.
-	ReadOneLine(lines: list) -> dict
-		Given a list of lines returns the first line as a dictionary.
-	CreatePrefs(prefs: dict) -> None
-		Create a file with the given prefs and the class filename, returns None.
-	WritePrefs(pref: str, value: any) -> None
-		Reading the prefs file as a dictionary changes the passed pref to the passed value, if the pref (key) doesn't exist it creates it, returns None.
-	OverWritePrefs(prefs: dict=None) -> None
-		Over write the current prefs file with the given dictionary or without passing anything reset the prefs to the defaults, returns None.
-	ChangeFilename(filename: str) -> None
-		Changes the name of the prefs file with the given one, returns None.
-	DeleteFile() -> None
-		Removes the file if it exists, returns None.
+		ReadPrefs() -> dict: Returns a dictionary reading the file where the prefs are 
+		stored, if this file doesn't exist it will create it.
+
+		ReadOneLine(lines: list) -> dict: Given a list of lines returns the first line 
+		as a dictionary.
+
+		CreatePrefs(prefs: dict) -> None: Create a file with the given prefs and the 
+		class filename, returns None.
+
+		WritePrefs(pref: str, value: any) -> None: Reading the prefs file as a dictionary 
+		changes the passed pref to the passed value, if the pref (key) doesn't exist it 
+		creates it, returns None.
+
+		OverWritePrefs(prefs: dict=None) -> None: Over write the current prefs file 
+		with the given dictionary or without passing anything reset the prefs to the 
+		defaults, returns None.
+
+		ChangeFilename(filename: str) -> None: Changes the name of the prefs file 
+		with the given one, returns None.
+
+		DeleteFile() -> None: Removes the file if it exists, returns None.
 	"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="txt", separator: str="=", ender: str="\n", 
 		interpret: bool=False, dictionary: bool=False, debug: bool=False):
 		
-		"""	Args:
-				:param prefs: A dictionary with the default preferences.
-				:type prefs: dict
-				:param filename: (optional, "prefs" as default) = The path with the name of the file.
-				:type filename: str
-				extension: str (optinal, "txt" as default) = The extension of the file.
-				separator: str (optional, "=" as default) = The character between the key and value in the file.
-				ender: str (optional, "\n" line break as default) = The character at the end of each key:value.
-				interpret: bool (optional, False as default) = Do you want to interpret the value stored, if True you could write a dictionary and read as dictioary, if False all will be returned as string.
-				dictionary: bool (optional, False as default) = If True the file will be a python dictionary (avoid any error at reading), if False it will be human readble.
-				debug: bool (optional, False as default) = If True print messages of all operations."""
+		"""	
+		Args
+			prefs (dict): A dictionary with the default preferences.
+			filename (str, optional="prefs"): The name of the file (can include path).
+			extension (str, optinal="txt"): The extension of the file.
+			separator (str, optional="="): The character between pref and value in the file.
+			ender (str, optional="\n"): The character at the end of each pref:value.
+			interpret (bool, optional=False): Interpret the value stored as python.
+			dictionary (bool, optional=False): Writes the prefs as a python dictionary (avoid any error at reading).
+			debug (bool, optional=False): Print messages of all operations.
+		"""
 		
 		super(PREFS, self).__init__()
 		self.prefs = prefs
@@ -70,8 +79,6 @@ class PREFS(object):
 		"""
 			Try to read the prefs and if the file doesn't exist call the CreatePrefs() function to create it.
 
-			Args:
-				None
 			Returns:
 				A dictionary with all the prefs.
 		"""
@@ -121,7 +128,8 @@ class PREFS(object):
 			With a list of lines, read the first line and return it as a dictionary.
 
 			Args:
-				lines: list = The list of lines where you want to read the first one.
+				lines (list): The list of lines where you want to read the first one.
+				
 			Returns:
 				A dictionary.
 		"""
@@ -143,7 +151,8 @@ class PREFS(object):
 			Creates a file with the prefs that you pass.
 
 			Args:
-				prefs: dict = The prefs that will write in the file.
+				prefs (dict): The prefs that will write in the file.
+
 			Returns:
 				None
 		"""
@@ -175,7 +184,9 @@ class PREFS(object):
 			Change the pref that you pass with the value that you pass, if doesn't exist, new pref.
 			
 			Args:
-				pref: str = the name of the pref that you want to change, if it doesn't exist, it will create it.
+				pref (str): the name of the pref that you want to change, if it doesn't exist, it will create it.
+				value (any): the value that you want to assign to the pref.
+
 			Returns:
 				None
 
@@ -206,7 +217,8 @@ class PREFS(object):
 			Changes the prefs with the prefs that you pass or if you don't pass nothing reset the current prefs (with the values at initializing).
 			
 			Args:
-				prefs: dict (optional) = New prefs, if empty reset prefs.
+				prefs (dict, optional): New prefs, if empty reset prefs.
+
 			Returns:
 				None  
 		"""
@@ -227,13 +239,16 @@ class PREFS(object):
 		self.ReadPrefs()
 			
 	def ChangeFilename(self, filename: str) -> None:
-		"""Changes the name of the file but you still has the previous name when you initialize the class,
-			so it won't find the file and will create it again and again, so you have to run this function and change the name at class init,
+		"""Changes the name of the file.
+		
+		Note:
+			The filename will be changed but you have to change it's name at class init.
 
-			Args:
-				filename: str = the new name of the file.
-			Returns:
-				None
+		Args:
+			filename (str): the new name of the file.
+
+		Returns:
+			None
 
 			"""
 		if not os.path.exists(f"{self.filename}.{self.extension}"): raise FileNotFoundError("Cannot change the name of a file that doesn't exists")
@@ -247,6 +262,12 @@ class PREFS(object):
 		self.ReadPrefs()
 
 	def DeleteFile(self) -> None:
+		"""Deletes the prefs file (if you run your code again it will be created again).
+
+		Returns:
+			None
+
+		"""
 		if os.path.exists(f"{self.filename}.{self.extension}"):
 			if self.debug: print(f"Trying to remove {self.filename}")
 			os.remove(f"{self.filename}.{self.extension}")
