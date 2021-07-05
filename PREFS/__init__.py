@@ -4,9 +4,9 @@
 import ast
 import os
 
-class PREFS(object):
+class PREFS(object): 
 	"""PREFS is for store user preferences, like username, theme, etcetera.
-		Is very user friendly and has a few functionas that you will understand fastly, also creates a total human readable file (without any compression)"""
+		Is very user friendly and has a few functions that you will understand fastly, also creates a total human readable file (without any compression)"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="txt", separator: str="=", ender: str="\n", 
 		interpret: bool=False, dictionary: bool=False, debug: bool=False):
@@ -120,7 +120,7 @@ class PREFS(object):
 		"""
 		if "/" in self.filename:
 			for e, i in enumerate(self.filename.split("/")):
-				if e == len(self.filename.split("/") - 1): break 
+				if e == len(self.filename.split("/")) - 1: break 
 				os.mkdir(i)
 
 		prefsTXT = open(f"{self.filename}.{self.extension}","w+")
@@ -200,8 +200,8 @@ class PREFS(object):
 		self.ReadPrefs()
 			
 	def ChangeFilename(self, filename: str):
-		"""Changes the name of the file but you still has the last name when you initializing the class,
-			so it won't find the file and will create it,
+		"""Changes the name of the file but you still has the previous name when you initialize the class,
+			so it won't find the file and will create it again and again, so you have to run this function and change the name at class init,
 
 			Args:
 				filename: str = the new name of the file.
