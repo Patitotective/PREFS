@@ -1,7 +1,7 @@
 <a id="user-content-prefs" class="anchor" aria-hidden="true" href="#prefs">
 
 <div align="center">
-  <src href="https://github.com/Patitotective/PREFS/blob/main/logo1.png?raw=true" alt="PREFS">
+  <src href="https://github.com/Patitotective/PREFS/blob/main/logo1.png" alt="PREFS">
 </div>
 
 ## Why?
