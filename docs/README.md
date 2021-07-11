@@ -47,7 +47,6 @@ keybindings=>
   Ctrl+C=Copy
   Ctrl+V=Paste
   Ctrl+X=Cut
-
 ```
 
 The main methods to manage the preferences are are:
