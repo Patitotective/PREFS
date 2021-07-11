@@ -21,6 +21,8 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
+github_url = "https://github.com/Patitotective/PREFS"
+
 setup(
   name="PREFS",
   version="0.1.1",
@@ -28,7 +30,13 @@ setup(
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
   maintainer_email="cristobalriaga@gmail.com",
-  url="https://github.com/Patitotective/PREFS",  
+  url=github_url,  
+  project_urls={
+    "Documentation": f'{github_url}/wiki', 
+    'Source Code': github_url,
+    'Changelog': f'{github_url}/blob/main/docs/CHANGELOG.md',
+    'Issues': f'{github_url}/issues'
+  },
   description="A simple but useful python library that helps you to manage user preferences",
   long_description=open("docs/README.md").read(),
   download_url="https://github.com/Patitotective/PREFS", 
