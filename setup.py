@@ -21,23 +21,35 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, "docs/README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
+github_url = "https://github.com/Patitotective/PREFS"
+
 setup(
   name="PREFS",
-  version="0.1.1",
+  version="0.1.2",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
   maintainer_email="cristobalriaga@gmail.com",
-  url="https://github.com/Patitotective/PREFS",  
-  description="A simple but useful python library that helps you to manage user preferences",
+  url=github_url,  
+  project_urls={
+    "Documentation": f'{github_url}/wiki', 
+    'Source Code': github_url,
+    'Changelog': f'{github_url}/blob/main/docs/CHANGELOG.md',
+    'Issues': f'{github_url}/issues', 
+    'Pull requests': f'{github_url}/pulls', 
+    'Discussions': f"{github_url}/discussions"
+  },
+  description="Simple but useful python library that helps you to manage user preferences",
   long_description=open("docs/README.md").read(),
-  download_url="https://github.com/Patitotective/PREFS", 
   classifiers=classifiers,
   platforms= ["Windows", "Linux", "MacOS"],
   keywords=["prefs", "preferences"],  
   license="MIT", 
   packages=find_packages(),
-  install_requires=["pypistats"], 
+  install_requires=required, 
 
   long_description_content_type="text/markdown"
 )

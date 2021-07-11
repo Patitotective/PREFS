@@ -1,3 +1,7 @@
 global-include *.txt *.py
 include docs/*.md
-include docs/LICENSE
+exclude PREFS/docs.py
+exclude Demo/*
+exclude PREFS/Test/*
+exclude PREFS/Trial/*
+exclude PREFS/example.py
