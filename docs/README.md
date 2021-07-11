@@ -1,15 +1,21 @@
-![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/Images/logo1.png?raw=true)(https://github.com/Patitotective/PREFS)
+<a id="user-content-prefs" class="anchor" aria-hidden="true" href="#prefs">
+ 
+<div align="center">
+  <img src="https://github.com/Patitotective/PREFS/blob/main/Images/logo1.png?raw=true" alt="PREFS logo">
+</div>
 
-![Python Version](https://img.shields.io/pypi/pyversions/prefs)(https://pypi.org/project/prefs/)
+</a>
+
+[![Python Version](https://img.shields.io/pypi/pyversions/prefs)](https://pypi.org/project/prefs/)
 [![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
 [![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
-![Stars](https://img.shields.io/github/stars/patitotective/prefs)(https://github.com/Patitotective/PREFS/stargazers)
-![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)(https://github.com/Patitotective/PREFS/watchers)
-![Last commit](https://img.shields.io/github/last-commit/Patitotective/PREFS)(https://github.com/Patitotective/PREFS/commits/main)
-![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)(https://github.com/Patitotective/PREFS/)
-![Build](https://img.shields.io/appveyor/build/Patitotective/PREFS)(https://ci.appveyor.com/project/Patitotective/prefs)
-![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)(https://github.com/Patitotective/PREFS)
-![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)(https://github.com/Patitotective/PREFS)
+[![Stars](https://img.shields.io/github/stars/patitotective/prefs)](https://github.com/Patitotective/PREFS/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)
+[![Last commit](https://img.shields.io/github/last-commit/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/commits/main)
+[![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)
+[![Build](https://img.shields.io/appveyor/build/Patitotective/PREFS)](https://ci.appveyor.com/project/Patitotective/prefs)
+[![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
+[![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
 
 ## Why?
 
