@@ -53,20 +53,21 @@ class PREFS:
 		ConvertToJson(self, filename: str="", extension: str="json") -> None: Creates a json file with the actual prefs, if filename don't passed the prefs filename will be the json filename, returns None.
 	"""
 		
-	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", 
-		interpret: bool=False, dictionary: bool=False, verbose: bool=False, cascade: bool=True): # encodeDecode: tuple=(None, None) # Encode Decode code disabled
+	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True): # encodeDecode: tuple=(None, None) # Encode Decode code disabled
 		
 		"""	
 		Args
 			prefs (dict): A dictionary with the default preferences.
-			filename (str, optional="prefs"): The name of the file (can include path).
-			extension (str, optinal="txt"): The extension of the file.
+			filename (str, optional="prefs"): The name of the file (supports path).
+			extension (str, optinal="prefs"): The extension of the file.
 			separator (str, optional="="): The character between pref and value in the file.
 			ender (str, optional="\n"): The character at the end of each pref:value.
-			interpret (bool, optional=False): Interpret the value stored as python.
-			dictionary (bool, optional=False): Writes the prefs as a python dictionary (avoid any error at reading).
-			verbose (bool, optional=False): Print messages of all operations.
-			cascade (bool, optional=True): If dictionary inside dictiory indent second dictionary.
+			continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
+			interpret (bool, optional=True): Interpret the value stored as python.
+			dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
+			verbose (bool, optional=False): Pirnt logs all operations.
+			cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
 		"""
 		# encodeDecode (tuple, optional=(None, None)): Tuple with first element encode function and second element decode function.
 		
@@ -75,11 +76,12 @@ class PREFS:
 		self.filename = filename
 		self.separator = separator
 		self.ender = ender
+		self.continuer = continuer
 		self.interpret = interpret
 		self.dictionary = dictionary
 		self.verbose = verbose
 		self.extension = extension
-		self.file = None
+		self.file = {}
 		# self.encodeDecode = encodeDecode # Encode Decode code disabled
 		self.cascade = cascade
 		self.depth = 0 # Indent level when creating prefs
@@ -119,7 +121,7 @@ class PREFS:
 
 			self.CreatePrefs(prefs) # Create PREFS file with prefs dict
 
-	def ReadPrefs(self) -> str:
+	def ReadPrefs(self) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
 
 			Returns:
@@ -312,17 +314,17 @@ class PREFS:
 			for key, val in prefs.items(): # Iterate through prefs dictionary items
 				
 				if isinstance(val, str) and self.interpret: # If value is a string and self.interpret write value with quotes
-					result += f"{indent}{key}='{val}'{self.ender}" # Write key:value (str) with quotes
+					result += f"{indent}{key}{self.separator}'{val}'{self.ender}" # Write key:value (str) with quotes
 
 				elif isinstance(val, dict) and self.cascade: # If values is a dictionary and cascade is True
 					keyIndent = "\t" * self.depth # Indent string depending on depth of line
 
-					result += f"{keyIndent}{key}=>\n" # Writes indent val and => to indicate that value in the text line.
+					result += f"{keyIndent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.
 					self.depth += 1 # Adds one to depth
 					result += self.DictToText(val, indent="\t" * self.depth) # Calls itself to generate cascade/tree
 
 				else: # If not self.interpret (and key isn't a string) write without quotes
-					result += f"{indent}{key}={val}{self.ender}" # Write key:value in file
+					result += f"{indent}{key}{self.separator}{val}{self.ender}" # Write key:value in file
 
 		self.depth -= 1 if self.depth > 0 else 0 # Subtracts one to depth if is greater than 0
 		return result
