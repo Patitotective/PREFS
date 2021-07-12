@@ -48,7 +48,7 @@ def GetParameters(obj: any):
 	return [str( signature.parameters[i] ) for i in signature.parameters]
 
 def CreateDocsMDFile():
-	mdFile = MdUtils(file_name='Advanced',title='Advanced')
+	mdFile = mdutils.MdUtils(file_name='Advanced',title='Advanced')
 
 	mdFile.new_header(level=2, title="PREFS class parameters")
 
