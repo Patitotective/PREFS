@@ -72,7 +72,7 @@ Methods outside PREFS class:
 
 ## Documentation
 
-PREFS documentation can be found at https://github.com/Patitotective/PREFS/wiki with more examples and information.
+PREFS documentation can be found at https://prefs-documentation.readthedocs.io/en/latest/ with more examples and information.
 
 ---
 

@@ -35,7 +35,7 @@ setup(
   maintainer_email="cristobalriaga@gmail.com",
   url=github_url,  
   project_urls={
-    "Documentation": f'{github_url}/wiki', 
+    "Documentation": f'https://prefs-documentation.readthedocs.io/en/latest/', 
     'Source Code': github_url,
     'Changelog': f'{github_url}/blob/main/docs/CHANGELOG.md',
     'Issues': f'{github_url}/issues', 
