@@ -28,7 +28,7 @@ github_url = "https://github.com/Patitotective/PREFS"
 
 setup(
   name="PREFS",
-  version="0.1.2",
+  version="0.1.3",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
@@ -42,7 +42,7 @@ setup(
     'Pull requests': f'{github_url}/pulls', 
     'Discussions': f"{github_url}/discussions"
   },
-  description="Simple but useful python library that helps you to manage user preferences",
+  description="Simple but useful python library that helps you to store and manage user preferences.",
   long_description=open("docs/README.md").read(),
   classifiers=classifiers,
   platforms= ["Windows", "Linux", "MacOS"],

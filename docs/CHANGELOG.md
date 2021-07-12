@@ -72,6 +72,5 @@
 
 ---
 
-- Added tree/cascade (nested dictionaries) support.
-    
-    0.1.2 (11/07/2021)
+-   Added tree/cascade (nested dictionaries) support.
+    0.1.3 (11/07/2021)
