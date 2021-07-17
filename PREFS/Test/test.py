@@ -8,7 +8,7 @@ UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpr
 
 
 ### Test single preferences and without cascade
-prefs1 = lambda: {"theme": "light"}
+prefs1 = lambda: PREFS.ReadPrefs("prefs1")
 UserPrefs1 = PREFS.PREFS(prefs1, filename="Prefs/prefs1", dictionary=False, interpret=True, verbose=False, cascade=False)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
@@ -45,14 +45,10 @@ def test_json():
 	assert UserPrefs.file == data
 	assert UserPrefs1.file == data1
 
-def test_stats():
-	PREFS.GetStats()
-
 if __name__ == "__main__":
 	test_reading_overwrite()
 	test_writeprefs()
 	test_json()
-	test_stats()
 
 	test_changefilename_deletefile() # This will delete the file so most times you won't see the file
 

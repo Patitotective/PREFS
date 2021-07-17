@@ -68,7 +68,7 @@ Methods outside PREFS class:
 
 - `ReadJsonFile()`: Requires a the filename of the json file to read and returns it's value.
 
-- `GetStats()`: Returns and prints the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
+- `ReadPrefs()`: Given the filename of a PREFS file reads it and returns it's value.
 
 ## Documentation
 

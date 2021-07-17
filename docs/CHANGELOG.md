@@ -81,3 +81,9 @@
 -   Fixed error when overwriting prefs and using a lambda function.
 
     0.1.4 (16/07/2021)
+
+---
+
+-   Added ReadPrefs function outside PREFS class that reads a PREFS file and return it's value.
+
+    0.1.5 (17/07/2021)

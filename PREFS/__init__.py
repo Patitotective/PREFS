@@ -7,16 +7,20 @@ Doesn't require any other library.
 Content:
 	PREFS (class): Instance this class to create a prefs file.
 	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
-	GetStats(function): Shows you the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
+	ReadPrefs (function): Given a filename (and optional some parameters) of a PREFS file return it's value.
 """
+# GetStats(function): Shows you the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
 
 
 #Libraries
 import os # To manage paths, folders and files
 import json # To support export/import json files
 import warnings # To send warnings
-import pypistats # To see PREFS library stats in pypi
+#import pypistats # To see PREFS library stats in pypi
 from os import path # To check if file or folder exists in path
+
+#Dependencies
+from readPREFS import ReadPREFS
 
 class PREFS: 
 	"""PREFS class creates a file to store and manage user preferences.
@@ -66,7 +70,7 @@ class PREFS:
 			continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
 			interpret (bool, optional=True): Interpret the value stored as python.
 			dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
-			verbose (bool, optional=False): Pirnt logs all operations.
+			verbose (bool, optional=False): Print logs all operations.
 			cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
 		"""
 		# encodeDecode (tuple, optional=(None, None)): Tuple with first element encode function and second element decode function.
@@ -575,6 +579,7 @@ def ReadJsonFile(filename: str, extension: str="json"):
 
 	return data # Return data in the json file
 
+'''
 def GetStats(mode: str="overall", period: str="", mirrors: bool=None, version: str="", os: str="", format: str="markdown"):
 	"""Shows you the stats of the PREFS library using pypistats (https://pypi.org/project/pypistats/).
 	
@@ -610,3 +615,31 @@ def GetStats(mode: str="overall", period: str="", mirrors: bool=None, version: s
 		return data # Return stats
 	else: # If mode isn't any supported by pypistats raise error
 		raise ValueError(f"pypistats doesn't support {mode}") # Raise error
+'''
+
+def ReadPrefs(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
+	
+	"""Return the value of PREFS file given it's filename.
+		
+	Args
+		prefs (dict): A dictionary with the default preferences.
+		filename (str, optional="prefs"): The name of the file (supports path).
+		extension (str, optinal="prefs"): The extension of the file.
+		separator (str, optional="="): The character between pref and value in the file.
+		ender (str, optional="\n"): The character at the end of each pref:value.
+		continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
+		interpret (bool, optional=True): Interpret the value stored as python.
+		dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
+		verbose (bool, optional=False): Pirnt logs all operations.
+		cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
+	
+	Returns:
+		A dictionary reading the PREFS file.
+
+	"""
+
+	prefs = ReadPREFS(filename=filename, extension=extension, separator=separator, ender=ender, continuer=continuer, 
+		interpret=interpret, dictionary=dictionary, verbose=verbose, cascade=cascade)
+
+	return prefs.file
