@@ -8,15 +8,15 @@ UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpr
 
 
 ### Test single preferences and without cascade
-prefs1 = {"theme": "light"}
+prefs1 = lambda: {"theme": "light"}
 UserPrefs1 = PREFS.PREFS(prefs1, filename="Prefs/prefs1", dictionary=False, interpret=True, verbose=False, cascade=False)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
 	UserPrefs.OverWritePrefs()
 	UserPrefs1.OverWritePrefs()
 	
-	assert UserPrefs1.ReadPrefs() == prefs1 # Test ReadPrefs() function
-	assert UserPrefs1.file == prefs1 #Test file attribute
+	assert UserPrefs1.ReadPrefs() == prefs1() # Test ReadPrefs() function
+	assert UserPrefs1.file == prefs1() #Test file attribute
 
 	assert UserPrefs.ReadPrefs() == prefs, f"{UserPrefs.ReadPrefs()} should be {prefs}" # Test ReadPrefs() function
 	assert UserPrefs.file == prefs #Test file attribute

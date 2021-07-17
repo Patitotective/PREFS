@@ -112,14 +112,8 @@ class PREFS:
 		except FileNotFoundError: # Except file not found create it
 
 			if self.verbose: print(f"File not found. Trying to create {self.filename}")
-			
-			if callable(self.prefs): # If self.prefs is a function call it
-				prefs = self.prefs() # Setting prefs to self.prefs function returns alue
 
-			else: # If isn't callable
-				prefs = self.prefs # Set prefs to self.prefs
-
-			self.CreatePrefs(prefs) # Create PREFS file with prefs dict
+			self.CreatePrefs(self.prefs) # Create PREFS file with default prefs dict
 
 	def ReadPrefs(self) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
@@ -259,6 +253,9 @@ class PREFS:
 			Returns:
 				None
 		"""
+		if callable(prefs): # If self.prefs is a function call it
+			prefs = prefs() # Setting prefs to self.prefs function returns alue
+
 
 		if not isinstance(prefs, dict): # If isn't a dict raise error
 				raise TypeError(f"self.prefs must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")

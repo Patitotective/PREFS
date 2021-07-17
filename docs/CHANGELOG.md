@@ -74,3 +74,8 @@
 
 -   Added tree/cascade (nested dictionaries) support.
     0.1.3 (11/07/2021)
+
+---
+
+-   Fixed error when overwriting prefs and using a lambda function.
+    0.1.4 (16/07/2021)
