@@ -60,7 +60,8 @@ The main methods to manage the preferences are are:
 
 - `ReadPrefs()`: Returns a dictionary reading the PREFS file.
 
-- `WritePrefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to assign to the pref. If using nested dictionaries pass in key parameter the keys path separated by a forward slash, e.g.: WritePrefs("keybindings/Ctr+C", "Ctrl+D")
+- `WritePrefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to assign to the pref. If using nested dictionaries pass in key parameter the keys path separated by a forward slash, e.g.: 
+`WritePrefs("keybindings/Ctr+C", "Ctrl+D")`
 
 - `ConvertToJson()`: Converts the PREFS file into a json one.
 

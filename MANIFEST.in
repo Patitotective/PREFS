@@ -1,5 +1,6 @@
 global-include *.txt *.py
 include docs/*.md
+include PREFS/readPREFS.py
 exclude PREFS/docs.py
 exclude Demo/*
 exclude PREFS/Test/*
