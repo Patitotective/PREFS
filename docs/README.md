@@ -85,3 +85,7 @@ PREFS documentation can be found at https://prefs-documentation.readthedocs.io/e
 - Contact me:
   - Discord: **patitotective#0127**.
   - Email: **cristobalriaga@gmail.com**.
+
+
+
+**v0.1.6**

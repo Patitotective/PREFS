@@ -13,11 +13,12 @@ Content:
 
 
 #Libraries
-import os # To manage paths, folders and files
 import json # To support export/import json files
+import os # To manage paths, folders and files
+from os import path # To check if file or folder exists in path
+import sys; sys.path.append(os.path.dirname(os.path.realpath(__file__))) # This code is from https://stackoverflow.com/questions/16981921/relative-imports-in-python-3/49375740#49375740
 import warnings # To send warnings
 #import pypistats # To see PREFS library stats in pypi
-from os import path # To check if file or folder exists in path
 
 #Dependencies
 from readPREFS import ReadPREFS
