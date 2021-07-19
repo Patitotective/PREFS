@@ -18,10 +18,15 @@
 [![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
 [![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
 [![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)
+<br/>
+[![made-with-python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
-## Why?
+## What is PREFs?
 
-**PREFS's purpose is to facilitate the process of store and manage user preferences, simple but useful library.**
+**PREFS is a Python library that facilitate the process of store and manage user preferences, simple but useful.**
+
+### How does PREFS work?
+In a nutshell what PREFS does is search for a PREFS file with the given name and if not found create it with the default PREFS.
 
 ## Installation:
 
