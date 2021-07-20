@@ -13,7 +13,6 @@
 [![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)
 <br/>
 [![Build](https://img.shields.io/appveyor/build/Patitotective/PREFS)](https://ci.appveyor.com/project/Patitotective/prefs)
-[![Documentation Status](https://readthedocs.org/projects/prefs-documentation/badge/?version=latest)](https://prefs-documentation.readthedocs.io/en/latest/?badge=latest)
 [![Last commit](https://img.shields.io/github/last-commit/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/commits/main)
 [![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
 [![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
@@ -21,7 +20,7 @@
 <br/>
 [![made-with-python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
-## What is PREFs?
+## What is PREFS?
 
 **PREFS is a Python library that facilitate the process of store and manage user preferences, simple but useful.**
 
@@ -42,12 +41,16 @@ Each PREFS file is an instance of the PREFS class:
 PREFS class has one required parameter, which is a dictionary with the default preferences, default means the preferences that all users will have at first time.
 
 ```Python
-UserPrefs = PREFS.PREFS(prefs = {"theme": "light", "lang": "en", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}})
+UserPrefs = PREFS.PREFS(prefs = {
+  "theme": "light", 
+  "lang": "en", 
+  "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}
+})
 ```
 
 This code will create a file like this:
 
-```
+```python
 #PREFS
 theme=light
 lang=en
@@ -57,7 +60,7 @@ keybindings=>
   Ctrl+X=Cut
 ```
 
-A total human readable file that supports cascade/tree.
+A total human readable file that supports cascade/tree in nested dictionaries.
 
 ---
 
@@ -74,11 +77,11 @@ Methods outside PREFS class:
 
 - `ReadJsonFile()`: Requires a the filename of the json file to read and returns it's value.
 
-- `ReadPrefs()`: Given the filename of a PREFS file reads it and returns it's value.
+- `ReadPREFSFile()`: Given the filename of a PREFS file reads it and returns it's value.
 
 ## Documentation
 
-PREFS documentation can be found at https://prefs-documentation.readthedocs.io/en/latest/ with more examples and information.
+PREFS documentation can be found at https://patitotective.github.io/PREFS/ with more examples and information.
 
 ---
 
@@ -93,4 +96,4 @@ PREFS documentation can be found at https://prefs-documentation.readthedocs.io/e
 
 
 
-**v0.1.6**
+**v0.1.7**

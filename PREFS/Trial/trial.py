@@ -3,18 +3,13 @@ sys.path.append(os.path.abspath(os.path.join('..')))
 
 import __init__ as PREFS
 
-"""UserPrefs = PREFS.PREFS(prefs = {
+# Converting prefs dictionary into PREFS format
+prefs = {
     "theme": "light",
-    "lang": "en"
-    })
+    "lang": "en",
+    "keybindings": {"Copy": "Ctrl+C", "Paste": "Ctrl+V", "Cut": "Ctrl+X"}
+    }
 
-UserPrefs.OverWritePrefs()
+PREFSrepresentation = PREFS.ConvertToPREFS(prefs)
 
-print(UserPrefs.file)
-
-UserPrefs.WritePrefs("lang", "es")
- 
-print(UserPrefs.file)
-"""
-
-PREFS.GetStats()
+print(PREFSrepresentation)

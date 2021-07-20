@@ -7,10 +7,8 @@ Doesn't require any other library.
 Content:
 	PREFS (class): Instance this class to create a prefs file.
 	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
-	ReadPrefs (function): Given a filename (and optional some parameters) of a PREFS file return it's value.
+	ReadPREFSFile (function): Given a filename (and optional some parameters) of a PREFS file return it's value.
 """
-# GetStats(function): Shows you the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
-
 
 #Libraries
 import json # To support export/import json files
@@ -22,6 +20,7 @@ import warnings # To send warnings
 
 #Dependencies
 from readPREFS import ReadPREFS
+from createPREFS import CreatePREFS
 
 class PREFS: 
 	"""PREFS class creates a file to store and manage user preferences.
@@ -59,7 +58,7 @@ class PREFS:
 	"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True): # encodeDecode: tuple=(None, None) # Encode Decode code disabled
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
 		
 		"""	
 		Args
@@ -74,32 +73,25 @@ class PREFS:
 			verbose (bool, optional=False): Print logs all operations.
 			cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
 		"""
-		# encodeDecode (tuple, optional=(None, None)): Tuple with first element encode function and second element decode function.
 		
 		super(PREFS, self).__init__()
 		self.prefs = prefs
 		self.filename = filename
+		self.extension = extension
+
 		self.separator = separator
 		self.ender = ender
 		self.continuer = continuer
+		
 		self.interpret = interpret
 		self.dictionary = dictionary
 		self.verbose = verbose
-		self.extension = extension
-		self.file = {}
-		# self.encodeDecode = encodeDecode # Encode Decode code disabled
 		self.cascade = cascade
+		
+		self.file = {}
 		self.depth = 0 # Indent level when creating prefs
+		
 		self.firstLine = "#PREFS\n" # First line of all prefs file to recognize it.
-
-		"""
-		# Encode Decode code disabled
-		if callable(encodeDecode[0]) and callable(encodeDecode[1]):
-			self.encodeDecodeBool = True
-		else:
-			raise TypeError(f"Incorrect encode and decode function, expected two functions, gived ({type(encodeDecode[0])}, {type(encodeDecode[1])})")
-			self.encodeDecodeBool = False
-		"""
 
 		self.CheckFile()
 		
@@ -134,15 +126,13 @@ class PREFS:
 		content = {} # Content will be where the prefs will be stored when reading
 		lines = prefsTXT.readlines() # Read lines
 
-		content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
-		content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
-		
-		"""
-		# Encode Decode code disabled
-		if self.encodeDecodeBool:
-			content = self.DecodeDict(content)
-		"""
-		if self.interpret:
+		if not self.dictionary:
+			content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
+			content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
+		elif self.dictionary:
+			content = eval(lines[1])
+
+		if self.interpret and not self.dictionary:
 			content = self.EvalDict(content) # Pass content to EvalDict function that eval each value.
 
 		prefsTXT.close() # Closing file
@@ -306,12 +296,6 @@ class PREFS:
 		if not isinstance(prefs, dict): # If isn't a dict raise error
 				raise TypeError(f"prefs argument must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
 		
-		"""
-		# Encode Decode code disabled
-		if self.encodeDecodeBool:
-			prefs = self.EncodeDict(prefs)
-		"""
-
 		if not self.dictionary: # If not dictionary format
 			for key, val in prefs.items(): # Iterate through prefs dictionary items
 				
@@ -327,6 +311,9 @@ class PREFS:
 
 				else: # If not self.interpret (and key isn't a string) write without quotes
 					result += f"{indent}{key}{self.separator}{val}{self.ender}" # Write key:value in file
+
+		if self.dictionary:
+			return str(prefs)
 
 		self.depth -= 1 if self.depth > 0 else 0 # Subtracts one to depth if is greater than 0
 		return result
@@ -379,37 +366,6 @@ class PREFS:
 			result = eval(string)
 
 		return result
-
-	"""
-	# Encode Decode code disabled
-	def EncodeDict(self, myDict: dict) -> dict:
-		if not self.encodeDecodeBool:
-			return myDict
-
-		result = {}
-
-		for key, val in myDict.items():
-			if isinstance(val, dict):
-				result[key] = self.EncodeDict(val)
-				continue
-			result[key] = self.encodeDecode[0](val)
-
-		return result
-
-	def DecodeDict(self, myDict: dict) -> dict:
-		if not self.encodeDecodeBool:
-			return myDict
-
-		result = {}
-
-		for key, val in myDict.items():
-			if isinstance(val, dict):
-				result[key] = self.DecodeDict(val)
-				continue
-			result[key] = self.encodeDecode[1](val)
-
-		return result
-		"""
 
 	def WritePrefs(self, pref: str, value: any) -> None:
 		"""Change the pref that you pass with the value that you pass, if doesn't exist, new pref.
@@ -580,46 +536,9 @@ def ReadJsonFile(filename: str, extension: str="json"):
 
 	return data # Return data in the json file
 
-'''
-def GetStats(mode: str="overall", period: str="", mirrors: bool=None, version: str="", os: str="", format: str="markdown"):
-	"""Shows you the stats of the PREFS library using pypistats (https://pypi.org/project/pypistats/).
-	
-	Args:
-		mode (str, optional="overall"): [recent, overall, python_major, python_minor, system]
-		period (str, optional): [day, week, month]
-		format (str, optional): [json, markdown, rst, html]
-		mirrors (bool, optional): Show overall stats with mirrors.
-		version (str): Python version to show stats. 
 
-	Returns:
-		str: pypistats string with prefs stats
-	"""
-	if mode == "overall": # If overall mode
-		data = pypistats.overall("prefs", mirrors=mirrors, format=format) # Get stats of PREFS library with pypi stats
-		print(data) # Print stats
-		return data # Return stats
-	elif mode == "recent": # If recent mode
-		data = pypistats.recent("prefs", period, format=format) # Get stats of PREFS library with pypi stats
-		print(data) # Print stats 
-		return data # Return stats
-	elif mode == "python_major": # If python_major mode
-		data = pypistats.python_major("prefs", version=version, format=format) # Get stats of PREFS library with pypi stats
-		print(data) # Print stats
-		return data # Return stats
-	elif mode == "python_minor": # If python_minor mode
-		data = pypistats.python_minor("prefs", version=version, format=format) # Get stats of PREFS library with pypi stats
-		print(data) # Print stats
-		return data # Return stats
-	elif mode == "system": # If system mode
-		data = pypistats.system("prefs", os=os, format=format) # Get stats of PREFS library with pypi stats
-		print(data) # Print stats
-		return data # Return stats
-	else: # If mode isn't any supported by pypistats raise error
-		raise ValueError(f"pypistats doesn't support {mode}") # Raise error
-'''
-
-def ReadPrefs(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
+def ReadPREFSFile(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> dict:
 	
 	"""Return the value of PREFS file given it's filename.
 		
@@ -644,3 +563,27 @@ def ReadPrefs(filename: str, extension: str="prefs", separator: str="=", ender: 
 		interpret=interpret, dictionary=dictionary, verbose=verbose, cascade=cascade)
 
 	return prefs.file
+
+def ConvertToPREFS(prefs: dict, separator: str="=", ender: str="\n", continuer: str=">", 
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> str:
+	
+	"""Given a dictionary convert that dictionary into PREFS format and return it as string. 
+	
+	Args
+		prefs (dict): A dictionary with the default preferences.
+		separator (str, optional="="): The character between pref and value in the file.
+		ender (str, optional="\n"): The character at the end of each pref:value.
+		continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
+		dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
+		verbose (bool, optional=False): Print logs all operations.
+		cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
+
+	Returns:
+		A string contating the dictionary in PREFS format.
+
+	"""
+
+	UserPrefs = CreatePREFS(prefs=prefs, separator=separator, ender=ender, continuer=continuer, 
+		interpret=interpret, dictionary=dictionary, verbose=verbose, cascade=cascade)
+
+	return UserPrefs.CreatePrefs() 

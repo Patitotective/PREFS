@@ -1,13 +1,4 @@
-"""
-PREFS is for store user preferences, in a simple and friendly way.
-It has simple functions that you will understand fastly, also creates a total human readable file
-
-Doesn't require any other library.
-
-Content:
-	PREFS (class): Instance this class to create a prefs file.
-	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
-	GetStats(function): Shows you the PREFS library stats using pypistats (https://pypi.org/project/pypistats/).
+"""This script creates is a little isntance of PREFS class that only reads a file.
 """
 
 
@@ -32,7 +23,7 @@ class ReadPREFS:
 	"""
 		
 	def __init__(self, filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True): # encodeDecode: tuple=(None, None) # Encode Decode code disabled
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
 		
 		"""	
 		Args
@@ -94,15 +85,13 @@ class ReadPREFS:
 		content = {} # Content will be where the prefs will be stored when reading
 		lines = prefsTXT.readlines() # Read lines
 
-		content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
-		content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
-		
-		"""
-		# Encode Decode code disabled
-		if self.encodeDecodeBool:
-			content = self.DecodeDict(content)
-		"""
-		if self.interpret:
+		if not self.dictionary:
+			content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
+			content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
+		elif self.dictionary:
+			content = eval(lines[1])
+
+		if self.interpret and not self.dictionary:
 			content = self.EvalDict(content) # Pass content to EvalDict function that eval each value.
 
 		prefsTXT.close() # Closing file
@@ -255,5 +244,3 @@ class ReadPREFS:
 			result = eval(string)
 
 		return result
-
-
