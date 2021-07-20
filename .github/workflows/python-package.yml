@@ -39,4 +39,4 @@ jobs:
       run: |
         pip install pytest
         cd PREFS/Test      
-        pytest test.py
+        pytest test_all.py
