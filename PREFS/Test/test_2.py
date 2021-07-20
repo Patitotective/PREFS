@@ -34,6 +34,4 @@ if __name__ == "__main__":
 	test_reading_overwrite()
 	test_create_prefs()
 
-	#test_changefilename_deletefile() # This will delete the file so most times you won't see the file
-
 	print("Everything OK")
