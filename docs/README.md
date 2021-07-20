@@ -87,7 +87,7 @@ PREFS documentation can be found at https://patitotective.github.io/PREFS/ with 
 
 ## Links
 
-- Github page: https://github.com/Patitotective/PREFS.
+- GitHub page: https://github.com/Patitotective/PREFS.
 - Pypi page: https://pypi.org/project/PREFS/.
 
 - Contact me:
