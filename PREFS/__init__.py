@@ -302,7 +302,8 @@ class PREFS:
 				if isinstance(val, str) and self.interpret: # If value is a string and self.interpret write value with quotes
 					result += f"{indent}{key}{self.separator}'{val}'{self.ender}" # Write key:value (str) with quotes
 
-				elif isinstance(val, dict) and self.cascade: # If values is a dictionary and cascade is True
+				elif isinstance(val, dict) and val != {} and self.cascade: # If values is a dictionary and cascade is True
+
 					keyIndent = "\t" * self.depth # Indent string depending on depth of line
 
 					result += f"{keyIndent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.

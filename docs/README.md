@@ -20,11 +20,12 @@
 <br/>
 [![made-with-python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
-## What is PREFS?
-
+What is PREFS?
+---
 **PREFS is a Python library that facilitate the process of store and manage user preferences, simple but useful.**
 
-### How does PREFS work?
+How does PREFS work?
+---
 In a nutshell what PREFS does is search for a PREFS file with the given name and if not found create it with the default PREFS.
 
 ## Installation:

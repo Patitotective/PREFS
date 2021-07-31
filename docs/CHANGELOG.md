@@ -1,5 +1,10 @@
 # Change Log
 
+#### v0.1.8 (31/07/2021)
+
+- Fixed bug when creating a pref with an empty dictionary as value.
+---
+
 #### v0.1.7 (20/07/2021)
 
 - Added `ConvertToPREFS()` function (outside PRFS class) that do the same as `dumps()` in json. Converts a dictionary into a PREFS file but instead of writting the PREFS in a file returns it as string.
