@@ -97,4 +97,4 @@ PREFS documentation can be found at https://prefs-documentation.readthedocs.io w
 
 
 
-**v0.1.7**
+**v0.1.8**

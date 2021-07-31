@@ -28,7 +28,7 @@ github_url = "https://github.com/Patitotective/PREFS"
 
 setup(
   name="PREFS",
-  version="0.1.7",
+  version="0.1.8",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
