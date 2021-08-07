@@ -82,7 +82,7 @@ Methods outside PREFS class:
 
 ## Documentation
 
-PREFS documentation can be found at https://prefs-documentation.readthedocs.io with more examples and information.
+PREFS documentation can be found at https://patitotective.github.io/PREFS/ with more examples and information.
 
 ---
 
