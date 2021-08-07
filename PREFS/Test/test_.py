@@ -11,31 +11,31 @@ prefs = {"theme": "light", "lang": "en", "keybindings": {"Ctrl+C": "Copy", "Ctrl
 UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpret=True, verbose=False, cascade=True) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
-	UserPrefs.OverWritePrefs()
+	UserPrefs.overwrite_prefs()
 
-	assert UserPrefs.ReadPrefs() == prefs, f"{UserPrefs.ReadPrefs()} should be {prefs}" # Test ReadPrefs() function
-	assert UserPrefs.file == prefs, f"{UserPrefs.ReadPrefs()} should be {prefs}" #Test file attribute
+	assert UserPrefs.read_prefs() == prefs, f"{UserPrefs.read_prefs()} should be {prefs}" # Test read_prefs() function
+	assert UserPrefs.file == prefs, f"{UserPrefs.read_prefs()} should be {prefs}" #Test file attribute
 
 def test_writeprefs():
-	UserPrefs.WritePrefs("lang", "es")
+	UserPrefs.write_prefs("lang", "es")
 
 	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {}}
 
-	UserPrefs.WritePrefs("name/age", 20)
+	UserPrefs.write_prefs("name/age", 20)
 
 	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {"age": 20}}
 
 
 def test_changefilename_deletefile():
-	UserPrefs.ChangeFilename("prefs")
+	UserPrefs.change_filename("prefs")
 	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == True
 
-	UserPrefs.DeleteFile()
+	UserPrefs.delete_file()
 	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == False
 
 def test_json():
-	UserPrefs.ConvertToJson()
-	data = PREFS.ReadJsonFile("Prefs/prefs")
+	UserPrefs.convert_to_json()
+	data = PREFS.read_json_file("Prefs/prefs")
 
 	assert UserPrefs.file == data
 

@@ -6,12 +6,15 @@ Doesn't require any other library.
 
 Content:
 	PREFS (class): Instance this class to create a prefs file.
-	ReadJsonFile(function): Simple function that reads a json file and returns it's value.
-	ReadPREFSFile (function): Given a filename (and optional some parameters) of a PREFS file return it's value.
+	read_json_file(function): Simple function that reads a json file and returns it's value.
+	read_yaml_file(function): Simple function that reads a yaml file and returns it's value.
+	read_prefs_file (function): Given a filename (and optional other parameters) of a PREFS file return it's value.
+	convert_to_prefs(function): Given a dictionary (and option other parameters) return the text of a PREFS file (like json dump function)
 """
 
 #Libraries
 import json # To support export/import json files
+import yaml # To support export/import yaml files
 import os # To manage paths, folders and files
 from os import path # To check if file or folder exists in path
 import sys; sys.path.append(os.path.dirname(os.path.realpath(__file__))) # This code is from https://stackoverflow.com/questions/16981921/relative-imports-in-python-3/49375740#49375740
@@ -26,35 +29,37 @@ class PREFS:
 	"""PREFS class creates a file to store and manage user preferences.
 	
 	Attributes:
-		file(dict): easier way to get the ReadPrefs() returns value (to get the prefs).
+		file(dict): easier way to get the read_prefs() returns value (to get the prefs).
 
 	Methods:
-		CheckFile() -> None: Try to call ReadPrefs() and if raises FileNotFoundError call CreatePrefs(), returns None.
+		check_file() -> None: Try to call read_prefs() and if raises FileNotFoundError call create_prefs(), returns None.
 
-		ReadPrefs() -> dict: Call GetLinesProperties and pass that value to TreeToDict to get the prefs inside the file. Returns the prefs in a dictionary.
+		read_prefs() -> dict: Call get_lines_properties and pass that value to tree_to_dict to get the prefs inside the file. Returns the prefs in a dictionary.
 
-		GetLinesProperties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indentLevel.
+		get_lines_properties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indentLevel.
 		
-		TreeToDict(ttree: dict, level: int=0) -> dict: Given the result of GetLinesProperties() interprets the indentLevel and returns a dictionary with the prefs.
+		tree_to_dict(ttree: dict, level: int=0) -> dict: Given the result of get_lines_properties() interprets the indentLevel and returns a dictionary with the prefs.
 
-		CreatePrefs(prefs: dict) -> None: Creates a file with the given prefs and the 
+		create_prefs(prefs: dict) -> None: Creates a file with the given prefs and the 
 		PREFS class filename, returns None.
 
-		WritePrefs(pref: str, value: any) -> None: Reading the prefs file as a dictionary 
+		write_prefs(pref: str, value: any) -> None: Reading the prefs file as a dictionary 
 		changes the passed pref to the passed value, if the pref (key) doesn't exist it 
-		creates it. If using nested dictionaries calls ChangeNestedDictionaryVal() to change the given pref to the given value, returns None.
+		creates it. If using nested dictionaries calls change_nested_dict_val() to change the given pref to the given value, returns None.
 
-		ChangeNestedDictionaryVal(myDict: dict, keys: str, val: any) -> dict: Given a dictionary, a keys separeted by / and a value, search through the dictionary the keys and set the value, returns the dictionary with the changed value.
+		change_nested_dict_val(myDict: dict, keys: str, val: any) -> dict: Given a dictionary, a keys separeted by / and a value, search through the dictionary the keys and set the value, returns the dictionary with the changed value.
 
-		OverWritePrefs(prefs: dict=None) -> None: Over writes the current prefs file 
+		overwrite_prefs(prefs: dict=None) -> None: Over writes the current prefs file 
 		with the default prefs or if given a dictionary over writes the prefs file with it, returns None.
 
-		ChangeFilename(filename: str) -> None: Changes the name of the prefs file 
+		change_filename(filename: str) -> None: Changes the name of the prefs file 
 		with the given one, returns None.
 
-		DeleteFile() -> None: Removes the file if it exists, returns None.
+		delete_file() -> None: Removes the file if it exists, returns None.
 
-		ConvertToJson(self, filename: str="", extension: str="json") -> None: Creates a json file with the actual prefs, if filename don't passed the prefs filename will be the json filename, returns None.
+		convert_to_json(self, filename: str="", extension: str="json") -> None: Creates a json file with the actual prefs, if filename don't passed the prefs filename will be the json filename, returns None.
+	
+		convert_to_yaml(self, filename: str="", extension: str="yaml") -> None: Creates a yaml file with the actual prefs, if filename don't passed the prefs filename will be the yaml filename, returns None.
 	"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
@@ -89,30 +94,29 @@ class PREFS:
 		self.cascade = cascade
 		
 		self.file = {}
-		self.depth = 0 # Indent level when creating prefs
 		
 		self.firstLine = "#PREFS\n" # First line of all prefs file to recognize it.
 
-		self.CheckFile()
+		self.check_file()
 		
-	def CheckFile(self):
+	def check_file(self):
 		"""
-			Try to call ReadPrefs() method and if raises FileNotFoundError calls CreatePrefs() method.
+			Try to call read_prefs() method and if raises FileNotFoundError calls create_prefs() method.
 
 			Returns:
 				None
 		"""
 		try: # Try to open the file and if it doesn't exist create it
 
-			self.ReadPrefs()
+			self.read_prefs()
 
 		except FileNotFoundError: # Except file not found create it
 
 			if self.verbose: print(f"File not found. Trying to create {self.filename}")
 
-			self.CreatePrefs(self.prefs) # Create PREFS file with default prefs dict
+			self.create_prefs(self.prefs) # Create PREFS file with default prefs dict
 
-	def ReadPrefs(self) -> dict:
+	def read_prefs(self) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
 
 			Returns:
@@ -127,13 +131,14 @@ class PREFS:
 		lines = prefsTXT.readlines() # Read lines
 
 		if not self.dictionary:
-			content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
-			content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
+			content = self.get_lines_properties(lines) # Get lines properties (key, val, indentLevel)
+			content = self.tree_to_dict(content) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
+		
 		elif self.dictionary:
 			content = eval(lines[1])
 
 		if self.interpret and not self.dictionary:
-			content = self.EvalDict(content) # Pass content to EvalDict function that eval each value.
+			content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
 
 		prefsTXT.close() # Closing file
 
@@ -144,7 +149,7 @@ class PREFS:
 		return content # Return prefs file as dictionary
 
 	# The below code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
-	def GetLinesProperties(self, lines: list) -> dict:
+	def get_lines_properties(self, lines: list) -> dict:
 		"""Given the list of lines of the prefs file returns a dictionary with 
 			each line's properties, such as key, val and indentLevel.
 		
@@ -174,8 +179,8 @@ class PREFS:
 
 		return result
 
-	def TreeToDict(self, ttree: dict, level: int=0) -> dict:
-		"""Given the result of GetLinesProperties() returns a dictionary with the prefs.
+	def tree_to_dict(self, ttree: dict, level: int=0) -> dict:
+		"""Given the result of get_lines_properties() returns a dictionary with the prefs.
 
 			Note:
 				This code is based on this answer https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533.
@@ -188,11 +193,11 @@ class PREFS:
 		"""
 		result = {}
 		
-		for i in range(0, len(ttree)):
+		for i, cn in enumerate(ttree):
 			cn = ttree[i]
 			
 			try:
-				nn  = ttree[i+1]
+				nn  = ttree[i + 1]
 			except:
 				nn = {'indentLevel': -1}
 
@@ -205,20 +210,20 @@ class PREFS:
 
 			# Recursion
 			if nn['indentLevel'] == level:
-				self.DictInsertOrAppend(result, cn['key'], cn['val'])
+				self.dict_instert_append(result, cn['key'], cn['val'])
 			
 			elif nn['indentLevel'] > level:
-				rr = self.TreeToDict(ttree[i + 1:], level=nn['indentLevel'])
-				self.DictInsertOrAppend(result, cn['key'], rr)
+				rr = self.tree_to_dict(ttree[i + 1:], level=nn['indentLevel'])
+				self.dict_instert_append(result, cn['key'], rr)
 
 			else:    
-				self.DictInsertOrAppend(result, cn['key'], cn['val'])
+				self.dict_instert_append(result, cn['key'], cn['val'])
 		
 				return result
 		
 		return result
 
-	def DictInsertOrAppend(self, adict: dict, key: str, val: any):
+	def dict_instert_append(self, adict: dict, key: str, val: any):
 		"""Insert a value in dict at key if one does not exist
 			Otherwise, convert value to list and append
 		
@@ -230,6 +235,7 @@ class PREFS:
 				key (str): The key to insert of append.
 				val (any): The values to insert of append to the key.
 		"""
+		
 		if key in adict:
 			if not isinstance(adict[key], list):
 				adict[key] = [adict[key]]
@@ -237,9 +243,10 @@ class PREFS:
 			adict[key].append(val)
 		else:
 			adict[key] = val
+	
 	# The above code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
 
-	def CreatePrefs(self, prefs: dict) -> None:
+	def create_prefs(self, prefs: dict) -> None:
 		"""Creates a file with the prefs that you pass.
 
 			Args:
@@ -272,26 +279,27 @@ class PREFS:
 		prefsTXT.write(self.firstLine) # First line will be self.firstLine to recognize PREFS files
 
 		
-		lines = self.DictToText(prefs) # Calls DictToText() method which convert a dictionary into prefs file
-		prefsTXT.write( lines ) # Writes the result of DictToText() in the prefs file.
+		lines = self.dict_to_tree(prefs) # Calls dict_to_tree() method which convert a dictionary into prefs file
+		prefsTXT.write( lines ) # Writes the result of dict_to_tree() in the prefs file.
 
 		prefsTXT.close() # Closing the file
 
 		if self.verbose: print(f"{self.filename} created")
 
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 
-	def DictToText(self, prefs: dict, indent: str="") -> str:
+	def dict_to_tree(self, prefs: dict, depth=0) -> str:
 		"""Converts the prefs dictionary to prefs file.
 
 			Args:
 				prefs (dict): a dictionary with the prefs to convert to text.
-				indent (str=""): How much indent the text
+				depth (int=0): This value will multiply "\t" which means a tabulation
 
 			Returns:
 				An string with the prefs, ready to write.
 		"""	
 		result = "" # String to append each pref:value combination
+		indent = "\t" * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
 
 		if not isinstance(prefs, dict): # If isn't a dict raise error
 				raise TypeError(f"prefs argument must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
@@ -304,11 +312,8 @@ class PREFS:
 
 				elif isinstance(val, dict) and val != {} and self.cascade: # If values is a dictionary and cascade is True and isn't an empty dictionary
 
-					keyIndent = "\t" * self.depth # Indent string depending on depth of line
-
-					result += f"{keyIndent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.
-					self.depth += 1 # Adds one to depth
-					result += self.DictToText(val, indent="\t" * self.depth) # Calls itself to generate cascade/tree
+					result += f"{indent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.
+					result += self.dict_to_tree(val, depth=depth + 1) # Calls itself to generate cascade/tree
 
 				else: # If not self.interpret (and key isn't a string) write without quotes
 					result += f"{indent}{key}{self.separator}{val}{self.ender}" # Write key:value in file
@@ -316,13 +321,12 @@ class PREFS:
 		if self.dictionary:
 			return str(prefs)
 
-		self.depth -= 1 if self.depth > 0 else 0 # Subtracts one to depth if is greater than 0
 		return result
 
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 
-	def EvalDict(self, prefs: dict) -> dict:
-		"""Evaluate dict with strings representing python types (using EvalString() method).
+	def eval_dict(self, prefs: dict) -> dict:
+		"""Evaluate dict with strings representing python types (using eval_string() method).
 
 			Args:
 				prefs (dict): A dictionary to evalueta and iterate through.
@@ -338,14 +342,14 @@ class PREFS:
 		for key, val in prefs.items(): # Iterate through prefs dictionary
 		
 			if isinstance(val, dict): # If dictionary type calls itself to evaluate
-				result[key] = self.EvalDict(val) # Using recursive function to get all values in cascade/tree.
+				result[key] = self.eval_dict(val) # Using recursive function to get all values in cascade/tree.
 				continue
 
-			result[key] = self.EvalString(val) # If don't dictionary call EvalString() method.
+			result[key] = self.eval_string(val) # If don't dictionary call eval_string() method.
 
 		return result
 
-	def EvalString(self, string: str) -> any:
+	def eval_string(self, string: str) -> any:
 		"""Evaluates representation of python types, str, bool, list.
 			
 			Args:
@@ -368,9 +372,9 @@ class PREFS:
 
 		return result
 
-	def WritePrefs(self, pref: str, value: any) -> None:
+	def write_prefs(self, pref: str, value: any) -> None:
 		"""Change the pref that you pass with the value that you pass, if doesn't exist, new pref.
-			To change nested dictionary pass path, e.g.: WritePrefs(pref="keybindings/Copy", value="ctrl+c")
+			To change nested dictionary pass path, e.g.: write_prefs(pref="keybindings/Copy", value="ctrl+c")
 			
 			Args:
 				pref (str): the name of the pref that you want to change, if it doesn't exist, it will create it.
@@ -383,21 +387,21 @@ class PREFS:
 
 		if self.verbose: print(f"Trying to write {pref} with {value} value in {self.filename}")
 		
-		content = self.ReadPrefs() # Get prefs dictionary
+		content = self.read_prefs() # Get prefs dictionary
 
 		if "/" in pref: # If / in pref means that prefs is a nested dictionary
-			content = self.ChangeNestedDictionaryVal(content, pref, value) # Calls method that change value of nested dictionaries.
+			content = self.change_nested_dict_val(content, pref, value) # Calls method that change value of nested dictionaries.
 		else: # If not / in pref
 			content[pref] = value # Simply change pref to given value
 
 
-		self.CreatePrefs(content) # Replace old file with updated file
+		self.create_prefs(content) # Replace old file with updated file
 
 		if self.verbose: print(f"Writed {pref} with {value} value in {self.filename}")
 
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 
-	def ChangeNestedDictionaryVal(self, myDict: dict, keys: str, val: any) -> dict:
+	def change_nested_dict_val(self, myDict: dict, keys: str, val: any) -> dict:
 		"""Iterate through given dictionary until find last key and set that key to the given value.
 
 			Args:
@@ -421,7 +425,7 @@ class PREFS:
 				
 		return myDict
 
-	def OverWritePrefs(self, prefs: dict = None) -> None:
+	def overwrite_prefs(self, prefs: dict = None) -> None:
 		"""Over writes the current prefs with the default prefs, if dictionary passed over write the prefs with these.
 			
 			Args:
@@ -439,18 +443,18 @@ class PREFS:
 
 		if self.verbose: print(f"Trying to overwrite {self.prefs} in {self.filename}")
 
-		self.DeleteFile() # Delete file to create it again
+		self.delete_file() # Delete file to create it again
 
 		if prefs == None: # If prefs equals None
-			self.CreatePrefs(self.prefs) # Create prefs with default value
+			self.create_prefs(self.prefs) # Create prefs with default value
 		elif isinstance(prefs, dict): # If isn't none is because you have passed an argument so create the new file with the passed prefs
-			self.CreatePrefs(prefs) # Create prefs file with given dictionary
+			self.create_prefs(prefs) # Create prefs file with given dictionary
 
 		if self.verbose: print(f"Overwrited {self.prefs} in {self.filename}")
 
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 			
-	def ChangeFilename(self, filename: str) -> None:
+	def change_filename(self, filename: str) -> None:
 		"""Changes the name of the file.
 		
 		Note:
@@ -474,9 +478,9 @@ class PREFS:
 
 		if self.verbose: print(f"Changed filename to {self.filename}")
 
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 
-	def DeleteFile(self) -> None:
+	def delete_file(self) -> None:
 		"""Deletes the prefs file (if you run your code again it will be created again).
 
 		Returns:
@@ -495,7 +499,7 @@ class PREFS:
 
 		raise FileNotFoundError("Can't delete unexistent file") # Raise error because file isn't in the specified path
 
-	def ConvertToJson(self, filename: str="", extension: str="json") -> None:
+	def convert_to_json(self, filename: str="", extension: str="json", **kwargs) -> None:
 		"""Converts the prefs file to a json file.
 		
 		Args:
@@ -510,14 +514,38 @@ class PREFS:
 		if self.verbose: print(f"Trying to dump {filename}.{extension}")
 
 		with open(f"{filename}.{extension}", "w") as outfile: # Creating new json file
-			json.dump(self.file, outfile) # Saving PREFS in json file
+			json.dump(self.file, outfile, **kwargs) # Saving PREFS in json file
 				
 		if not os.path.isfile(f"{filename}.{extension}"): # If after create json file can't find it 
 			warnings.RuntimeWarning(f"Can't find {filename}.{extension} after created") # Warn user
 
 		if self.verbose: print(f"Successfuly created {filename}.{extension}")
 
-def ReadJsonFile(filename: str, extension: str="json"):
+	def convert_to_yaml(self, filename: str="", extension: str="yaml", **kwargs) -> None:
+		"""Converts the prefs file into a yaml file.
+		
+		Args:
+			filename (str, optional=""): As default the same name as your prefs file but with .yaml extension.
+			extension (str, option="yaml"): yaml file extension.
+
+		Returns:
+			None
+		"""
+
+		filename = self.filename if filename == "" else filename # If don't passed any filename set filename as self.filename, if filename passed set filename as filename 
+
+		if self.verbose: print(f"Trying to dump {filename}.{extension}")
+
+		with open(f"{filename}.{extension}", "w") as outfile: # Creating new yaml file
+			yaml.dump(self.file, outfile, **kwargs) # Saving PREFS in yaml file disablig sort_keys and default_flow_style
+				
+		if not os.path.isfile(f"{filename}.{extension}"): # If after create yaml file can't find it 
+			warnings.RuntimeWarning(f"Can't find {filename}.{extension} after created") # Warn user
+
+		if self.verbose: print(f"Successfuly created {filename}.{extension}")
+
+
+def read_json_file(filename: str, extension: str="json", **kwargs) -> any:
 	"""Reads Json files and returns it's value.
 
 	Note:
@@ -532,19 +560,38 @@ def ReadJsonFile(filename: str, extension: str="json"):
 	"""
 
 	file = open(f"{filename}.{extension}", "r") # Open json file
-	data = json.load(file) # Load json file
+	data = json.load(file, **kwargs) # Load json file
 	file.close() # Close json file
 
 	return data # Return data in the json file
 
+def read_yaml_file(filename: str, extension: str="yaml", Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
+	"""Reads YAML files and returns it's values.
 
-def ReadPREFSFile(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
+	None:
+		Dict object expected in YAML file.
+
+	Args:
+		filename (str): The name of the yaml file to read
+		extension (str, optional="yaml"): The extension of the yaml file.
+
+	Returns:
+		dict
+
+	"""
+	data = {}
+	
+	with open(f"{filename}.{extension}") as file:
+		data = yaml.load(file, Loader=Loader, **kwargs)
+
+	return data 
+
+def read_prefs_file(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
 		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> dict:
 	
 	"""Return the value of PREFS file given it's filename.
 		
 	Args
-		prefs (dict): A dictionary with the default preferences.
 		filename (str, optional="prefs"): The name of the file (supports path).
 		extension (str, optinal="prefs"): The extension of the file.
 		separator (str, optional="="): The character between pref and value in the file.
@@ -565,8 +612,8 @@ def ReadPREFSFile(filename: str, extension: str="prefs", separator: str="=", end
 
 	return prefs.file
 
-def ConvertToPREFS(prefs: dict, separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> str:
+def convert_to_prefs(prefs: dict, separator: str="=", ender: str="\n", continuer: str=">", 
+	interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> str:
 	
 	"""Given a dictionary convert that dictionary into PREFS format and return it as string. 
 	
@@ -575,6 +622,7 @@ def ConvertToPREFS(prefs: dict, separator: str="=", ender: str="\n", continuer: 
 		separator (str, optional="="): The character between pref and value in the file.
 		ender (str, optional="\n"): The character at the end of each pref:value.
 		continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
+		interpret (bool, optional=True): Interpret the value stored as python.
 		dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
 		verbose (bool, optional=False): Print logs all operations.
 		cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
@@ -587,4 +635,4 @@ def ConvertToPREFS(prefs: dict, separator: str="=", ender: str="\n", continuer: 
 	UserPrefs = CreatePREFS(prefs=prefs, separator=separator, ender=ender, continuer=continuer, 
 		interpret=interpret, dictionary=dictionary, verbose=verbose, cascade=cascade)
 
-	return UserPrefs.CreatePrefs() 
+	return UserPrefs.create_prefs() 

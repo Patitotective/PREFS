@@ -1,5 +1,20 @@
 # Change Log
 
+#### v0.1.9 (07/08/2021)
+- Changed all function names accord to PEP8:
+	* `PREFS.ReadPrefs` -> `PREFS.read_prefs`
+	* `PREFS.WritePrefs` -> `PREFS.write_prefs`
+	* `PREFS.OverWritePrefs` -> `PREFS.overwrite_prefs`
+	* `PREFS.ChangeFilename` -> `PREFS.change_filename`
+	* `PREFS.ConvertToJson` -> `PREFS.convert_to_json`
+	* `ReadJsonFile` -> `read_json_file`
+	* `ReadPREFSFile` -> `read_prefs_file`
+	* `ConvertToPREFS` -> `convert_to_prefs`
+
+
+- Added `PREFS.convert_to_yaml` and `read_yaml_file`.
+
+
 #### v0.1.8 (31/07/2021)
 
 - Fixed bug when creating a pref with an empty dictionary as value.
@@ -7,7 +22,7 @@
 
 #### v0.1.7 (20/07/2021)
 
-- Added `ConvertToPREFS()` function (outside PRFS class) that do the same as `dumps()` in json. Converts a dictionary into a PREFS file but instead of writting the PREFS in a file returns it as string.
+- Added `ConvertToPREFS()` function (outside PRFS class) that do the same as `dumps()` in json. Converts a dictionary into a PREFS file but instead of writing the PREFS in a file returns it as string.
 - Changed `ReadPrefs()` function name (outside PREFS class) to `ReadPREFSFile()`.
 - Fixed issue when dictionary=True parameter, fixed issue when dictionary=True and interpret=True parameter.
 

@@ -8,19 +8,19 @@ sys.path.append(os.path.abspath(os.path.join('..')))
 import __init__ as PREFS
 
 ### Test single preferences and without cascade
-prefs = lambda: PREFS.ReadPREFSFile("prefs2")
+prefs = lambda: PREFS.read_prefs_file("prefs2")
 UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs2", dictionary=False, interpret=True, verbose=False, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 
 def test_reading_overwrite():
-	UserPrefs.OverWritePrefs()
+	UserPrefs.overwrite_prefs()
 	
-	assert UserPrefs.ReadPrefs() == prefs() # Test ReadPrefs() function
+	assert UserPrefs.read_prefs() == prefs() # Test ReadPrefs() function
 	assert UserPrefs.file == prefs() #Test file attribute
 
 def test_create_prefs():
 	txt = Path(f"{UserPrefs.filename}.{UserPrefs.extension}").read_text()
-	PREFSstr = PREFS.ConvertToPREFS(prefs)
+	PREFSstr = PREFS.convert_to_prefs(prefs)
 	#print("txt: ")
 	#print(txt)
 	#print("---------------")

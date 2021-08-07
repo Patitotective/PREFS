@@ -1,4 +1,4 @@
-import sys, os
+"""import sys, os
 sys.path.append(os.path.abspath(os.path.join('..')))
 
 import __init__ as PREFS
@@ -13,3 +13,9 @@ prefs = {
 PREFSrepresentation = PREFS.ConvertToPREFS(prefs)
 
 print(PREFSrepresentation)
+"""
+
+def foo(a="", b="", **kwargs):
+    print(kwargs)
+
+foo(a="a")

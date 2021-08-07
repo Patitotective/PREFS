@@ -12,7 +12,7 @@ class CreatePREFS:
 		file(dict): easier way to get the ReadPrefs() returns value (to get the prefs).
 
 	Methods:
-		CheckFile() -> None: Try to call ReadPrefs() and if raises FileNotFoundError call CreatePrefs(), returns None.
+		CheckFile() -> None: Try to call ReadPrefs() and if raises FileNotFoundError call create_prefs(), returns None.
 
 		ReadPrefs() -> dict: Call GetLinesProperties and pass that value to TreeToDict to get the prefs inside the file. Returns the prefs in a dictionary.
 
@@ -20,7 +20,7 @@ class CreatePREFS:
 		
 		TreeToDict(ttree: dict, level: int=0) -> dict: Given the result of GetLinesProperties() interprets the indentLevel and returns a dictionary with the prefs.
 
-		CreatePrefs(prefs: dict) -> None: Creates a file with the given prefs and the 
+		create_prefs(prefs: dict) -> None: Creates a file with the given prefs and the 
 		PREFS class filename, returns None.
 	"""
 		
@@ -55,7 +55,7 @@ class CreatePREFS:
 		
 		self.firstLine = "#PREFS\n" # First line of all prefs file to recognize it.
 
-	def CreatePrefs(self, prefs: dict=None) -> None:
+	def create_prefs(self, prefs: dict=None) -> None:
 		"""Creates a file with the prefs that you pass.
 
 			Args:
@@ -80,14 +80,14 @@ class CreatePREFS:
 		result += self.firstLine # First line will be self.firstLine to recognize PREFS files
 
 		
-		lines = self.DictToText(prefs) # Calls DictToText() method which convert a dictionary into prefs file
-		result += lines # Writes the result of DictToText() in the prefs file.
+		lines = self.dict_to_text(prefs) # Calls dict_to_text() method which convert a dictionary into prefs file
+		result += lines # Writes the result of dict_to_text() in the prefs file.
 
 		if self.verbose: print(f"PREFS created")
 
 		return result
 
-	def DictToText(self, prefs: dict, indent: str="") -> str:
+	def dict_to_text(self, prefs: dict, indent: str="") -> str:
 		"""Converts the prefs dictionary to prefs file.
 
 			Args:
@@ -113,7 +113,7 @@ class CreatePREFS:
 
 					result += f"{keyIndent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.
 					self.depth += 1 # Adds one to depth
-					result += self.DictToText(val, indent="\t" * self.depth) # Calls itself to generate cascade/tree
+					result += self.dict_to_text(val, indent="\t" * self.depth) # Calls itself to generate cascade/tree
 
 				else: # If not self.interpret (and key isn't a string) write without quotes
 					result += f"{indent}{key}{self.separator}{val}{self.ender}" # Write key:value in file
@@ -123,5 +123,3 @@ class CreatePREFS:
 
 		self.depth -= 1 if self.depth > 0 else 0 # Subtracts one to depth if is greater than 0
 		return result
-
-		self.CheckFile() # Read prefs to check the PREFS file and update file attribute 

@@ -10,16 +10,16 @@ class ReadPREFS:
 	"""ReadPREFS class reads a PREFS file.
 	
 	Attributes:
-		file(dict): easier way to get the ReadPrefs() returns value (to get the prefs).
+		file(dict): easier way to get the read_prefs() returns value (to get the prefs).
 
 	Methods:
-		CheckFile() -> None: Try to call ReadPrefs() and if raises FileNotFoundError call CreatePrefs(), returns None.
+		check_file() -> None: Try to call read_prefs() and if raises FileNotFoundError call CreatePrefs(), returns None.
 
-		ReadPrefs() -> dict: Call GetLinesProperties and pass that value to TreeToDict to get the prefs inside the file. Returns the prefs in a dictionary.
+		read_prefs() -> dict: Call get_lines_properties and pass that value to tree_to_dict to get the prefs inside the file. Returns the prefs in a dictionary.
 
-		GetLinesProperties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indentLevel.
+		get_lines_properties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indentLevel.
 		
-		TreeToDict(ttree: dict, level: int=0) -> dict: Given the result of GetLinesProperties() interprets the indentLevel and returns a dictionary with the prefs.
+		tree_to_dict(ttree: dict, level: int=0) -> dict: Given the result of get_lines_properties() interprets the indentLevel and returns a dictionary with the prefs.
 	"""
 		
 	def __init__(self, filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
@@ -54,24 +54,24 @@ class ReadPREFS:
 		self.firstLine = "#PREFS\n" # First line of all prefs file to recognize it.
 
 
-		self.CheckFile()
+		self.check_file()
 		
-	def CheckFile(self):
+	def check_file(self):
 		"""
-			Try to call ReadPrefs() method and if raises FileNotFoundError calls CreatePrefs() method.
+			Try to call read_prefs() method and if raises FileNotFoundError calls CreatePrefs() method.
 
 			Returns:
 				None
 		"""
 		try: # Try to open the file and if it doesn't exist create it
 
-			self.ReadPrefs()
+			self.read_prefs()
 
 		except FileNotFoundError: # Except file not found create it
 
 			raise FileNotFoundError(f"{self.filename} file not found")
 
-	def ReadPrefs(self) -> dict:
+	def read_prefs(self) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
 
 			Returns:
@@ -86,13 +86,13 @@ class ReadPREFS:
 		lines = prefsTXT.readlines() # Read lines
 
 		if not self.dictionary:
-			content = self.GetLinesProperties(lines) # Get lines properties (key, val, indentLevel)
-			content = self.TreeToDict(content) # Interpreting the result of GetLinesProperties() returns the dictionary with the prefs. 
+			content = self.get_lines_properties(lines) # Get lines properties (key, val, indentLevel)
+			content = self.tree_to_dict(content) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
 		elif self.dictionary:
 			content = eval(lines[1])
 
 		if self.interpret and not self.dictionary:
-			content = self.EvalDict(content) # Pass content to EvalDict function that eval each value.
+			content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
 
 		prefsTXT.close() # Closing file
 
@@ -103,7 +103,7 @@ class ReadPREFS:
 		return content # Return prefs file as dictionary
 
 	# The below code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
-	def GetLinesProperties(self, lines: list) -> dict:
+	def get_lines_properties(self, lines: list) -> dict:
 		"""Given the list of lines of the prefs file returns a dictionary with 
 			each line's properties, such as key, val and indentLevel.
 		
@@ -133,8 +133,8 @@ class ReadPREFS:
 
 		return result
 
-	def TreeToDict(self, ttree: dict, level: int=0) -> dict:
-		"""Given the result of GetLinesProperties() returns a dictionary with the prefs.
+	def tree_to_dict(self, ttree: dict, level: int=0) -> dict:
+		"""Given the result of get_lines_properties() returns a dictionary with the prefs.
 
 			Note:
 				This code is based on this answer https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533.
@@ -164,20 +164,20 @@ class ReadPREFS:
 
 			# Recursion
 			if nn['indentLevel'] == level:
-				self.DictInsertOrAppend(result, cn['key'], cn['val'])
+				self.dict_insert_or_append(result, cn['key'], cn['val'])
 			
 			elif nn['indentLevel'] > level:
-				rr = self.TreeToDict(ttree[i + 1:], level=nn['indentLevel'])
-				self.DictInsertOrAppend(result, cn['key'], rr)
+				rr = self.tree_to_dict(ttree[i + 1:], level=nn['indentLevel'])
+				self.dict_insert_or_append(result, cn['key'], rr)
 
 			else:    
-				self.DictInsertOrAppend(result, cn['key'], cn['val'])
+				self.dict_insert_or_append(result, cn['key'], cn['val'])
 		
 				return result
 		
 		return result
 
-	def DictInsertOrAppend(self, adict: dict, key: str, val: any):
+	def dict_insert_or_append(self, adict: dict, key: str, val: any):
 		"""Insert a value in dict at key if one does not exist
 			Otherwise, convert value to list and append
 		
@@ -198,8 +198,8 @@ class ReadPREFS:
 			adict[key] = val
 	# The above code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
 
-	def EvalDict(self, prefs: dict) -> dict:
-		"""Evaluate dict with strings representing python types (using EvalString() method).
+	def eval_dict(self, prefs: dict) -> dict:
+		"""Evaluate dict with strings representing python types (using eval_string() method).
 
 			Args:
 				prefs (dict): A dictionary to evalueta and iterate through.
@@ -215,14 +215,14 @@ class ReadPREFS:
 		for key, val in prefs.items(): # Iterate through prefs dictionary
 		
 			if isinstance(val, dict): # If dictionary type calls itself to evaluate
-				result[key] = self.EvalDict(val) # Using recursive function to get all values in cascade/tree.
+				result[key] = self.eval_dict(val) # Using recursive function to get all values in cascade/tree.
 				continue
 
-			result[key] = self.EvalString(val) # If don't dictionary call EvalString() method.
+			result[key] = self.eval_string(val) # If don't dictionary call eval_string() method.
 
 		return result
 
-	def EvalString(self, string: str) -> any:
+	def eval_string(self, string: str) -> any:
 		"""Evaluates representation of python types, str, bool, list.
 			
 			Args:
