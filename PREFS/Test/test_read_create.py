@@ -20,12 +20,10 @@ def test_reading_overwrite():
 
 def test_create_prefs():
 	txt = Path(f"{UserPrefs.filename}.{UserPrefs.extension}").read_text()
-	PREFSstr = PREFS.convert_to_prefs(prefs)
+	PREFSstr = PREFS.convert_to_prefs(prefs, first_line=True)
 	#print("txt: ")
-	#print(txt)
 	#print("---------------")
 	#print("PREFSstr: ")
-	#print(PREFSstr)
 
 	assert txt == PREFSstr
 

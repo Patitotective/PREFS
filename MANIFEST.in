@@ -5,4 +5,5 @@ exclude PREFS/docs.py
 exclude Demo/*
 exclude PREFS/Test/*
 exclude PREFS/Trial/*
-exclude PREFS/example.py
+exlude PREFS/trial.py
+exclude PREFS/Example/*

@@ -11,14 +11,14 @@ print(UserPrefs.file) # Printing the prefs
 
 print(UserPrefs.file["theme"]) # Printing certain using file attribute
 
-UserPrefs.WritePrefs("theme", "dark") # Changing the theme pref from light to dark
+UserPrefs.write_prefs("theme", "dark") # Changing the theme pref from light to dark
 
 print(UserPrefs.file) # Printing the prefs again
 
-UserPrefs.WritePrefs("lastFile", "audio.wav") # Creating new pref
+UserPrefs.write_prefs("lastFile", "audio.wav") # Creating new pref
 
 print(UserPrefs.file) # Printing the prefs again
 
-UserPrefs.WritePrefs("keybindings/Ctrl+Q", "Alt+F4")
+UserPrefs.write_prefs("keybindings/Ctrl+Q", "Alt+F4")
 
 print(UserPrefs.file) # Printing the prefs again

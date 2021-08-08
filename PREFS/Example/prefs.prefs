@@ -1,0 +1,9 @@
+#PREFS
+lang='en'
+theme='dark'
+keybindings=>
+	Ctrl+O='loadAudio'
+	Ctrl+Q='Alt+F4'
+	Ctrl+C='convertFile'
+lastPath=''
+lastFile='audio.wav'

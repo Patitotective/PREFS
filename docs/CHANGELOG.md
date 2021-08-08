@@ -1,5 +1,27 @@
 # Change Log
 
+#### v0.1.95 (08/08/2021)
+- Deleted `readPREFS.py` and `createPREFS.py`.
+- Added `PREFS_Base` class and changed `read_prefs_file` function and `convert_to_prefs` function using `PREFS_Base` class.
+
+#### v0.1.91 (07/08/2021)
+- Replaced:
+	```py 
+	import sys; sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
+	from readPREFS import ReadPREFS
+	from createPREFS import CreatePREFS
+	```
+	With:
+	```py
+	if __name__ == '__main__':
+		from readPREFS import ReadPREFS
+		from createPREFS import CreatePREFS
+	else:
+		from .readPREFS import ReadPREFS
+		from .createPREFS import CreatePREFS
+	```
+
 #### v0.1.9 (07/08/2021)
 - Changed all function names accord to PEP8:
 	* `PREFS.ReadPrefs` -> `PREFS.read_prefs`
