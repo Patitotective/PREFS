@@ -3,8 +3,7 @@
 """
 
 import sys, os
-sys.path.append(os.path.abspath(os.path.join('..')))
-import __init__ as PREFS
+import PREFS
 
 ### Test multiple preferences and with cascade
 prefs = {"theme": "light", "lang": "en", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {}}
@@ -36,11 +35,6 @@ def test_changefilename_deletefile():
 def test_json():
 	UserPrefs.convert_to_json()
 	data = PREFS.read_json_file("Prefs/prefs")
-	
-	assert UserPrefs.file == data
-
-	UserPrefs.convert_to_yaml()
-	data = PREFS.read_yaml_file("Prefs/prefs")
 
 	assert UserPrefs.file == data
 

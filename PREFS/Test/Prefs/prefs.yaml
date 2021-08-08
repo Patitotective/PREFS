@@ -1,0 +1,8 @@
+keybindings:
+  Ctrl+C: Copy
+  Ctrl+V: Paste
+  Ctrl+X: Cut
+lang: es
+name:
+  age: 20
+theme: light

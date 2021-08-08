@@ -79,7 +79,7 @@ Methods outside PREFS class:
 
 - `read_yaml_file()`: Requires a the filename of the yaml file to read and returns it's value.
 
-- `read_prefs_file()`: Given the filename of a PREFS file reads it and returns it's value.
+- `read_prefs_file()`: Given the filename of a PREFS file (which you can create manually) reads it and returns it's value.
 
 ## Documentation
 

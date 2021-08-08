@@ -33,7 +33,7 @@ import warnings # To send warnings
 class PREFS_Base: 
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\n"):
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#"):
 		
 		super(PREFS_Base, self).__init__()
 
@@ -51,6 +51,7 @@ class PREFS_Base:
 		self.cascade = cascade
 
 		self.indent = indent
+		self.comment = comment
 		
 		self.file = {}
 		
@@ -128,12 +129,16 @@ class PREFS_Base:
 
 		for e, line in enumerate(lines): # Iterate through the lines (of the file)
 
-			if line[0].strip() == "#": continue # If first character is # ignore the whole line		
+			line = remove_comments(line, comment=self.comment)
+			if not line.strip(): continue # If line emtpy continue
 
 			indentLevel = len(line) - len(line.lstrip(self.indent)) # Count the indents of the line 
 			keyVal = line.strip().split(self.separator) # Split the line by the default separator
-		
-			result.append({"key": keyVal[0], "val": keyVal[1], "indentLevel": indentLevel}) # Append the above values in dict format to the result list
+			
+			try:
+				result.append({"key": keyVal[0], "val": keyVal[1], "indentLevel": indentLevel}) # Append the above values in dict format to the result list
+			except IndexError:
+				raise IndexError(f"Couldn't read line {e} '{line.strip()} in {self.filename}'")
 
 		return result
 
@@ -299,13 +304,17 @@ class PREFS_Base:
 
 		result = {}
 
-		for key, val in prefs.items(): # Iterate through prefs dictionary
+		for e, (key, val) in enumerate(prefs.items()): # Iterate through prefs dictionary
 		
 			if isinstance(val, dict): # If dictionary type calls itself to evaluate
 				result[key] = self.eval_dict(val) # Using recursive function to get all values in cascade/tree.
 				continue
 
-			result[key] = self.eval_string(val) # If don't dictionary call eval_string() method.
+			try:
+				result[key] = self.eval_string(val) # If don't dictionary call eval_string() method.
+			except SyntaxError as error:
+				raise SyntaxError(f"Couldn't eval line {e} in {self.filename}: '{val}'\n{error}")
+
 
 		return result
 
@@ -542,7 +551,7 @@ class PREFS(PREFS_Base):
 	"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t"):
 		
 		"""	
 		Args
@@ -562,7 +571,8 @@ class PREFS(PREFS_Base):
 			separator=separator, ender=ender, 
 			continuer=continuer, interpret=interpret, 
 			dictionary=dictionary, verbose=verbose, 
-			cascade=cascade)
+			cascade=cascade, indent=indent, 
+			comment="#")
 
 		"""self.prefs = prefs
 		self.filename = filename
@@ -602,6 +612,39 @@ class PREFS(PREFS_Base):
 			if self.verbose: print(f"File not found. Trying to create {self.filename}")
 
 			self.create_prefs(self.prefs) # Create PREFS file with default prefs dict
+
+def remove_comments(string: str, comment: str="#") -> str:
+	"""Remove comments from strings (ignoring comments inside strings).
+
+	Note:
+		Iterates through the given string, if founds a quote and there isn't a backslash \ before it set in_string to True, if finds a # and in_string is False break the loop and cut the string until there and return it.
+	Args:
+		string (str): An string to remove the comments from
+		comment: (str, optional="#"): Which character represents a comment
+
+	Returns:
+		The same string without comments.
+
+	"""
+
+	in_string = False # If iterating in string ignore comments otherwise don't 
+	quote = "" # Type of quote (simple or double), because you can't open a string with simple quotes and close it with double
+
+	for e, char in enumerate(string): # Iterate thorught the string
+		if char == "'" or char == '"': # Checks if the current character is a quote
+			if e != 0: # Checks if the quote isn't in the first place
+				if string[e -1] == "\\": # Checks if the character before it is a backslahs
+					continue # If it is ignore it
+
+			if quote == char or not in_string: # If the type of quote is the current char, or if isn't in a string
+				quote = char # Set the quote to the char
+				in_string =  not in_string # And set in_string to True if False and viceversa
+
+		if char == comment and not in_string: # If the current character is the comment character and isn't in a string
+			string = string[:e] # Cut string until here
+			break # And break
+
+	return string # Return the string
 
 def read_json_file(filename: str, extension: str="json", **kwargs) -> any:
 	"""Reads Json files and returns it's value.

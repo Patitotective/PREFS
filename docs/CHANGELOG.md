@@ -1,5 +1,9 @@
 # Change Log
 
+#### v0.1.98 (08/08/2021)
+- Added `indent` parameter. 
+- Comment your own PREFS files (and change the comment character `#`).
+
 #### v0.1.95 (08/08/2021)
 - Deleted `readPREFS.py` and `createPREFS.py`.
 - Added `PREFS_Base` class and changed `read_prefs_file` function and `convert_to_prefs` function using `PREFS_Base` class.
