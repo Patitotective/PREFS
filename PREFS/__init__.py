@@ -33,7 +33,7 @@ import warnings # To send warnings
 class PREFS_Base: 
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True):
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\n"):
 		
 		super(PREFS_Base, self).__init__()
 
@@ -49,12 +49,14 @@ class PREFS_Base:
 		self.dictionary = dictionary
 		self.verbose = verbose
 		self.cascade = cascade
+
+		self.indent = indent
 		
 		self.file = {}
 		
 		self.first_line = "#PREFS\n" # First line of all prefs file to recognize it.
 
-	def check_file(self, work=True):
+	def check_file(self):
 		"""
 			Try to call read_prefs() method and if raises FileNotFoundError calls create_prefs() method.
 
@@ -128,7 +130,7 @@ class PREFS_Base:
 
 			if line[0].strip() == "#": continue # If first character is # ignore the whole line		
 
-			indentLevel = len(line) - len(line.lstrip('\t')) # Count the indents of the line 
+			indentLevel = len(line) - len(line.lstrip(self.indent)) # Count the indents of the line 
 			keyVal = line.strip().split(self.separator) # Split the line by the default separator
 		
 			result.append({"key": keyVal[0], "val": keyVal[1], "indentLevel": indentLevel}) # Append the above values in dict format to the result list
@@ -260,7 +262,7 @@ class PREFS_Base:
 				raise TypeError(f"prefs argument must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
 		
 		result = "" # String to append each pref:value combination
-		indent = "\t" * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
+		indent = self.indent * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
 
 		if not self.dictionary: # If not dictionary format
 			for key, val in prefs.items(): # Iterate through prefs dictionary items

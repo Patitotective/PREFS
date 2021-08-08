@@ -1,4 +1,4 @@
-"""import sys, os
+import sys, os
 sys.path.append(os.path.abspath(os.path.join('..')))
 
 import __init__ as PREFS
@@ -10,12 +10,6 @@ prefs = {
     "keybindings": {"Copy": "Ctrl+C", "Paste": "Ctrl+V", "Cut": "Ctrl+X"}
     }
 
-PREFSrepresentation = PREFS.ConvertToPREFS(prefs)
+PREFSrepresentation = PREFS.convert_to_prefs(prefs)
 
 print(PREFSrepresentation)
-"""
-
-def foo(a="", b="", **kwargs):
-    print(kwargs)
-
-foo(a="a")
