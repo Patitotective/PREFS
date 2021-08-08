@@ -85,6 +85,8 @@ Methods outside PREFS class:
 
 PREFS documentation can be found at https://patitotective.github.io/PREFS/ with more examples and information.
 
+[Extra info](https://github.com/Patitotective/PREFS/blob/main/docs/EXTRAINFO.md).
+
 ---
 
 ## Links
