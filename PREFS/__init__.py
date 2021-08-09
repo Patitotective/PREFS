@@ -614,7 +614,7 @@ class PREFS(PREFS_Base):
 			self.create_prefs(self.prefs) # Create PREFS file with default prefs dict
 
 def remove_comments(string: str, comment: str="#") -> str:
-	"""Remove comments from strings (ignoring comments inside strings).
+	"""Remove comments from strings.
 
 	Note:
 		Iterates through the given string, if founds a quote and there isn't a backslash \ before it set in_string to True, if finds a # and in_string is False break the loop and cut the string until there and return it.
