@@ -1,4 +1,4 @@
-def remove_comments(string: str, comment: str="#") -> str
+def remove_comments(string: str, comment: str="#") -> str:
 	in_string = False # If iterating in string ignore comments otherwise don't 
 	quote = "" # Type of quote (simple or double), because you can't open a string with simple quotes and close it with double
 
