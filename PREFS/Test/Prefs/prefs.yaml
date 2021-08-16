@@ -5,4 +5,6 @@ keybindings:
 lang: es
 name:
   age: 20
+  user:
+    uwu: 20
 theme: light

@@ -33,7 +33,7 @@ import warnings # To send warnings
 class PREFS_Base: 
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#"):
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#", auto_generate_keys: bool=True):
 		
 		super(PREFS_Base, self).__init__()
 
@@ -53,6 +53,8 @@ class PREFS_Base:
 		self.indent = indent
 		self.comment = comment
 		
+		self.auto_generate_keys = auto_generate_keys
+
 		self.file = {}
 		
 		self.first_line = "#PREFS\n" # First line of all prefs file to recognize it.
@@ -387,7 +389,11 @@ class PREFS_Base:
 
 		for e, i in enumerate(keys): # Iterate through the keys
 			if e < len(keys) - 1: # While  key isn't the last
+				if not i in scnDict and self.auto_generate_keys:
+					scnDict[i] = {}
+
 				scnDict = scnDict[i] # Set scnDict to scnDict key
+
 
 			else: # If last key
 				scnDict[i] = val # Set key to val
@@ -551,7 +557,7 @@ class PREFS(PREFS_Base):
 	"""
 		
 	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t"):
+		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#", auto_generate_keys: bool=True):
 		
 		"""	
 		Args
@@ -565,6 +571,9 @@ class PREFS(PREFS_Base):
 			dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
 			verbose (bool, optional=False): Print logs all operations.
 			cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
+			indent (str, optional="\t"): The character to indent with.
+			comment (str, optional="#"): Character to indicate comments (all text after them and outside quotes will be ignored) 
+			auto_generate_keys (bool, optional=True): When using write_prefs if nested path doesn't exist create it.
 		"""
 		
 		super().__init__(prefs, filename=filename, extension=extension, 
@@ -572,7 +581,7 @@ class PREFS(PREFS_Base):
 			continuer=continuer, interpret=interpret, 
 			dictionary=dictionary, verbose=verbose, 
 			cascade=cascade, indent=indent, 
-			comment="#")
+			comment=comment, auto_generate_keys=auto_generate_keys)
 
 		"""self.prefs = prefs
 		self.filename = filename
@@ -596,22 +605,6 @@ class PREFS(PREFS_Base):
 
 		self.check_file()
 		
-	def check_file(self):
-		"""
-			Try to call read_prefs() method and if raises FileNotFoundError calls create_prefs() method.
-
-			Returns:
-				None
-		"""
-		try: # Try to open the file and if it doesn't exist create it
-
-			self.read_prefs()
-
-		except FileNotFoundError: # Except file not found create it
-
-			if self.verbose: print(f"File not found. Trying to create {self.filename}")
-
-			self.create_prefs(self.prefs) # Create PREFS file with default prefs dict
 
 def remove_comments(string: str, comment: str="#") -> str:
 	"""Remove comments from strings.

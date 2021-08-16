@@ -1,5 +1,8 @@
 # Change Log
 
+#### v0.1.99 (16/08/2021)
+- Added `auto_generate_keys` parameter. 
+
 #### v0.1.98 (08/08/2021)
 - Added `indent` parameter. 
 - Comment your own PREFS files (and change the comment character `#`).

@@ -25,6 +25,10 @@ def test_writeprefs():
 
 	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {"age": 20}}
 
+	UserPrefs.write_prefs("name/user/uwu", 20)
+
+	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {"age": 20, "user": {"uwu": 20}}}
+
 
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")
