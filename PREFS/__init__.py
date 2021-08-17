@@ -389,7 +389,7 @@ class PREFS_Base:
 		if len(prefs) != len(values):
 			raise TypeError("prefs list's length doesn't correspond with values list's length")
 
-		if self.verbose: print(f"Trying to write {pref} with {value} value in {self.filename}")
+		if self.verbose: print(f"Trying to write {prefs} with {values} values in {self.filename}")
 		
 		content = self.read_prefs() # Get prefs dictionary
 

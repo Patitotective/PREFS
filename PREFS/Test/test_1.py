@@ -8,7 +8,7 @@ import __init__ as PREFS
 
 ### Test single preferences and without cascade
 prefs = lambda: PREFS.read_prefs_file("prefs1")
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs1", dictionary=True, interpret=True, verbose=False, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
+UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs1", dictionary=True, interpret=True, verbose=True, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
 	UserPrefs.overwrite_prefs()

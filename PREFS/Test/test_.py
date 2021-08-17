@@ -8,7 +8,7 @@ import __init__ as PREFS
 
 ### Test multiple preferences and with cascade
 prefs = {"theme": "light", "lang": "en", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {}}
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpret=True, verbose=False, cascade=True) # Change (dictionary, interpret, debug) to True to test it.
+UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpret=True, verbose=True, cascade=True) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
 	UserPrefs.overwrite_prefs()
