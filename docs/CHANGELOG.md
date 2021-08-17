@@ -1,5 +1,8 @@
 # Change Log
 
+#### v0.2 (17/08/2021)
+- Added `write_multiple_prefs` function which requires a list of prefs and a list of values to change. With this function writing multiple prefs will be more efficiently. 
+
 #### v0.1.99 (16/08/2021)
 - Added `auto_generate_keys` parameter. 
 

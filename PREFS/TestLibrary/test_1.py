@@ -3,6 +3,7 @@
 """
 
 import sys, os
+#sys.path.append(os.path.abspath(os.path.join('..')))
 import PREFS
 
 ### Test single preferences and without cascade
@@ -19,6 +20,12 @@ def test_writeprefs():
 	UserPrefs.write_prefs("theme", "dark")
 
 	assert UserPrefs.file == {"theme": "dark"}
+
+	UserPrefs.write_multiple_prefs([str(i) for i in range(100)], [i for i in range(100)])
+
+	hundred_dict = {str(i):i for i in range(100)}
+	assert UserPrefs.file == {"theme": "dark", **hundred_dict}
+
 
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")

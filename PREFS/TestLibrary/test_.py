@@ -3,6 +3,7 @@
 """
 
 import sys, os
+#sys.path.append(os.path.abspath(os.path.join('..')))
 import PREFS
 
 ### Test multiple preferences and with cascade
@@ -24,6 +25,10 @@ def test_writeprefs():
 
 	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {"age": 20}}
 
+	UserPrefs.write_prefs("name/user/uwu", 20)
+
+	assert UserPrefs.file == {"theme": "light", "lang": "es", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {"age": 20, "user": {"uwu": 20}}}
+
 
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")
@@ -35,6 +40,11 @@ def test_changefilename_deletefile():
 def test_json():
 	UserPrefs.convert_to_json()
 	data = PREFS.read_json_file("Prefs/prefs")
+	
+	assert UserPrefs.file == data
+
+	UserPrefs.convert_to_yaml()
+	data = PREFS.read_yaml_file("Prefs/prefs")
 
 	assert UserPrefs.file == data
 

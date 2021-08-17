@@ -29,6 +29,7 @@ import os # To manage paths, folders and files
 from os import path # To check if file or folder exists in path
 import sys
 import warnings # To send warnings
+from typing import List # To specify arguments types
 
 class PREFS_Base: 
 		
@@ -364,6 +365,39 @@ class PREFS_Base:
 			content = self.change_nested_dict_val(content, pref, value) # Calls method that change value of nested dictionaries.
 		else: # If not / in pref
 			content[pref] = value # Simply change pref to given value
+
+
+		self.create_prefs(content) # Replace old file with updated file
+
+		if self.verbose: print(f"Writed {pref} with {value} value in {self.filename}")
+
+		self.check_file() # Read prefs to check the PREFS file and update file attribute 
+
+	def write_multiple_prefs(self, prefs: List[str], values: List[any]) -> None:
+		"""Given a list of prefs and a list of values, cahnges all prefs with it's corresponding value (like write_prefs).
+		This way is more eficiently that opening and closing a file 10 times.
+			
+			Args:
+				prefs (List[str]): a list with the name of the prefs that you want to change, if it doesn't exist, it will create it.
+				values (List[any]): a lis with tthe values that you want to assign to each pref in the list respectly.
+
+			Returns:
+				None
+
+		"""
+
+		if len(prefs) != len(values):
+			raise TypeError("prefs list's length doesn't correspond with values list's length")
+
+		if self.verbose: print(f"Trying to write {pref} with {value} value in {self.filename}")
+		
+		content = self.read_prefs() # Get prefs dictionary
+
+		for pref, value in zip(prefs, values):
+			if "/" in pref: # If / in pref means that prefs is a nested dictionary
+				content = self.change_nested_dict_val(content, pref, value) # Calls method that change value of nested dictionaries.
+			else: # If not / in pref
+				content[pref] = value # Simply change pref to given value
 
 
 		self.create_prefs(content) # Replace old file with updated file

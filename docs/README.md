@@ -71,6 +71,8 @@ The main methods to manage the preferences are are:
 - `write_prefs()`: Requires two arguments, first the name of the pref that you want to change (if pref exists) or create if it doesn't, and second argument is the value that you want to assign to the pref. If using nested dictionaries pass in key parameter the keys path separated by a forward slash, e.g.: 
 `write_prefs("keybindings/Ctr+C", "Ctrl+D")`
 
+- `write_multiple_prefs()`: Requires a list of prefs and a list of values to write. As it names says writes multiple prefs in a more efficient way than calling `write_prefs()` multiple times.
+
 - `convert_to_json()`: Converts the PREFS file into a json one.
 
 Methods outside PREFS class:
@@ -100,4 +102,4 @@ PREFS documentation can be found at https://patitotective.github.io/PREFS/ with 
 
 
 
-***v0.1.9***
+***v0.2***

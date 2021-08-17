@@ -2,8 +2,9 @@
 	Test dictionary parameter
 """
 
-from pathlib import Path
 import sys, os
+from pathlib import Path
+#sys.path.append(os.path.abspath(os.path.join('..')))
 import PREFS
 
 ### Test single preferences and without cascade

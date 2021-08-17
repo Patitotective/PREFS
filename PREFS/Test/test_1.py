@@ -21,6 +21,12 @@ def test_writeprefs():
 
 	assert UserPrefs.file == {"theme": "dark"}
 
+	UserPrefs.write_multiple_prefs([str(i) for i in range(100)], [i for i in range(100)])
+
+	hundred_dict = {str(i):i for i in range(100)}
+	assert UserPrefs.file == {"theme": "dark", **hundred_dict}
+
+
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")
 	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == True
