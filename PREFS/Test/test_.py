@@ -8,7 +8,7 @@ import __init__ as PREFS
 
 ### Test multiple preferences and with cascade
 prefs = {"theme": "light", "lang": "en", "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}, "name": {}}
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs", dictionary=False, interpret=True, verbose=True, cascade=True) # Change (dictionary, interpret, debug) to True to test it.
+UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs.prefs", interpret=True, verbose=True, cascade=True) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
 	UserPrefs.overwrite_prefs()
@@ -32,19 +32,19 @@ def test_writeprefs():
 
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")
-	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == True
+	assert os.path.isfile(UserPrefs.filename) == True
 
 	UserPrefs.delete_file()
-	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == False
+	assert os.path.isfile(UserPrefs.filename) == False
 
 def test_json():
 	UserPrefs.convert_to_json()
-	data = PREFS.read_json_file("Prefs/prefs")
+	data = PREFS.read_json_file("Prefs/prefs.json")
 	
 	assert UserPrefs.file == data
 
 	UserPrefs.convert_to_yaml()
-	data = PREFS.read_yaml_file("Prefs/prefs")
+	data = PREFS.read_yaml_file("Prefs/prefs.yaml")
 
 	assert UserPrefs.file == data
 

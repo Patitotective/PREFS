@@ -5,60 +5,55 @@ Requirements:
 	pyyaml
 
 Content:
-	PREFS_Base(class): This class have all the functions to manage a PREFS file
-	PREFS (class): Inherits from PREFS_Base, checks if a file exists and reade it, otherwise create it.
+	PREFSBase(class): This class have all the functions to manage a PREFS file
+	PREFS (class): Inherits from PREFSBase, checks if a file exists and reade it, otherwise create it.
 	read_json_file(function): Simple Reads a json file and returns it's value.
 	read_yaml_file(function): Simple Reads a yaml file and returns it's value.
 	read_prefs_file (function): Given a filename (and optional other parameters) of a PREFS file return it's value.
 	convert_to_prefs(function): Given a dictionary (and option other parameters) return the text of a PREFS file (like json dump function)
 
-This library's code is hosted in GitHub: https://github.com/Patitotective/PREFS.
-Complete documentation in https://patitotective.github.io/PREFS/.
-This package is public in https://pypi.org/project/PREFS/.
+This library's source code is hosted at GitHub: https://github.com/Patitotective/PREFS.
+Complete documentation at https://patitotective.github.io/PREFS/.
+This package is public at https://pypi.org/project/PREFS/.
 
-Made py Patitotective.
+Made by Patitotective.
 Contact me:
-	Discord: patitotective#0127
-	Mail: cristobalriaga@gmail.com
+	Discord: patitotective#0127.
+	Mail: cristobalriaga@gmail.com.
 """
 
 #Libraries
 import json # To support export/import json files
 import yaml # To support export/import yaml files
 import os # To manage paths, folders and files
-from os import path # To check if file or folder exists in path
-import sys
-import warnings # To send warnings
+import ast # To eval code without using eval built-in module
 from typing import List # To specify arguments types
 
-class PREFS_Base: 
+VERSION = "0.2.50"
+
+class PREFSBase: 	
+	def __init__(self, prefs: dict, filename: str="prefs.prefs", 
+		interpret: bool=True, verbose: bool=False, cascade: bool=True, indent_char: str="\t", auto_generate_keys: bool=True):
 		
-	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#", auto_generate_keys: bool=True):
-		
-		super(PREFS_Base, self).__init__()
+		super().__init__()
 
 		self.prefs = prefs
 		self.filename = filename
-		self.extension = extension
 
-		self.separator = separator
-		self.ender = ender
-		self.continuer = continuer
-		
+		self.separator_char = "="
+		self.ender_char = "\n"
+		self.continuer_char = ">"
+		self.comment_char = "#"
+
 		self.interpret = interpret
-		self.dictionary = dictionary
 		self.verbose = verbose
 		self.cascade = cascade
 
-		self.indent = indent
-		self.comment = comment
-		
-		self.auto_generate_keys = auto_generate_keys
+		self.indent_char = indent_char
 
-		self.file = {}
+		self.auto_generate_keys = auto_generate_keys
 		
-		self.first_line = "#PREFS\n" # First line of all prefs file to recognize it.
+		self.first_line = f"#PREFS{self.ender_char}" # First line of all prefs file to recognize it.
 
 	def check_file(self):
 		"""
@@ -68,16 +63,17 @@ class PREFS_Base:
 				None
 		"""
 
-		try: # Try to open the file and if it doesn't exist create it
+		if os.path.isfile(self.filename): # Try to open the file and if it doesn't exist create it
+			return self.read_prefs()
 
-			self.read_prefs()
-
-		except FileNotFoundError: # Except file not found create it
-
+		else:
 			if self.verbose: print(f"File not found. Trying to create {self.filename}")
-
 			self.create_prefs(self.prefs) # Create PREFS file with default prefs dict
 
+	@property
+	def file(self):
+		return self.read_prefs()
+	
 	def read_prefs(self) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
 
@@ -87,26 +83,17 @@ class PREFS_Base:
 
 		if self.verbose: print(f"Trying to read {self.filename}")
 
-		prefsTXT = open(f"{self.filename}.{self.extension}", "r") # Open the file with read permissions
-		
-		content = {} # Content will be where the prefs will be stored when reading
-		lines = prefsTXT.readlines() # Read lines
+		with open(self.filename, "r") as prefs_file: # Open the file with read permissions
+			content = {} # Content will be where the prefs will be stored when reading
+			lines = prefs_file.readlines() # Read lines
 
-		if not self.dictionary:
 			content = self.get_lines_properties(lines) # Get lines properties (key, val, indentLevel)
 			content = self.tree_to_dict(content) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
-		
-		elif self.dictionary:
-			content = eval(lines[1])
 
-		if self.interpret and not self.dictionary:
-			content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
-
-		prefsTXT.close() # Closing file
+			if self.interpret:
+				content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
 
 		if self.verbose: print(f"Read {self.filename}")
-
-		self.file = content # Set self.file as content
 
 		return content # Return prefs file as dictionary
 
@@ -132,12 +119,11 @@ class PREFS_Base:
 
 		for e, line in enumerate(lines): # Iterate through the lines (of the file)
 
-			line = remove_comments(line, comment=self.comment)
+			line = remove_comments(line, comment_char=self.comment_char)
 			if not line.strip(): continue # If line emtpy continue
 
-			indentLevel = len(line) - len(line.lstrip(self.indent)) # Count the indents of the line 
-			keyVal = line.strip().split(self.separator) # Split the line by the default separator
-			
+			indentLevel = len(line) - len(line.lstrip(self.indent_char)) # Count the indents of the line 
+			keyVal = line.strip().split(self.separator_char, 1) # Split the line by the default separator only once
 			try:
 				result.append({"key": keyVal[0], "val": keyVal[1], "indentLevel": indentLevel}) # Append the above values in dict format to the result list
 			except IndexError:
@@ -212,6 +198,24 @@ class PREFS_Base:
 	
 	# The above code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
 
+	def dump(self, prefs: dict=None) -> str:
+		"""Given a dictionary return it on PREFS format.
+		"""
+
+		if prefs is None:
+			prefs = self.prefs
+
+		if callable(prefs): # If self.prefs is a function call it
+			prefs = prefs() # Setting prefs to self.prefs function returns alue
+
+		if not isinstance(prefs, dict): # If isn't a dict raise error
+				raise TypeError(f"self.prefs must be a dictionary or a function with a dictionary as return value, gived {type(prefs).__name__}")
+
+		result = self.first_line
+		result += self.dict_to_tree(prefs) # Calls dict_to_tree() method which convert a dictionary into prefs file
+		
+		return result
+
 	def create_prefs(self, prefs: dict) -> None:
 		"""Creates a file with the prefs that you pass.
 
@@ -224,32 +228,27 @@ class PREFS_Base:
 		if callable(prefs): # If self.prefs is a function call it
 			prefs = prefs() # Setting prefs to self.prefs function returns alue
 
-
 		if not isinstance(prefs, dict): # If isn't a dict raise error
-				raise TypeError(f"self.prefs must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
+				raise TypeError(f"self.prefs must be a dictionary or a function with a dictionary as return value, gived {type(prefs).__name__}")
 	
-		if "/" in self.filename: # if "/" in filename means that if it's a path
+		if not os.path.isdir(os.path.split(self.filename)[0]): # Check if the path to the self.filename exists, if it doesn't create it
+			directories_list = split_path(os.path.split(self.filename)[0]) # Get all directories to the file
+			directories_list = accumulate_list(directories_list, separator=os.sep) # Accumulate them ["home", "cristobal"] -> ["home", "home/cristobal"]
+			
+			for directory in directories_list: # Iterate trough each directory on the path
+				if not os.path.isdir(directory): # If the directory doesn't exist
+					os.mkdir(directory) # Create it
 
-			prefsPath = self.filename.split("/") # Split the path by / to iterate through
+		with open(self.filename, "w+") as prefs_file: # Opening the file with all permissions
 
-			for e, i in enumerate(prefsPath): # Iterate through the directory
-				
-				if e == len(prefsPath) - 1: break # If we are in the last element when split("/"), which means the filename break because isn't a folder
-				
-				if not path.isdir(i): os.mkdir(i) # If isn't the filename (last element) create folder if it doesn't exist
+			if self.verbose: print(f"Creating {self.filename}")
 
-		prefsTXT = open(f"{self.filename}.{self.extension}","w+") # Opening the file with all permissions
+			prefs_file.write(self.first_line) # First line will be self.first_line to recognize PREFS files
+			
+			lines = self.dict_to_tree(prefs) # Calls dict_to_tree() method which convert a dictionary into prefs file
+			prefs_file.write(lines) # Writes the result of dict_to_tree() in the prefs file.
 
-		if self.verbose: print(f"Creating {self.filename}")
-
-		prefsTXT.write(self.first_line) # First line will be self.first_line to recognize PREFS files
-		
-		lines = self.dict_to_tree(prefs) # Calls dict_to_tree() method which convert a dictionary into prefs file
-		prefsTXT.write( lines ) # Writes the result of dict_to_tree() in the prefs file.
-
-		prefsTXT.close() # Closing the file
-
-		if self.verbose: print(f"{self.filename} created")
+			if self.verbose: print(f"{self.filename} created")
 
 		self.check_file() # Read prefs to check the PREFS file and update file attribute 
 
@@ -270,24 +269,20 @@ class PREFS_Base:
 				raise TypeError(f"prefs argument must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
 		
 		result = "" # String to append each pref:value combination
-		indent = self.indent * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
+		indent_char = self.indent_char * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
 
-		if not self.dictionary: # If not dictionary format
-			for key, val in prefs.items(): # Iterate through prefs dictionary items
-				
-				if isinstance(val, str) and self.interpret: # If value is a string and self.interpret write value with quotes
-					result += f"{indent}{key}{self.separator}'{val}'{self.ender}" # Write key:value (str) with quotes
+		for key, val in prefs.items(): # Iterate through prefs dictionary items
+			
+			if isinstance(val, str) and self.interpret: # If value is a string and self.interpret write value with quotes
+				result += f"{indent_char}{key}{self.separator_char}{repr(val)}{self.ender_char}" # Write key:value (str) with quotes
 
-				elif isinstance(val, dict) and val != {} and self.cascade: # If values is a dictionary and cascade is True and isn't an empty dictionary
+			elif isinstance(val, dict) and val != {} and self.cascade: # If values is a dictionary and cascade is True and isn't an empty dictionary
 
-					result += f"{indent}{key}{self.separator}{self.continuer}\n" # Writes indent val and => to indicate that value in the text line.
-					result += self.dict_to_tree(val, depth=depth + 1) # Calls itself to generate cascade/tree
+				result += f"{indent_char}{key}{self.separator_char}{self.continuer_char}{self.ender_char}" # Writes indent_char val and => to indicate that value in the text line.
+				result += self.dict_to_tree(val, depth=depth + 1) # Calls itself to generate cascade/tree
 
-				else: # If not self.interpret (and key isn't a string) write without quotes
-					result += f"{indent}{key}{self.separator}{val}{self.ender}" # Write key:value in file
-
-		if self.dictionary:
-			return str(prefs)
+			else: # If not self.interpret (and key isn't a string) write without quotes
+				result += f"{indent_char}{key}{self.separator_char}{val}{self.ender_char}" # Write key:value in file
 
 		return result
 
@@ -318,7 +313,6 @@ class PREFS_Base:
 			except SyntaxError as error:
 				raise SyntaxError(f"Couldn't eval line {e} in {self.filename}: '{val}'\n{error}")
 
-
 		return result
 
 	def eval_string(self, string: str) -> any:
@@ -332,15 +326,12 @@ class PREFS_Base:
 		"""
 		if len(string) == 0: return string # If empty string return empty
 
-		if string[0] == '"' and string[-1] == '"' or string[0] == "'" and string[-1] == "'": # If quotes string
-			result = eval(string) # Evaluate string to get str type
-
 		elif string == "True": # If string equals True return True
 			result = True
 		elif string == "False": # If string equals False return False
 			result = False
 		else: # If none of above types evaluate with eval
-			result = eval(string)
+			result = ast.literal_eval(string)
 
 		return result
 
@@ -443,7 +434,7 @@ class PREFS_Base:
 			Returns:
 				None  
 		"""
-		if not os.path.exists(f"{self.filename}.{self.extension}"):
+		if not os.path.isfile(self.filename):
 			raise FileNotFoundError("Cannot overwrite unexistent prefs") # If file isn't in the path raise error
 
 		if prefs is not None: # If prefs isn't none it must be a dictionary
@@ -454,7 +445,7 @@ class PREFS_Base:
 
 		self.delete_file() # Delete file to create it again
 
-		if prefs == None: # If prefs equals None
+		if prefs is None:
 			self.create_prefs(self.prefs) # Create prefs with default value
 		elif isinstance(prefs, dict): # If isn't none is because you have passed an argument so create the new file with the passed prefs
 			self.create_prefs(prefs) # Create prefs file with given dictionary
@@ -476,12 +467,12 @@ class PREFS_Base:
 			None
 
 			"""
-		if not os.path.exists(f"{self.filename}.{self.extension}"): # If file isn't in the path raise error
+		if not os.path.isfile(self.filename): # If file isn't in the path raise error
 			raise FileNotFoundError("Cannot change the name of a file that doesn't exists")
 		
 		if self.verbose: print(f"Trying to change {self.filename} name to {filename}")
 		
-		os.rename(f"{self.filename}.{self.extension}", f"{filename}.{self.extension}") # Rename file with os
+		os.rename(self.filename, filename) # Rename file with os
 		
 		self.filename = filename # Change self.filename to passed filename
 
@@ -496,64 +487,56 @@ class PREFS_Base:
 			None
 
 		"""
-		if os.path.exists(f"{self.filename}.{self.extension}"): # If file is in the path
+		if not os.path.isfile(self.filename): # If file is in the path
+			raise FileNotFoundError("Can't delete unexistent file") # Raise error because file isn't in the specified path
 
-			if self.verbose: print(f"Trying to remove {self.filename}")
-			
-			os.remove(f"{self.filename}.{self.extension}") # Remove file
-			
-			if self.verbose: print(f"Removed {self.filename}")
-			
-			return # Return to break the function
+		if self.verbose: print(f"Trying to remove {self.filename}")
+		
+		os.remove(self.filename) # Remove file
+		
+		if self.verbose: print(f"Removed {self.filename}")
 
-		raise FileNotFoundError("Can't delete unexistent file") # Raise error because file isn't in the specified path
-
-	def convert_to_json(self, filename: str="", extension: str="json", **kwargs) -> None:
+	def convert_to_json(self, filename: str=None, **kwargs) -> None:
 		"""Converts the prefs file to a json file.
 		
 		Args:
 			filename (str, optional=""): As default the same name as your prefs file but with .json extension.
-			extension (str, option="json"): json file extension.
 
 		Returns:
 			None
 		"""
-		filename = self.filename if filename == "" else filename # If don't passed any filename set filename as self.filename, if filename passed set filename as filename 
+		# If don't passed any filename set filename as self.filename, if filename passed set filename as filename 
+		if filename is None:
+			filename = f"{os.path.splitext(self.filename)[0]}.json"
 
-		if self.verbose: print(f"Trying to dump {filename}.{extension}")
+		if self.verbose: print(f"Trying to dump {filename}")
 
-		with open(f"{filename}.{extension}", "w") as outfile: # Creating new json file
-			json.dump(self.file, outfile, **kwargs) # Saving PREFS in json file
-				
-		if not os.path.isfile(f"{filename}.{extension}"): # If after create json file can't find it 
-			warnings.RuntimeWarning(f"Can't find {filename}.{extension} after created") # Warn user
+		with open(filename, "w") as outfile: # Creating new json file
+			json.dump(self.read_prefs(), outfile, **kwargs) # Saving PREFS in json file
 
-		if self.verbose: print(f"Successfuly created {filename}.{extension}")
+		if self.verbose: print(f"Successfuly created {filename}")
 
-	def convert_to_yaml(self, filename: str="", extension: str="yaml", **kwargs) -> None:
+	def convert_to_yaml(self, filename: str=None, **kwargs) -> None:
 		"""Converts the prefs file into a yaml file.
 		
 		Args:
 			filename (str, optional=""): As default the same name as your prefs file but with .yaml extension.
-			extension (str, option="yaml"): yaml file extension.
-
 		Returns:
 			None
 		"""
 
-		filename = self.filename if filename == "" else filename # If don't passed any filename set filename as self.filename, if filename passed set filename as filename 
+		# If don't passed any filename set filename as self.filename, if filename passed set filename as filename 
+		if filename is None:
+			filename = f"{os.path.splitext(self.filename)[0]}.yaml"
 
-		if self.verbose: print(f"Trying to dump {filename}.{extension}")
+		if self.verbose: print(f"Trying to dump {filename}")
 
-		with open(f"{filename}.{extension}", "w") as outfile: # Creating new yaml file
-			yaml.dump(self.file, outfile, **kwargs) # Saving PREFS in yaml file disablig sort_keys and default_flow_style
-				
-		if not os.path.isfile(f"{filename}.{extension}"): # If after create yaml file can't find it 
-			warnings.RuntimeWarning(f"Can't find {filename}.{extension} after created") # Warn user
+		with open(filename, "w") as outfile: # Creating new yaml file
+			yaml.dump(self.read_prefs(), outfile, **kwargs) # Saving PREFS in yaml file disablig sort_keys and default_flow_style
 
-		if self.verbose: print(f"Successfuly created {filename}.{extension}")	
+		if self.verbose: print(f"Successfuly created {filename}")	
 
-class PREFS(PREFS_Base): 
+class PREFS(PREFSBase): 
 	"""PREFS class creates a file to store and manage user preferences.
 	
 	Attributes:
@@ -585,69 +568,56 @@ class PREFS(PREFS_Base):
 
 		delete_file() -> None: Removes the file if it exists, returns None.
 
-		convert_to_json(self, filename: str="", extension: str="json") -> None: Creates a json file with the actual prefs, if filename don't passed the prefs filename will be the json filename, returns None.
+		convert_to_json(self, filename: str="") -> None: Creates a json file with the actual prefs, if filename don't passed the prefs filename will be the json filename, returns None.
 	
-		convert_to_yaml(self, filename: str="", extension: str="yaml") -> None: Creates a yaml file with the actual prefs, if filename don't passed the prefs filename will be the yaml filename, returns None.
+		convert_to_yaml(self, filename: str="") -> None: Creates a yaml file with the actual prefs, if filename don't passed the prefs filename will be the yaml filename, returns None.
 	"""
 		
-	def __init__(self, prefs: dict, filename: str="prefs", extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, indent: str="\t", comment: str="#", auto_generate_keys: bool=True):
+	def __init__(self, *args, **kwargs):
 		
 		"""	
 		Args
 			prefs (dict): A dictionary with the default preferences.
 			filename (str, optional="prefs"): The name of the file (supports path).
-			extension (str, optinal="prefs"): The extension of the file.
-			separator (str, optional="="): The character between pref and value in the file.
-			ender (str, optional="\n"): The character at the end of each pref:value.
-			continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
 			interpret (bool, optional=True): Interpret the value stored as python.
-			dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
 			verbose (bool, optional=False): Print logs all operations.
 			cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
-			indent (str, optional="\t"): The character to indent with.
+			indent_char (str, optional="\t"): The character to indent_char with.
 			comment (str, optional="#"): Character to indicate comments (all text after them and outside quotes will be ignored) 
 			auto_generate_keys (bool, optional=True): When using write_prefs if nested path doesn't exist create it.
 		"""
 		
-		super().__init__(prefs, filename=filename, extension=extension, 
-			separator=separator, ender=ender, 
-			continuer=continuer, interpret=interpret, 
-			dictionary=dictionary, verbose=verbose, 
-			cascade=cascade, indent=indent, 
-			comment=comment, auto_generate_keys=auto_generate_keys)
-
-		"""self.prefs = prefs
-		self.filename = filename
-		self.extension = extension
-
-		self.separator = separator
-		self.ender = ender
-		self.continuer = continuer
-		
-		self.interpret = interpret
-		self.dictionary = dictionary
-		self.verbose = verbose
-		self.cascade = cascade
-		
-		self.file = {}
-		
-		self.first_line = "#PREFS\n" # First line of all prefs file to recognize it.
-		"""
-		
-		#PREFS_Base.__init__(self, prefs, filename, extension, separator, ender, continuer, interpret, dictionary, verbose, cascade)
+		super().__init__(*args, **kwargs)
 
 		self.check_file()
 		
 
-def remove_comments(string: str, comment: str="#") -> str:
+def split_path(path: str) -> list:
+	result = os.path.normpath(path)
+	return path.split(os.sep)
+
+def accumulate_list(my_list: (list, tuple), separator: str="") -> list:
+	"""["a", "b", "c"] -> ["a", "ab", "abc"]
+	"""
+	result = []
+	
+	for e, ele in enumerate(my_list):
+		if e == 0:
+			result.append(ele)
+			continue
+
+		result.append(f"{result[e-1]}{separator}{ele}")
+
+	return result
+
+def remove_comments(string: str, comment_char: str="#") -> str:
 	"""Remove comments from strings.
 
 	Note:
 		Iterates through the given string, if founds a quote and there isn't a backslash \ before it set in_string to True, if finds a # and in_string is False break the loop and cut the string until there and return it.
 	Args:
 		string (str): An string to remove the comments from
-		comment: (str, optional="#"): Which character represents a comment
+		comment_char: (str, optional="#"): Which character represents a comment
 
 	Returns:
 		The same string without comments.
@@ -667,13 +637,13 @@ def remove_comments(string: str, comment: str="#") -> str:
 				quote = char # Set the quote to the char
 				in_string =  not in_string # And set in_string to True if False and viceversa
 
-		if char == comment and not in_string: # If the current character is the comment character and isn't in a string
+		if char == comment_char and not in_string: # If the current character is the comment character and isn't in a string
 			string = string[:e] # Cut string until here
 			break # And break
 
 	return string # Return the string
 
-def read_json_file(filename: str, extension: str="json", **kwargs) -> any:
+def read_json_file(filename: str, **kwargs) -> any:
 	"""Reads Json files and returns it's value.
 
 	Note:
@@ -687,13 +657,13 @@ def read_json_file(filename: str, extension: str="json", **kwargs) -> any:
 		dict
 	"""
 
-	file = open(f"{filename}.{extension}", "r") # Open json file
+	file = open(filename, "r") # Open json file
 	data = json.load(file, **kwargs) # Load json file
 	file.close() # Close json file
 
 	return data # Return data in the json file
 
-def read_yaml_file(filename: str, extension: str="yaml", Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
+def read_yaml_file(filename: str, Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
 	"""Reads YAML files and returns it's values.
 
 	None:
@@ -709,13 +679,12 @@ def read_yaml_file(filename: str, extension: str="yaml", Loader=yaml.loader.Safe
 	"""
 	data = {}
 	
-	with open(f"{filename}.{extension}") as file:
+	with open(filename) as file:
 		data = yaml.load(file, Loader=Loader, **kwargs)
 
 	return data 
 
-def read_prefs_file(filename: str, extension: str="prefs", separator: str="=", ender: str="\n", continuer: str=">", 
-		interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True) -> dict:
+def read_prefs_file(filename: str, **kwargs) -> dict:
 	
 	"""Return the value of PREFS file given it's filename.
 		
@@ -735,41 +704,19 @@ def read_prefs_file(filename: str, extension: str="prefs", separator: str="=", e
 
 	"""
 
-	prefs_instance = PREFS_Base(prefs={}, filename=filename, extension=extension, 
-			separator=separator, ender=ender, 
-			continuer=continuer, interpret=interpret, 
-			dictionary=dictionary, verbose=verbose, 
-			cascade=cascade)
+	prefs_instance = PREFSBase(prefs={}, filename=filename, **kwargs)
 
 	return prefs_instance.read_prefs()
 
-def convert_to_prefs(prefs: dict, separator: str="=", ender: str="\n", continuer: str=">", 
-	interpret: bool=True, dictionary: bool=False, verbose: bool=False, cascade: bool=True, first_line: bool=False) -> str:
+def convert_to_prefs(*args, **kwargs) -> str:
 	
 	"""Given a dictionary convert that dictionary into PREFS format and return it as string. 
 	
-	Args
-		prefs (dict): A dictionary with the default preferences.
-		separator (str, optional="="): The character between pref and value in the file.
-		ender (str, optional="\n"): The character at the end of each pref:value.
-		continuer (str, optional=">"): The character that precede a tree/cascade (nested dictionary).
-		interpret (bool, optional=True): Interpret the value stored as python.
-		dictionary (bool, optional=False): Writes the prefs as a python dictionary, no more human-readable (avoid any error at reading).
-		verbose (bool, optional=False): Print logs all operations.
-		cascade (bool, optional=True): Stores nested dictionaries as tree/cascade.
-
 	Returns:
 		A string contating the dictionary in PREFS format.
 
 	"""
 
-	prefs_instance = PREFS_Base(prefs=prefs, filename="", extension="", 
-			separator=separator, ender=ender, 
-			continuer=continuer, interpret=interpret, 
-			dictionary=dictionary, verbose=verbose, 
-			cascade=cascade)
+	prefs_instance = PREFSBase(*args, **kwargs)
 
-	result = prefs_instance.first_line if first_line else ""
-	result += prefs_instance.dict_to_tree(prefs)
-
-	return result
+	return prefs_instance.dump()

@@ -1,5 +1,21 @@
 # Change Log
 
+### v0.2.50 (16/09/2021)
+- `PREFSBase` class
+	- Now `filename` parameter includes the extension too.
+	- Fixed path detection on `create_prefs`
+	- Now writes the representation of a string, not just the string with quotes around it.
+	- Now it uses `ast.literal_eval` insead of `eval` to evaluate strings.
+	- Now `separator_char`, `ender_char`, `continuer_char` and `comment_char` are constantes (no parameters).
+	- Now `file` attribute it's an property method that calls `read_prefs`.
+	- Removed `dictionary` parameter.
+	- Setted split to 1 when splitting key and value.
+	- Added `dump` method that returns an string with `prefs` dictionary as PREFS format.
+
+- Added `VERSION` constant variable.
+- Added `split_path` function.
+- Added `accumulate_list` function.
+
 #### v0.2 (17/08/2021)
 - Added `write_multiple_prefs` function which requires a list of prefs and a list of values to change. With this function writing multiple prefs will be more efficiently. 
 

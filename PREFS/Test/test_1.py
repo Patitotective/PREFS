@@ -7,8 +7,8 @@ sys.path.append(os.path.abspath(os.path.join('..')))
 import __init__ as PREFS
 
 ### Test single preferences and without cascade
-prefs = lambda: PREFS.read_prefs_file("prefs1")
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs1", dictionary=True, interpret=True, verbose=True, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
+prefs = lambda: PREFS.read_prefs_file("prefs1.prefs")
+UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs1.prefs", interpret=True, verbose=False, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
 	UserPrefs.overwrite_prefs()
@@ -29,17 +29,17 @@ def test_writeprefs():
 
 def test_changefilename_deletefile():
 	UserPrefs.change_filename("prefs")
-	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == True
+	assert os.path.isfile(UserPrefs.filename) == True
 
 	UserPrefs.delete_file()
-	assert os.path.isfile(f"{UserPrefs.filename}.{UserPrefs.extension}") == False
+	assert os.path.isfile(UserPrefs.filename) == False
 
 def test_json_yaml():
 	UserPrefs.convert_to_json()
-	data = PREFS.read_json_file(filename="Prefs/prefs1", extension="json")
+	data = PREFS.read_json_file(filename="Prefs/prefs1.json")
 
 	UserPrefs.convert_to_yaml()
-	data1 = PREFS.read_yaml_file("Prefs/prefs1")
+	data1 = PREFS.read_yaml_file("Prefs/prefs1.yaml")
 
 	assert UserPrefs.file == data
 	assert UserPrefs.file == data1
