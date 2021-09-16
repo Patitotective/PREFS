@@ -512,7 +512,7 @@ class PREFSBase:
 		if self.verbose: print(f"Trying to dump {filename}")
 
 		with open(filename, "w") as outfile: # Creating new json file
-			json.dump(self.read_prefs(), outfile, **kwargs) # Saving PREFS in json file
+			json.dump(self.file, outfile, **kwargs) # Saving PREFS in json file
 
 		if self.verbose: print(f"Successfuly created {filename}")
 
@@ -532,9 +532,10 @@ class PREFSBase:
 		if self.verbose: print(f"Trying to dump {filename}")
 
 		with open(filename, "w") as outfile: # Creating new yaml file
-			yaml.dump(self.read_prefs(), outfile, **kwargs) # Saving PREFS in yaml file disablig sort_keys and default_flow_style
+			yaml.dump(self.file, outfile, **kwargs) # Saving PREFS in yaml file disablig sort_keys and default_flow_style
 
 		if self.verbose: print(f"Successfuly created {filename}")	
+
 
 class PREFS(PREFSBase): 
 	"""PREFS class creates a file to store and manage user preferences.
@@ -657,9 +658,8 @@ def read_json_file(filename: str, **kwargs) -> any:
 		dict
 	"""
 
-	file = open(filename, "r") # Open json file
-	data = json.load(file, **kwargs) # Load json file
-	file.close() # Close json file
+	with open(filename, "r") as file: # Open json file
+		data = json.load(file, **kwargs) # Load json file
 
 	return data # Return data in the json file
 
@@ -679,7 +679,7 @@ def read_yaml_file(filename: str, Loader=yaml.loader.SafeLoader, **kwargs) -> di
 	"""
 	data = {}
 	
-	with open(filename) as file:
+	with open(filename, "r") as file:
 		data = yaml.load(file, Loader=Loader, **kwargs)
 
 	return data 
