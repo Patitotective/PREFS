@@ -1,5 +1,8 @@
 # Change Log
 
+### v0.2.51 (24/09/2021)
+- Fixed bug filename has no path (`prefs.prefs`).
+
 ### v0.2.50 (16/09/2021)
 - `PREFSBase` class
 	- Now `filename` parameter includes the extension too.

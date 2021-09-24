@@ -231,7 +231,7 @@ class PREFSBase:
 		if not isinstance(prefs, dict): # If isn't a dict raise error
 				raise TypeError(f"self.prefs must be a dictionary or a function with a dictionary as return value, gived {type(prefs).__name__}")
 	
-		if not os.path.isdir(os.path.split(self.filename)[0]): # Check if the path to the self.filename exists, if it doesn't create it
+		if not os.path.isdir(os.path.split(self.filename)[0]) and os.sep in self.filename: # Check if the path to the self.filename exists, if it doesn't create it and if there is a slash on the filename
 			directories_list = split_path(os.path.split(self.filename)[0]) # Get all directories to the file
 			directories_list = accumulate_list(directories_list, separator=os.sep) # Accumulate them ["home", "cristobal"] -> ["home", "home/cristobal"]
 			

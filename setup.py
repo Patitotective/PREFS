@@ -28,7 +28,7 @@ github_url = "https://github.com/Patitotective/PREFS"
 
 setup(
   name="PREFS",
-  version="0.2.50",
+  version="0.2.51",
   author="Cristobal Riaga",
   author_email="cristobalriaga@gmail.com",
   maintainer="Cristobal Riaga", 
@@ -37,7 +37,7 @@ setup(
   project_urls={
     "Documentation": 'https://patitotective.github.io/PREFS/', 
     'Source Code': github_url,
-    'Changelog': f'{github_url}/blob/main/docs/CHANGELOG.md',
+    'Change log': f'{github_url}/blob/main/docs/CHANGELOG.md',
     'Issues': f'{github_url}/issues', 
     'Pull requests': f'{github_url}/pulls', 
     'Discussions': f"{github_url}/discussions"
