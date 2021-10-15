@@ -1,7 +1,7 @@
 # PREFS
 > **PREFS is a Python library to store and manage preferences and settings.**  
 
-[![PREFS logo](hhttps://github.com/Patitotective/PREFS/blob/main/img/logo.png?raw=true)](https://patitotective.github.io/PREFS)
+[![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/img/logo.png?raw=true)](https://patitotective.github.io/PREFS)
 
 [![Python Version](https://img.shields.io/pypi/pyversions/prefs)](https://pypi.org/project/prefs/)
 [![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
