@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
+   sodipodi:docname="PREFS_GUI.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.9149817"
+     inkscape:cx="-9.9217661"
+     inkscape:cy="24.804415"
+     inkscape:window-width="1920"
+     inkscape:window-height="948"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="42.325134"
+       y="437.54527"
+       width="267.41824"
+       height="118.76078"
+       id="rect3090" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffd5d5;stroke:none;stroke-width:2.34725;stroke-linecap:round;stroke-linejoin:round"
+       id="rect5256"
+       width="210.86398"
+       height="296.09918"
+       x="1.4210855e-14"
+       y="-1.4210855e-14"
+       sodipodi:insensitive="true" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.264582"
+       x="-0.20877236"
+       y="18.384272"
+       id="text914"
+       inkscape:export-filename="/home/cristobal/Documents/Projects/PREFS/PREFS-docs/static/img/dark_logo.png"
+       inkscape:export-xdpi="683.00262"
+       inkscape:export-ydpi="683.00262"><tspan
+         sodipodi:role="line"
+         id="tspan912"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;stroke:#ffffff;stroke-width:0.264582"
+         x="-0.20877236"
+         y="18.384272">&lt;<tspan
+   style="fill:#f82371;fill-opacity:1;stroke:none;stroke-width:0.264582"
+   id="tspan12382">/</tspan>PREFS&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.264582"
+       x="-0.20877236"
+       y="8.6743784"
+       id="text14973"
+       inkscape:export-filename="/home/cristobal/Documents/Projects/PREFS/PREFS-docs/static/img/light_logo.png"
+       inkscape:export-xdpi="683.00262"
+       inkscape:export-ydpi="683.00262"><tspan
+         sodipodi:role="line"
+         id="tspan14971"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;stroke:#ffffff;stroke-width:0.264582"
+         x="-0.20877236"
+         y="8.6743784"><tspan
+           style="fill:#ffffff;stroke:#000000;stroke-width:0.264582"
+           id="tspan18736">&lt;</tspan><tspan
+           style="fill:#f82371;fill-opacity:1;stroke:none;stroke-width:0.264582"
+           id="tspan14969">/</tspan><tspan
+           style="fill:#ffffff;stroke:#000000;stroke-width:0.264582"
+           id="tspan15943">PREFS&gt;</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.165;stroke-miterlimit:4;stroke-dasharray:none"
+       x="4.8613749"
+       y="29.304605"
+       id="text21256"
+       inkscape:export-filename="/home/cristobal/Documents/Projects/PREFS/PREFS-docs/static/img/navbar_logo.png"
+       inkscape:export-xdpi="539.56152"
+       inkscape:export-ydpi="539.56152"><tspan
+         sodipodi:role="line"
+         id="tspan21254"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;stroke:#ffffff;stroke-width:0.165;stroke-miterlimit:4;stroke-dasharray:none"
+         x="4.8613749"
+         y="29.304605"><tspan
+   style="fill:#f82371;fill-opacity:1;stroke:none;stroke-width:0.165;stroke-miterlimit:4;stroke-dasharray:none"
+   id="tspan21252">/</tspan>P</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.264582"
+       x="42.124561"
+       y="18.384272"
+       id="text23379"
+       inkscape:export-filename="/home/cristobal/Documents/Projects/PREFS/PREFS-docs/static/img/dark_docs_logo.png"
+       inkscape:export-xdpi="683.00262"
+       inkscape:export-ydpi="683.00262"><tspan
+         sodipodi:role="line"
+         id="tspan23377"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;stroke:#ffffff;stroke-width:0.264582"
+         x="42.124561"
+         y="18.384272">&lt;<tspan
+   style="fill:#f82371;fill-opacity:1;stroke:none;stroke-width:0.264582"
+   id="tspan23375">/</tspan>PREFS DOCS&gt;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.264582"
+       x="42.124561"
+       y="8.6743784"
+       id="text23389"
+       inkscape:export-filename="/home/cristobal/Documents/Projects/PREFS/PREFS-docs/static/img/light_docs_logo.png"
+       inkscape:export-xdpi="683.00262"
+       inkscape:export-ydpi="683.00262"><tspan
+         sodipodi:role="line"
+         id="tspan23387"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Impact;-inkscape-font-specification:Impact;stroke:#ffffff;stroke-width:0.264582"
+         x="42.124561"
+         y="8.6743784"><tspan
+           style="fill:#ffffff;stroke:#000000;stroke-width:0.264582"
+           id="tspan23381">&lt;</tspan><tspan
+           style="fill:#f82371;fill-opacity:1;stroke:none;stroke-width:0.264582"
+           id="tspan23383">/</tspan><tspan
+           style="fill:#ffffff;stroke:#000000;stroke-width:0.264582"
+           id="tspan23385">PREFS DOCS&gt;</tspan></tspan></text>
+  </g>
+</svg>
