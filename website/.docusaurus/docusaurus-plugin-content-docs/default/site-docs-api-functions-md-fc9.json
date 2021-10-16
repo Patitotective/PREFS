@@ -1,0 +1,33 @@
+{
+  "unversionedId": "api/functions",
+  "id": "api/functions",
+  "isDocsHomePage": false,
+  "title": "Functions",
+  "description": "*",
+  "source": "@site/docs/api/functions.md",
+  "sourceDirName": "api",
+  "slug": "/api/functions",
+  "permalink": "/PREFS/docs/api/functions",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/functions.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "id": "functions",
+    "title": "Functions",
+    "sidebar_position": 3,
+    "hide_title": true
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "Prefs class",
+    "permalink": "/PREFS/docs/api/prefs-class"
+  },
+  "next": {
+    "title": "Command Line Interface",
+    "permalink": "/PREFS/docs/api/cli"
+  }
+}

@@ -38,7 +38,7 @@ default_prefs = {
   "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}
 }
 
-user_prefs = PREFS.PREFS(default_prefs)
+user_prefs = PREFS.Prefs(default_prefs)
 ```
 
 This code will create a file like this:
@@ -71,7 +71,7 @@ About
 - Pypi page: https://pypi.org/project/PREFS/.
 
 - Contact me:
-  - Discord: **patitotective#0127**.
+  - Discord: **Patitotective#0127**.
   - Email: **cristobalriaga@gmail.com**.
 
 ***v0.2.55***

@@ -1,0 +1,33 @@
+{
+  "unversionedId": "about/license",
+  "id": "version-0.1.98/about/license",
+  "isDocsHomePage": false,
+  "title": "License",
+  "description": "---",
+  "source": "@site/versioned_docs/version-0.1.98/about/LICENSE.md",
+  "sourceDirName": "about",
+  "slug": "/about/license",
+  "permalink": "/PREFS/docs/about/license",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.1.98/about/LICENSE.md",
+  "tags": [],
+  "version": "0.1.98",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "id": "license",
+    "title": "License",
+    "hide_title": true,
+    "sidebar_position": 6
+  },
+  "sidebar": "version-0.1.98/docs",
+  "previous": {
+    "title": "Change log",
+    "permalink": "/PREFS/docs/about/changelog"
+  },
+  "next": {
+    "title": "About",
+    "permalink": "/PREFS/docs/about/about"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "unversionedId": "about/changelog",
+  "id": "about/changelog",
+  "isDocsHomePage": false,
+  "title": "Changelog",
+  "description": "v0.2.55 (16/10/2021)",
+  "source": "@site/docs/about/CHANGELOG.md",
+  "sourceDirName": "about",
+  "slug": "/about/changelog",
+  "permalink": "/PREFS/docs/about/changelog",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/CHANGELOG.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "id": "changelog",
+    "title": "Changelog",
+    "hide_title": true,
+    "sidebar_position": 5
+  },
+  "sidebar": "about",
+  "previous": {
+    "title": "Support",
+    "permalink": "/PREFS/docs/about/support"
+  },
+  "next": {
+    "title": "License",
+    "permalink": "/PREFS/docs/about/license"
+  }
+}

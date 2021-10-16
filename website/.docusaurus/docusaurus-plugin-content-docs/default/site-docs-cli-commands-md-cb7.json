@@ -1,0 +1,30 @@
+{
+  "unversionedId": "CLI/commands",
+  "id": "CLI/commands",
+  "isDocsHomePage": false,
+  "title": "Commands",
+  "description": "",
+  "source": "@site/docs/CLI/commands.md",
+  "sourceDirName": "CLI",
+  "slug": "/CLI/commands",
+  "permalink": "/PREFS/next/CLI/commands",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/CLI/commands.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "commands",
+    "title": "Commands",
+    "sidebar_position": 0,
+    "hide_title": true
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Functions",
+    "permalink": "/PREFS/next/API Reference/functions"
+  },
+  "next": {
+    "title": "Support",
+    "permalink": "/PREFS/next/About/suppport"
+  }
+}

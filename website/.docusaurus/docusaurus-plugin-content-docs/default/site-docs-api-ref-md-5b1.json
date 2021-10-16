@@ -1,0 +1,27 @@
+{
+  "unversionedId": "api-ref",
+  "id": "api-ref",
+  "isDocsHomePage": false,
+  "title": "API Reference",
+  "description": "",
+  "source": "@site/docs/api-ref.md",
+  "sourceDirName": ".",
+  "slug": "/api-ref",
+  "permalink": "/PREFS/docs/next/api-ref",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api-ref.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "frontMatter": {
+    "id": "api-ref",
+    "title": "API Reference",
+    "hide_title": true
+  },
+  "sidebar": "api",
+  "next": {
+    "title": "PREFS class",
+    "permalink": "/PREFS/docs/next/api/prefs-class"
+  }
+}

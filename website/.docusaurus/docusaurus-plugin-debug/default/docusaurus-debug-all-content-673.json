@@ -1,0 +1,368 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "versionLabel": "Next",
+          "versionPath": "/PREFS/docs",
+          "tagsPath": "/PREFS/docs/tags",
+          "versionEditUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs",
+          "versionEditUrlLocalized": "https://github.com/Patitotective/PREFS/tree/main/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "versionBanner": null,
+          "versionBadge": false,
+          "versionClassName": "docs-version-current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/home/cristobal/Documents/Projects/PREFS/website/sidebars.js",
+          "contentPath": "/home/cristobal/Documents/Projects/PREFS/website/docs",
+          "contentPathLocalized": "/home/cristobal/Documents/Projects/PREFS/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "mainDocId": "start",
+          "sidebars": {
+            "docs": [
+              {
+                "type": "doc",
+                "id": "start"
+              },
+              {
+                "type": "doc",
+                "id": "resources"
+              }
+            ],
+            "api": [
+              {
+                "type": "doc",
+                "id": "api/prefs-class"
+              },
+              {
+                "type": "doc",
+                "id": "api/functions"
+              },
+              {
+                "type": "doc",
+                "id": "api/cli"
+              }
+            ],
+            "about": [
+              {
+                "type": "doc",
+                "id": "about/about"
+              },
+              {
+                "type": "doc",
+                "id": "about/support"
+              },
+              {
+                "type": "doc",
+                "id": "about/changelog"
+              },
+              {
+                "type": "doc",
+                "id": "about/license"
+              }
+            ]
+          },
+          "docs": [
+            {
+              "unversionedId": "about/about",
+              "id": "about/about",
+              "isDocsHomePage": false,
+              "title": "About",
+              "description": "- Discord: Patitotective#0127.",
+              "source": "@site/docs/about/about.md",
+              "sourceDirName": "about",
+              "slug": "/about/about",
+              "permalink": "/PREFS/docs/about/about",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/about.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 7,
+              "frontMatter": {
+                "id": "about",
+                "title": "About",
+                "hide_title": true,
+                "sidebar_position": 7
+              },
+              "sidebar": "about",
+              "next": {
+                "title": "Support",
+                "permalink": "/PREFS/docs/about/support"
+              }
+            },
+            {
+              "unversionedId": "about/changelog",
+              "id": "about/changelog",
+              "isDocsHomePage": false,
+              "title": "Changelog",
+              "description": "v0.2.55 (16/10/2021)",
+              "source": "@site/docs/about/CHANGELOG.md",
+              "sourceDirName": "about",
+              "slug": "/about/changelog",
+              "permalink": "/PREFS/docs/about/changelog",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/CHANGELOG.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "id": "changelog",
+                "title": "Changelog",
+                "hide_title": true,
+                "sidebar_position": 5
+              },
+              "sidebar": "about",
+              "previous": {
+                "title": "Support",
+                "permalink": "/PREFS/docs/about/support"
+              },
+              "next": {
+                "title": "License",
+                "permalink": "/PREFS/docs/about/license"
+              }
+            },
+            {
+              "unversionedId": "about/license",
+              "id": "about/license",
+              "isDocsHomePage": false,
+              "title": "License",
+              "description": "---",
+              "source": "@site/docs/about/LICENSE.md",
+              "sourceDirName": "about",
+              "slug": "/about/license",
+              "permalink": "/PREFS/docs/about/license",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/LICENSE.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "id": "license",
+                "title": "License",
+                "hide_title": true,
+                "sidebar_position": 6
+              },
+              "sidebar": "about",
+              "previous": {
+                "title": "Changelog",
+                "permalink": "/PREFS/docs/about/changelog"
+              }
+            },
+            {
+              "unversionedId": "about/support",
+              "id": "about/support",
+              "isDocsHomePage": false,
+              "title": "Support",
+              "description": "Support",
+              "source": "@site/docs/about/support.md",
+              "sourceDirName": "about",
+              "slug": "/about/support",
+              "permalink": "/PREFS/docs/about/support",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/support.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "id": "support",
+                "title": "Support",
+                "sidebar_position": 4,
+                "hide_title": true
+              },
+              "sidebar": "about",
+              "previous": {
+                "title": "About",
+                "permalink": "/PREFS/docs/about/about"
+              },
+              "next": {
+                "title": "Changelog",
+                "permalink": "/PREFS/docs/about/changelog"
+              }
+            },
+            {
+              "unversionedId": "api/cli",
+              "id": "api/cli",
+              "isDocsHomePage": false,
+              "title": "Command Line Interface",
+              "description": "PREFS has a simple CLI tool that you can access from your terminal right after installing PREFS via Pypi.",
+              "source": "@site/docs/api/cli.md",
+              "sourceDirName": "api",
+              "slug": "/api/cli",
+              "permalink": "/PREFS/docs/api/cli",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/cli.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "id": "cli",
+                "title": "Command Line Interface",
+                "sidebar_position": 1,
+                "hide_title": true
+              },
+              "sidebar": "api",
+              "previous": {
+                "title": "Functions",
+                "permalink": "/PREFS/docs/api/functions"
+              }
+            },
+            {
+              "unversionedId": "api/functions",
+              "id": "api/functions",
+              "isDocsHomePage": false,
+              "title": "Functions",
+              "description": "*",
+              "source": "@site/docs/api/functions.md",
+              "sourceDirName": "api",
+              "slug": "/api/functions",
+              "permalink": "/PREFS/docs/api/functions",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/functions.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "id": "functions",
+                "title": "Functions",
+                "sidebar_position": 3,
+                "hide_title": true
+              },
+              "sidebar": "api",
+              "previous": {
+                "title": "Prefs class",
+                "permalink": "/PREFS/docs/api/prefs-class"
+              },
+              "next": {
+                "title": "Command Line Interface",
+                "permalink": "/PREFS/docs/api/cli"
+              }
+            },
+            {
+              "unversionedId": "api/prefs-class",
+              "id": "api/prefs-class",
+              "isDocsHomePage": false,
+              "title": "Prefs class",
+              "description": "---",
+              "source": "@site/docs/api/prefs-class.md",
+              "sourceDirName": "api",
+              "slug": "/api/prefs-class",
+              "permalink": "/PREFS/docs/api/prefs-class",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/prefs-class.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "id": "prefs-class",
+                "title": "Prefs class",
+                "sidebar_position": 2,
+                "hide_title": true
+              },
+              "sidebar": "api",
+              "next": {
+                "title": "Functions",
+                "permalink": "/PREFS/docs/api/functions"
+              }
+            },
+            {
+              "unversionedId": "resources",
+              "id": "resources",
+              "isDocsHomePage": false,
+              "title": "PREFS resources",
+              "description": "*",
+              "source": "@site/docs/resources.md",
+              "sourceDirName": ".",
+              "slug": "/resources",
+              "permalink": "/PREFS/docs/resources",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/resources.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 0,
+              "frontMatter": {
+                "id": "resources",
+                "title": "PREFS resources",
+                "sidebar_position": 0,
+                "hide_title": true
+              },
+              "sidebar": "docs",
+              "previous": {
+                "title": "Getting started",
+                "permalink": "/PREFS/docs/start"
+              }
+            },
+            {
+              "unversionedId": "start",
+              "id": "start",
+              "isDocsHomePage": false,
+              "title": "Getting started",
+              "description": "Installation and import",
+              "source": "@site/docs/start.md",
+              "sourceDirName": ".",
+              "slug": "/start",
+              "permalink": "/PREFS/docs/start",
+              "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/start.md",
+              "tags": [],
+              "version": "current",
+              "lastUpdatedBy": "Author",
+              "lastUpdatedAt": 1539502055,
+              "formattedLastUpdatedAt": "10/14/2018",
+              "sidebarPosition": 0,
+              "frontMatter": {
+                "id": "start",
+                "title": "Getting started",
+                "sidebar_position": 0,
+                "hide_title": true
+              },
+              "sidebar": "docs",
+              "next": {
+                "title": "PREFS resources",
+                "permalink": "/PREFS/docs/resources"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [],
+      "blogListPaginated": [],
+      "blogTags": {},
+      "blogTagsListPath": null
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "mdx",
+        "permalink": "/PREFS/",
+        "source": "@site/src/pages/index.md"
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {
+    "default": null
+  },
+  "docusaurus-theme-classic": {
+    "default": null
+  }
+}

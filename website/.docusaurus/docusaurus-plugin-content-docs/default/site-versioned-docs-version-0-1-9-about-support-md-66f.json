@@ -1,0 +1,33 @@
+{
+  "unversionedId": "about/support",
+  "id": "version-0.1.9/about/support",
+  "isDocsHomePage": false,
+  "title": "support",
+  "description": "If you need help or have found an issue:",
+  "source": "@site/versioned_docs/version-0.1.9/about/support.md",
+  "sourceDirName": "about",
+  "slug": "/about/support",
+  "permalink": "/PREFS/docs/0.1.9/about/support",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.1.9/about/support.md",
+  "tags": [],
+  "version": "0.1.9",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "support",
+    "title": "support",
+    "sidebar_position": 4,
+    "hide_title": true
+  },
+  "sidebar": "version-0.1.9/docs",
+  "previous": {
+    "title": "Getting started",
+    "permalink": "/PREFS/docs/0.1.9/start"
+  },
+  "next": {
+    "title": "Change log",
+    "permalink": "/PREFS/docs/0.1.9/about/changelog"
+  }
+}

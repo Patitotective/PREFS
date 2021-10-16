@@ -1,0 +1,27 @@
+{
+  "unversionedId": "home",
+  "id": "home",
+  "isDocsHomePage": false,
+  "title": "What is PREFS?",
+  "description": "PREFS is a simple but useful python library to store and manage user preferences.",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/home",
+  "permalink": "/PREFS/next/home",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "home",
+    "title": "What is PREFS?",
+    "description": "PREFS is a simple but useful python library to store and manage user preferences.",
+    "sidebar_position": 0,
+    "hide_title": true
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Getting started",
+    "permalink": "/PREFS/next/start"
+  }
+}

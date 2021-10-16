@@ -1,0 +1,18 @@
+{
+  "unversionedId": "api/prefs-methods",
+  "id": "api/prefs-methods",
+  "isDocsHomePage": false,
+  "title": "prefs-methods",
+  "description": "",
+  "source": "@site/docs/api/prefs-methods.md",
+  "sourceDirName": "api",
+  "slug": "/api/prefs-methods",
+  "permalink": "/PREFS/docs/next/api/prefs-methods",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/prefs-methods.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "frontMatter": {}
+}

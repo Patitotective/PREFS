@@ -1,0 +1,33 @@
+{
+  "unversionedId": "About/help",
+  "id": "version-0.1.9/About/help",
+  "isDocsHomePage": false,
+  "title": "Help",
+  "description": "If you need help or have found an issue:",
+  "source": "@site/versioned_docs/version-0.1.9/About/help.md",
+  "sourceDirName": "About",
+  "slug": "/About/help",
+  "permalink": "/PREFS/docs/0.1.9/About/help",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.1.9/About/help.md",
+  "tags": [],
+  "version": "0.1.9",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "help",
+    "title": "Help",
+    "sidebar_position": 4,
+    "hide_title": true
+  },
+  "sidebar": "version-0.1.9/tutorialSidebar",
+  "previous": {
+    "title": "Methods",
+    "permalink": "/PREFS/docs/0.1.9/API Reference/methods"
+  },
+  "next": {
+    "title": "Change log",
+    "permalink": "/PREFS/docs/0.1.9/About/changelog"
+  }
+}

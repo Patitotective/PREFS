@@ -1,50 +1,47 @@
+"""	Test dictionary parameter
 """
-	Test dictionary parameter
-"""
-
-import sys, os
-sys.path.append(os.path.abspath(os.path.join('..')))
-import __init__ as PREFS
+import os
+import PREFS
 
 ### Test single preferences and without cascade
 prefs = lambda: PREFS.read_prefs_file("prefs1.prefs")
-UserPrefs = PREFS.PREFS(prefs, filename="Prefs/prefs1.prefs", interpret=True, verbose=False, cascade=True)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
+user_prefs = PREFS.Prefs(prefs, filename="Prefs/prefs1.prefs", verbose=False)#, filterPrefs=filterPrefs) # Change (dictionary, interpret, debug) to True to test it.
 
 def test_reading_overwrite():
-	UserPrefs.overwrite_prefs()
+	user_prefs.overwrite_prefs()
 	
-	assert UserPrefs.read_prefs() == prefs() # Test ReadPrefs() function
-	assert UserPrefs.file == prefs() #Test file attribute
+	assert user_prefs.read_prefs() == prefs() # Test ReadPrefs() function
+	assert user_prefs.file == prefs() #Test file attribute
 
 def test_writeprefs():
-	UserPrefs.write_prefs("theme", "dark")
+	user_prefs.write_prefs("theme", "dark")
 
-	assert UserPrefs.file == {"theme": "dark"}
+	assert user_prefs.file == {"theme": "dark"}
 
-	UserPrefs.write_multiple_prefs([str(i) for i in range(100)], [i for i in range(100)])
+	user_prefs.write_multiple_prefs({str(i):i for i in range(100)})
 
 	hundred_dict = {str(i):i for i in range(100)}
-	assert UserPrefs.file == {"theme": "dark", **hundred_dict}
+	assert user_prefs.file == {"theme": "dark", **hundred_dict}
 
 
 def test_changefilename_deletefile():
-	UserPrefs.change_filename("prefs.prefs")
-	assert os.path.isfile(UserPrefs.filename)
+	user_prefs.change_filename("prefs.prefs")
+	assert os.path.isfile(user_prefs.filename)
 
-	UserPrefs.delete_file()
-	assert not os.path.isfile(UserPrefs.filename)
+	user_prefs.delete_file()
+	assert not os.path.isfile(user_prefs.filename)
 
 def not_test_json_yaml():
 	"""The name makes pytest to ignore this function because for some reason it raises an FileNotFoundError.
 	"""
-	UserPrefs.convert_to_json()
+	user_prefs.convert_to_json()
 	data = PREFS.read_json_file("Prefs/prefs1.json")
 
-	UserPrefs.convert_to_yaml()
+	user_prefs.convert_to_yaml()
 	data1 = PREFS.read_yaml_file("Prefs/prefs1.yaml")
 
-	assert UserPrefs.file == data
-	assert UserPrefs.file == data1
+	assert user_prefs.file == data
+	assert user_prefs.file == data1
 
 if __name__ == "__main__":
 	test_reading_overwrite()

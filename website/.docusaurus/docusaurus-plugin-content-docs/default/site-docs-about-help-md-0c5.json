@@ -1,0 +1,21 @@
+{
+  "unversionedId": "About/help",
+  "id": "About/help",
+  "isDocsHomePage": false,
+  "title": "Help",
+  "description": "If you need help or have found an issue:",
+  "source": "@site/docs/About/help.md",
+  "sourceDirName": "About",
+  "slug": "/About/help",
+  "permalink": "/PREFS/next/About/help",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/About/help.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "help",
+    "title": "Help",
+    "sidebar_position": 4,
+    "hide_title": true
+  }
+}

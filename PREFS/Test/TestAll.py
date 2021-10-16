@@ -7,5 +7,4 @@ files.remove(os.path.basename(__file__))
 [files.remove(i) for i in files if not i.split("_")[0] == "test"]
 
 for file in files:
-	subprocess.run(["python3", file])
-
+	subprocess.run(["python3.9", file])

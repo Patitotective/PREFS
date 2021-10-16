@@ -1,0 +1,18 @@
+{
+  "unversionedId": "api",
+  "id": "api",
+  "isDocsHomePage": false,
+  "title": "api",
+  "description": "",
+  "source": "@site/docs/api.md",
+  "sourceDirName": ".",
+  "slug": "/api",
+  "permalink": "/PREFS/docs/next/api",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "frontMatter": {}
+}

@@ -1,0 +1,20 @@
+{
+  "unversionedId": "CLI/index",
+  "id": "CLI/index",
+  "isDocsHomePage": false,
+  "title": "index",
+  "description": "",
+  "source": "@site/docs/CLI/index.md",
+  "sourceDirName": "CLI",
+  "slug": "/CLI/index",
+  "permalink": "/PREFS/next/CLI/index",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/CLI/index.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "About",
+    "permalink": "/PREFS/next/About/about"
+  }
+}

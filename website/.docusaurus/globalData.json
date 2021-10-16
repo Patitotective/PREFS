@@ -1,0 +1,63 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/PREFS/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/PREFS/docs",
+          "mainDocId": "start",
+          "docs": [
+            {
+              "id": "about/about",
+              "path": "/PREFS/docs/about/about",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/changelog",
+              "path": "/PREFS/docs/about/changelog",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/license",
+              "path": "/PREFS/docs/about/license",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/support",
+              "path": "/PREFS/docs/about/support",
+              "sidebar": "about"
+            },
+            {
+              "id": "api/cli",
+              "path": "/PREFS/docs/api/cli",
+              "sidebar": "api"
+            },
+            {
+              "id": "api/functions",
+              "path": "/PREFS/docs/api/functions",
+              "sidebar": "api"
+            },
+            {
+              "id": "api/prefs-class",
+              "path": "/PREFS/docs/api/prefs-class",
+              "sidebar": "api"
+            },
+            {
+              "id": "resources",
+              "path": "/PREFS/docs/resources",
+              "sidebar": "docs"
+            },
+            {
+              "id": "start",
+              "path": "/PREFS/docs/start",
+              "sidebar": "docs"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

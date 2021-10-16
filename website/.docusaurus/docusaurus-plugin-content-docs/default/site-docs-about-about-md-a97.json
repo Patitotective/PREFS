@@ -1,0 +1,26 @@
+{
+  "unversionedId": "About/about",
+  "id": "About/about",
+  "isDocsHomePage": false,
+  "title": "About",
+  "description": "---",
+  "source": "@site/docs/About/about.md",
+  "sourceDirName": "About",
+  "slug": "/About/about",
+  "permalink": "/PREFS/docs/next/About/about",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/About/about.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "id": "about",
+    "title": "About",
+    "hide_title": true,
+    "sidebar_position": 7
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "License",
+    "permalink": "/PREFS/docs/next/About/license"
+  }
+}

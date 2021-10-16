@@ -1,0 +1,33 @@
+{
+  "unversionedId": "About/changelog",
+  "id": "version-0.1.8/About/changelog",
+  "isDocsHomePage": false,
+  "title": "Change log",
+  "description": "v0.1.8 (31/07/2021)",
+  "source": "@site/versioned_docs/version-0.1.8/About/CHANGELOG.md",
+  "sourceDirName": "About",
+  "slug": "/About/changelog",
+  "permalink": "/PREFS/docs/0.1.8/About/changelog",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.1.8/About/CHANGELOG.md",
+  "tags": [],
+  "version": "0.1.8",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "id": "changelog",
+    "title": "Change log",
+    "hide_title": true,
+    "sidebar_position": 5
+  },
+  "sidebar": "version-0.1.8/tutorialSidebar",
+  "previous": {
+    "title": "Help",
+    "permalink": "/PREFS/docs/0.1.8/About/help"
+  },
+  "next": {
+    "title": "License",
+    "permalink": "/PREFS/docs/0.1.8/About/license"
+  }
+}

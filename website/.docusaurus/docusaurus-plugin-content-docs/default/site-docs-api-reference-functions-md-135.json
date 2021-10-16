@@ -1,0 +1,30 @@
+{
+  "unversionedId": "API Reference/functions",
+  "id": "API Reference/functions",
+  "isDocsHomePage": false,
+  "title": "Functions",
+  "description": "---",
+  "source": "@site/docs/API Reference/functions.md",
+  "sourceDirName": "API Reference",
+  "slug": "/API Reference/functions",
+  "permalink": "/PREFS/docs/next/API Reference/functions",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/API Reference/functions.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "id": "functions",
+    "title": "Functions",
+    "sidebar_position": 3,
+    "hide_title": true
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "PREFS class",
+    "permalink": "/PREFS/docs/next/API Reference/prefs-class"
+  },
+  "next": {
+    "title": "Support",
+    "permalink": "/PREFS/docs/next/About/suppport"
+  }
+}

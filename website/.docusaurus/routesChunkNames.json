@@ -1,0 +1,72 @@
+{
+  "/PREFS/-d35": {
+    "component": "component---theme-mdx-page-1-f-3-b90",
+    "content": "content---prefs-f-39-b74"
+  },
+  "/PREFS/__docusaurus/debug-477": {
+    "component": "component---theme-debug-config-23-a-2ff"
+  },
+  "/PREFS/__docusaurus/debug/config-d2e": {
+    "component": "component---theme-debug-config-23-a-2ff"
+  },
+  "/PREFS/__docusaurus/debug/content-c23": {
+    "component": "component---theme-debug-contentba-8-ce7",
+    "allContent": "allContent---prefs-docusaurus-debug-content-246-229"
+  },
+  "/PREFS/__docusaurus/debug/globalData-dce": {
+    "component": "component---theme-debug-global-dataede-0fa"
+  },
+  "/PREFS/__docusaurus/debug/metadata-553": {
+    "component": "component---theme-debug-site-metadata-68-e-3d4"
+  },
+  "/PREFS/__docusaurus/debug/registry-091": {
+    "component": "component---theme-debug-registry-679-501"
+  },
+  "/PREFS/__docusaurus/debug/routes-553": {
+    "component": "component---theme-debug-routes-946-699"
+  },
+  "/PREFS/blog/archive-5d9": {
+    "component": "component---theme-blog-archive-page-9-e-4-1d8",
+    "archive": "archive---prefs-blog-archivefc-6-e11"
+  },
+  "/PREFS/docs-d9f": {
+    "component": "component---theme-doc-page-1-be-9be",
+    "versionMetadata": "versionMetadata---prefs-docs-935-e08"
+  },
+  "/PREFS/docs/about/about-a3a": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-about-aboutceb-41c"
+  },
+  "/PREFS/docs/about/changelog-9c3": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-about-changelogfd-9-5f7"
+  },
+  "/PREFS/docs/about/license-8a0": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-about-licenseb-0-e-431"
+  },
+  "/PREFS/docs/about/support-333": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-about-support-8-e-5-aa8"
+  },
+  "/PREFS/docs/api/cli-ddb": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-api-cli-26-a-a59"
+  },
+  "/PREFS/docs/api/functions-899": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-api-functionsfc-9-0d3"
+  },
+  "/PREFS/docs/api/prefs-class-088": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-api-prefs-classfb-9-77f"
+  },
+  "/PREFS/docs/resources-bd8": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-resourcesd-92-c08"
+  },
+  "/PREFS/docs/start-993": {
+    "component": "component---theme-doc-item-178-a40",
+    "content": "content---prefs-docs-start-98-c-876"
+  }
+}

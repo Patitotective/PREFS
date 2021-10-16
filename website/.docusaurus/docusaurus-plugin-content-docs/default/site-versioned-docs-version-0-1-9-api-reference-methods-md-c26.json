@@ -1,0 +1,33 @@
+{
+  "unversionedId": "API Reference/methods",
+  "id": "version-0.1.9/API Reference/methods",
+  "isDocsHomePage": false,
+  "title": "Methods",
+  "description": "---",
+  "source": "@site/versioned_docs/version-0.1.9/API Reference/methods.md",
+  "sourceDirName": "API Reference",
+  "slug": "/API Reference/methods",
+  "permalink": "/PREFS/docs/0.1.9/API Reference/methods",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.1.9/API Reference/methods.md",
+  "tags": [],
+  "version": "0.1.9",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "id": "methods",
+    "title": "Methods",
+    "sidebar_position": 3,
+    "hide_title": true
+  },
+  "sidebar": "version-0.1.9/tutorialSidebar",
+  "previous": {
+    "title": "PREFS class",
+    "permalink": "/PREFS/docs/0.1.9/API Reference/prefs-class"
+  },
+  "next": {
+    "title": "Help",
+    "permalink": "/PREFS/docs/0.1.9/about/help"
+  }
+}

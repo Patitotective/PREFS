@@ -1,0 +1,29 @@
+{
+  "unversionedId": "api/cli",
+  "id": "api/cli",
+  "isDocsHomePage": false,
+  "title": "Command Line Interface",
+  "description": "PREFS has a simple CLI tool that you can access from your terminal right after installing PREFS via Pypi.",
+  "source": "@site/docs/api/cli.md",
+  "sourceDirName": "api",
+  "slug": "/api/cli",
+  "permalink": "/PREFS/docs/api/cli",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/cli.md",
+  "tags": [],
+  "version": "current",
+  "lastUpdatedBy": "Author",
+  "lastUpdatedAt": 1539502055,
+  "formattedLastUpdatedAt": "10/14/2018",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "id": "cli",
+    "title": "Command Line Interface",
+    "sidebar_position": 1,
+    "hide_title": true
+  },
+  "sidebar": "api",
+  "previous": {
+    "title": "Functions",
+    "permalink": "/PREFS/docs/api/functions"
+  }
+}

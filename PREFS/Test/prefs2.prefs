@@ -1,5 +1,4 @@
 #PREFS
 keybindings=>
-	copy="Ctrl+C"
+	copy='Ctrl+C'
 theme='light'
-	

@@ -1,0 +1,30 @@
+{
+  "unversionedId": "About/suppport",
+  "id": "About/suppport",
+  "isDocsHomePage": false,
+  "title": "Support",
+  "description": "Support",
+  "source": "@site/docs/About/support.md",
+  "sourceDirName": "About",
+  "slug": "/About/suppport",
+  "permalink": "/PREFS/docs/next/About/suppport",
+  "editUrl": "https://github.com/Patitotective/PREFS/docs/About/support.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "suppport",
+    "title": "Support",
+    "sidebar_position": 4,
+    "hide_title": true
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Functions",
+    "permalink": "/PREFS/docs/next/API Reference/functions"
+  },
+  "next": {
+    "title": "Changelog",
+    "permalink": "/PREFS/docs/next/About/changelog"
+  }
+}

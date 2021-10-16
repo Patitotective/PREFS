@@ -1,0 +1,30 @@
+{
+  "pluginId": "default",
+  "version": "0.1.8",
+  "label": "0.1.8",
+  "banner": "unmaintained",
+  "badge": true,
+  "className": "docs-version-0.1.8",
+  "isLast": false,
+  "docsSidebars": {
+    "version-0.1.8/docs": [
+      {
+        "type": "link",
+        "label": "Getting started",
+        "href": "/PREFS/docs/0.1.8/start"
+      }
+    ],
+    "version-0.1.8/api": [
+      {
+        "type": "link",
+        "label": "PREFS class",
+        "href": "/PREFS/docs/0.1.8/api/prefs-class"
+      },
+      {
+        "type": "link",
+        "label": "Functions",
+        "href": "/PREFS/docs/0.1.8/api/functions"
+      }
+    ]
+  }
+}
