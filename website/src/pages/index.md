@@ -33,7 +33,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 It stores a Python dictionary in a total human-readable file, you need to pass to it a default prefs that will be used when there are no preferences.
 
 ### Features
-- Creates a human-readable file.
+- Creates a total human-readable file.
 - Supports tree/cascade in nested dictionaries.
 - Supports [`export`](docs/api/prefs-class#convert_to_json)/[`import`](docs/api/functions#read_json_file) JSON files.
 - Supports [`export`](docs/api/prefs-class#convert_to_yaml)/[`import`](docs/api/functions#read_yaml_file) YAML files.
