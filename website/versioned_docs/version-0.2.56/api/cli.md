@@ -1,6 +1,6 @@
 ---
 id: cli
-title: 'Command Line Interface'
+title: Command Line Interface
 sidebar_position: 1
 hide_title: true
 ---

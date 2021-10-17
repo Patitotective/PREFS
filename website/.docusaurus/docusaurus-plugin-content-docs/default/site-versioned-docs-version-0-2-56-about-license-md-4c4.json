@@ -3,7 +3,7 @@
   "id": "version-0.2.56/about/license",
   "isDocsHomePage": false,
   "title": "License",
-  "description": "---",
+  "description": "MIT license",
   "source": "@site/versioned_docs/version-0.2.56/about/LICENSE.md",
   "sourceDirName": "about",
   "slug": "/about/license",
@@ -11,6 +11,9 @@
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/about/LICENSE.md",
   "tags": [],
   "version": "0.2.56",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634483217,
+  "formattedLastUpdatedAt": "10/17/2021",
   "sidebarPosition": 6,
   "frontMatter": {
     "id": "license",
