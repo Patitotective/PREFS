@@ -1,0 +1,26 @@
+{
+  "unversionedId": "start",
+  "id": "version-0.2.55/start",
+  "isDocsHomePage": false,
+  "title": "Getting started",
+  "description": "Installation and import",
+  "source": "@site/versioned_docs/version-0.2.55/start.md",
+  "sourceDirName": ".",
+  "slug": "/start",
+  "permalink": "/PREFS/docs/start",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.55/start.md",
+  "tags": [],
+  "version": "0.2.55",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "start",
+    "title": "Getting started",
+    "sidebar_position": 0,
+    "hide_title": true
+  },
+  "sidebar": "version-0.2.55/docs",
+  "next": {
+    "title": "PREFS resources",
+    "permalink": "/PREFS/docs/resources"
+  }
+}

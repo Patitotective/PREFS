@@ -1,0 +1,26 @@
+{
+  "unversionedId": "resources",
+  "id": "version-0.2.55/resources",
+  "isDocsHomePage": false,
+  "title": "PREFS resources",
+  "description": "*",
+  "source": "@site/versioned_docs/version-0.2.55/resources.md",
+  "sourceDirName": ".",
+  "slug": "/resources",
+  "permalink": "/PREFS/docs/resources",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.55/resources.md",
+  "tags": [],
+  "version": "0.2.55",
+  "sidebarPosition": 0,
+  "frontMatter": {
+    "id": "resources",
+    "title": "PREFS resources",
+    "sidebar_position": 0,
+    "hide_title": true
+  },
+  "sidebar": "version-0.2.55/docs",
+  "previous": {
+    "title": "Getting started",
+    "permalink": "/PREFS/docs/start"
+  }
+}

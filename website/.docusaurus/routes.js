@@ -9,102 +9,132 @@ export default [
     exact: true
   },
   {
-    path: '/PREFS/__docusaurus/debug',
-    component: ComponentCreator('/PREFS/__docusaurus/debug','477'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/config',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/config','d2e'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/content',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/content','c23'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/globalData',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/globalData','dce'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/metadata',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/metadata','553'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/registry',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/registry','091'),
-    exact: true
-  },
-  {
-    path: '/PREFS/__docusaurus/debug/routes',
-    component: ComponentCreator('/PREFS/__docusaurus/debug/routes','553'),
-    exact: true
-  },
-  {
     path: '/PREFS/blog/archive',
     component: ComponentCreator('/PREFS/blog/archive','5d9'),
     exact: true
   },
   {
+    path: '/PREFS/search',
+    component: ComponentCreator('/PREFS/search','c99'),
+    exact: true
+  },
+  {
+    path: '/PREFS/docs/next',
+    component: ComponentCreator('/PREFS/docs/next','6d5'),
+    routes: [
+      {
+        path: '/PREFS/docs/next/about/about',
+        component: ComponentCreator('/PREFS/docs/next/about/about','f55'),
+        exact: true,
+        'sidebar': "about"
+      },
+      {
+        path: '/PREFS/docs/next/about/changelog',
+        component: ComponentCreator('/PREFS/docs/next/about/changelog','129'),
+        exact: true,
+        'sidebar': "about"
+      },
+      {
+        path: '/PREFS/docs/next/about/license',
+        component: ComponentCreator('/PREFS/docs/next/about/license','d21'),
+        exact: true,
+        'sidebar': "about"
+      },
+      {
+        path: '/PREFS/docs/next/about/support',
+        component: ComponentCreator('/PREFS/docs/next/about/support','59f'),
+        exact: true,
+        'sidebar': "about"
+      },
+      {
+        path: '/PREFS/docs/next/api/cli',
+        component: ComponentCreator('/PREFS/docs/next/api/cli','177'),
+        exact: true,
+        'sidebar': "api"
+      },
+      {
+        path: '/PREFS/docs/next/api/functions',
+        component: ComponentCreator('/PREFS/docs/next/api/functions','3b4'),
+        exact: true,
+        'sidebar': "api"
+      },
+      {
+        path: '/PREFS/docs/next/api/prefs-class',
+        component: ComponentCreator('/PREFS/docs/next/api/prefs-class','43f'),
+        exact: true,
+        'sidebar': "api"
+      },
+      {
+        path: '/PREFS/docs/next/resources',
+        component: ComponentCreator('/PREFS/docs/next/resources','194'),
+        exact: true,
+        'sidebar': "docs"
+      },
+      {
+        path: '/PREFS/docs/next/start',
+        component: ComponentCreator('/PREFS/docs/next/start','fa7'),
+        exact: true,
+        'sidebar': "docs"
+      }
+    ]
+  },
+  {
     path: '/PREFS/docs',
-    component: ComponentCreator('/PREFS/docs','d9f'),
+    component: ComponentCreator('/PREFS/docs','a07'),
     routes: [
       {
         path: '/PREFS/docs/about/about',
-        component: ComponentCreator('/PREFS/docs/about/about','a3a'),
+        component: ComponentCreator('/PREFS/docs/about/about','742'),
         exact: true,
-        'sidebar': "about"
+        'sidebar': "version-0.2.55/about"
       },
       {
         path: '/PREFS/docs/about/changelog',
-        component: ComponentCreator('/PREFS/docs/about/changelog','9c3'),
+        component: ComponentCreator('/PREFS/docs/about/changelog','ceb'),
         exact: true,
-        'sidebar': "about"
+        'sidebar': "version-0.2.55/about"
       },
       {
         path: '/PREFS/docs/about/license',
-        component: ComponentCreator('/PREFS/docs/about/license','8a0'),
+        component: ComponentCreator('/PREFS/docs/about/license','120'),
         exact: true,
-        'sidebar': "about"
+        'sidebar': "version-0.2.55/about"
       },
       {
         path: '/PREFS/docs/about/support',
-        component: ComponentCreator('/PREFS/docs/about/support','333'),
+        component: ComponentCreator('/PREFS/docs/about/support','cdd'),
         exact: true,
-        'sidebar': "about"
+        'sidebar': "version-0.2.55/about"
       },
       {
         path: '/PREFS/docs/api/cli',
-        component: ComponentCreator('/PREFS/docs/api/cli','ddb'),
+        component: ComponentCreator('/PREFS/docs/api/cli','2a4'),
         exact: true,
-        'sidebar': "api"
+        'sidebar': "version-0.2.55/api"
       },
       {
         path: '/PREFS/docs/api/functions',
-        component: ComponentCreator('/PREFS/docs/api/functions','899'),
+        component: ComponentCreator('/PREFS/docs/api/functions','657'),
         exact: true,
-        'sidebar': "api"
+        'sidebar': "version-0.2.55/api"
       },
       {
         path: '/PREFS/docs/api/prefs-class',
-        component: ComponentCreator('/PREFS/docs/api/prefs-class','088'),
+        component: ComponentCreator('/PREFS/docs/api/prefs-class','288'),
         exact: true,
-        'sidebar': "api"
+        'sidebar': "version-0.2.55/api"
       },
       {
         path: '/PREFS/docs/resources',
-        component: ComponentCreator('/PREFS/docs/resources','bd8'),
+        component: ComponentCreator('/PREFS/docs/resources','fcb'),
         exact: true,
-        'sidebar': "docs"
+        'sidebar': "version-0.2.55/docs"
       },
       {
         path: '/PREFS/docs/start',
-        component: ComponentCreator('/PREFS/docs/start','993'),
+        component: ComponentCreator('/PREFS/docs/start','dd9'),
         exact: true,
-        'sidebar': "docs"
+        'sidebar': "version-0.2.55/docs"
       }
     ]
   },

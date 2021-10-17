@@ -41,6 +41,13 @@ export default {
         "lightIconStyle": {}
       }
     },
+    "algolia": {
+      "appId": "YOUR_APP_ID",
+      "apiKey": "9119a2246757d6f92e85f2038a85b2ee",
+      "indexName": "patitotective",
+      "contextualSearch": true,
+      "searchParameters": {}
+    },
     "announcementBar": {
       "id": "github_star",
       "content": "<b>⭐ If you like PREFS, please consider giving a star on <a href=\"https://github.com/Patitotective/PREFS\">GitHub</a> ❤️</b>",
@@ -99,6 +106,10 @@ export default {
             {
               "label": "Documentation",
               "href": "https://patitotective.github.io/PREFS/"
+            },
+            {
+              "label": "Discord",
+              "href": "https://discord.gg/as85Q4GnR6"
             }
           ]
         },
@@ -107,10 +118,10 @@ export default {
           "items": [
             {
               "label": "Discord: Patitotective#0127",
-              "href": "https://patitotective.github.io/PREFS/About/about"
+              "href": "https://patitotective.github.io/PREFS/docs/about/about"
             },
             {
-              "label": "Mail: cristobalriaga@gmail.com",
+              "label": "Email: cristobalriaga@gmail.com",
               "href": "mailto:cristobalriaga@gmail.com"
             }
           ]

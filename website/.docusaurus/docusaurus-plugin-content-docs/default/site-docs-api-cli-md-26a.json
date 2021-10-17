@@ -7,13 +7,13 @@
   "source": "@site/docs/api/cli.md",
   "sourceDirName": "api",
   "slug": "/api/cli",
-  "permalink": "/PREFS/docs/api/cli",
+  "permalink": "/PREFS/docs/next/api/cli",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/cli.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055,
-  "formattedLastUpdatedAt": "10/14/2018",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634426265,
+  "formattedLastUpdatedAt": "10/16/2021",
   "sidebarPosition": 1,
   "frontMatter": {
     "id": "cli",
@@ -24,6 +24,6 @@
   "sidebar": "api",
   "previous": {
     "title": "Functions",
-    "permalink": "/PREFS/docs/api/functions"
+    "permalink": "/PREFS/docs/next/api/functions"
   }
 }

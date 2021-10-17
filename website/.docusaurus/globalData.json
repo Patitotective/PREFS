@@ -6,6 +6,60 @@
         {
           "name": "current",
           "label": "Next",
+          "isLast": false,
+          "path": "/PREFS/docs/next",
+          "mainDocId": "start",
+          "docs": [
+            {
+              "id": "about/about",
+              "path": "/PREFS/docs/next/about/about",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/changelog",
+              "path": "/PREFS/docs/next/about/changelog",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/license",
+              "path": "/PREFS/docs/next/about/license",
+              "sidebar": "about"
+            },
+            {
+              "id": "about/support",
+              "path": "/PREFS/docs/next/about/support",
+              "sidebar": "about"
+            },
+            {
+              "id": "api/cli",
+              "path": "/PREFS/docs/next/api/cli",
+              "sidebar": "api"
+            },
+            {
+              "id": "api/functions",
+              "path": "/PREFS/docs/next/api/functions",
+              "sidebar": "api"
+            },
+            {
+              "id": "api/prefs-class",
+              "path": "/PREFS/docs/next/api/prefs-class",
+              "sidebar": "api"
+            },
+            {
+              "id": "resources",
+              "path": "/PREFS/docs/next/resources",
+              "sidebar": "docs"
+            },
+            {
+              "id": "start",
+              "path": "/PREFS/docs/next/start",
+              "sidebar": "docs"
+            }
+          ]
+        },
+        {
+          "name": "0.2.55",
+          "label": "0.2.55",
           "isLast": true,
           "path": "/PREFS/docs",
           "mainDocId": "start",
@@ -13,47 +67,47 @@
             {
               "id": "about/about",
               "path": "/PREFS/docs/about/about",
-              "sidebar": "about"
+              "sidebar": "version-0.2.55/about"
             },
             {
               "id": "about/changelog",
               "path": "/PREFS/docs/about/changelog",
-              "sidebar": "about"
+              "sidebar": "version-0.2.55/about"
             },
             {
               "id": "about/license",
               "path": "/PREFS/docs/about/license",
-              "sidebar": "about"
+              "sidebar": "version-0.2.55/about"
             },
             {
               "id": "about/support",
               "path": "/PREFS/docs/about/support",
-              "sidebar": "about"
+              "sidebar": "version-0.2.55/about"
             },
             {
               "id": "api/cli",
               "path": "/PREFS/docs/api/cli",
-              "sidebar": "api"
+              "sidebar": "version-0.2.55/api"
             },
             {
               "id": "api/functions",
               "path": "/PREFS/docs/api/functions",
-              "sidebar": "api"
+              "sidebar": "version-0.2.55/api"
             },
             {
               "id": "api/prefs-class",
               "path": "/PREFS/docs/api/prefs-class",
-              "sidebar": "api"
+              "sidebar": "version-0.2.55/api"
             },
             {
               "id": "resources",
               "path": "/PREFS/docs/resources",
-              "sidebar": "docs"
+              "sidebar": "version-0.2.55/docs"
             },
             {
               "id": "start",
               "path": "/PREFS/docs/start",
-              "sidebar": "docs"
+              "sidebar": "version-0.2.55/docs"
             }
           ]
         }

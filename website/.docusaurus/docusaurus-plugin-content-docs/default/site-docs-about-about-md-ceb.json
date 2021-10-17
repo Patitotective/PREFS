@@ -7,13 +7,13 @@
   "source": "@site/docs/about/about.md",
   "sourceDirName": "about",
   "slug": "/about/about",
-  "permalink": "/PREFS/docs/about/about",
+  "permalink": "/PREFS/docs/next/about/about",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/about.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055,
-  "formattedLastUpdatedAt": "10/14/2018",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634426265,
+  "formattedLastUpdatedAt": "10/16/2021",
   "sidebarPosition": 7,
   "frontMatter": {
     "id": "about",
@@ -24,6 +24,6 @@
   "sidebar": "about",
   "next": {
     "title": "Support",
-    "permalink": "/PREFS/docs/about/support"
+    "permalink": "/PREFS/docs/next/about/support"
   }
 }

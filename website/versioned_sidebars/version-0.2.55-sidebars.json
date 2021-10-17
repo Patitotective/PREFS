@@ -1,0 +1,44 @@
+{
+  "version-0.2.55/docs": [
+    {
+      "type": "doc",
+      "id": "version-0.2.55/start"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/resources"
+    }
+  ],
+  "version-0.2.55/api": [
+    {
+      "type": "doc",
+      "id": "version-0.2.55/api/prefs-class"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/api/functions"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/api/cli"
+    }
+  ],
+  "version-0.2.55/about": [
+    {
+      "type": "doc",
+      "id": "version-0.2.55/about/about"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/about/support"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/about/changelog"
+    },
+    {
+      "type": "doc",
+      "id": "version-0.2.55/about/license"
+    }
+  ]
+}

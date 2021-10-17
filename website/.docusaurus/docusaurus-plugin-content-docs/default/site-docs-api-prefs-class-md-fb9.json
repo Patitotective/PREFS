@@ -7,13 +7,13 @@
   "source": "@site/docs/api/prefs-class.md",
   "sourceDirName": "api",
   "slug": "/api/prefs-class",
-  "permalink": "/PREFS/docs/api/prefs-class",
+  "permalink": "/PREFS/docs/next/api/prefs-class",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/api/prefs-class.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055,
-  "formattedLastUpdatedAt": "10/14/2018",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634426265,
+  "formattedLastUpdatedAt": "10/16/2021",
   "sidebarPosition": 2,
   "frontMatter": {
     "id": "prefs-class",
@@ -24,6 +24,6 @@
   "sidebar": "api",
   "next": {
     "title": "Functions",
-    "permalink": "/PREFS/docs/api/functions"
+    "permalink": "/PREFS/docs/next/api/functions"
   }
 }

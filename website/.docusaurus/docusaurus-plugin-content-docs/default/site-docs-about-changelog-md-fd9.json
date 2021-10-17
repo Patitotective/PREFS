@@ -7,13 +7,13 @@
   "source": "@site/docs/about/CHANGELOG.md",
   "sourceDirName": "about",
   "slug": "/about/changelog",
-  "permalink": "/PREFS/docs/about/changelog",
+  "permalink": "/PREFS/docs/next/about/changelog",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/about/CHANGELOG.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055,
-  "formattedLastUpdatedAt": "10/14/2018",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634426265,
+  "formattedLastUpdatedAt": "10/16/2021",
   "sidebarPosition": 5,
   "frontMatter": {
     "id": "changelog",
@@ -24,10 +24,10 @@
   "sidebar": "about",
   "previous": {
     "title": "Support",
-    "permalink": "/PREFS/docs/about/support"
+    "permalink": "/PREFS/docs/next/about/support"
   },
   "next": {
     "title": "License",
-    "permalink": "/PREFS/docs/about/license"
+    "permalink": "/PREFS/docs/next/about/license"
   }
 }

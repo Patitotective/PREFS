@@ -2,60 +2,60 @@
   "pluginId": "default",
   "version": "current",
   "label": "Next",
-  "banner": null,
-  "badge": false,
+  "banner": "unreleased",
+  "badge": true,
   "className": "docs-version-current",
-  "isLast": true,
+  "isLast": false,
   "docsSidebars": {
     "docs": [
       {
         "type": "link",
         "label": "Getting started",
-        "href": "/PREFS/docs/start"
+        "href": "/PREFS/docs/next/start"
       },
       {
         "type": "link",
         "label": "PREFS resources",
-        "href": "/PREFS/docs/resources"
+        "href": "/PREFS/docs/next/resources"
       }
     ],
     "api": [
       {
         "type": "link",
         "label": "Prefs class",
-        "href": "/PREFS/docs/api/prefs-class"
+        "href": "/PREFS/docs/next/api/prefs-class"
       },
       {
         "type": "link",
         "label": "Functions",
-        "href": "/PREFS/docs/api/functions"
+        "href": "/PREFS/docs/next/api/functions"
       },
       {
         "type": "link",
         "label": "Command Line Interface",
-        "href": "/PREFS/docs/api/cli"
+        "href": "/PREFS/docs/next/api/cli"
       }
     ],
     "about": [
       {
         "type": "link",
         "label": "About",
-        "href": "/PREFS/docs/about/about"
+        "href": "/PREFS/docs/next/about/about"
       },
       {
         "type": "link",
         "label": "Support",
-        "href": "/PREFS/docs/about/support"
+        "href": "/PREFS/docs/next/about/support"
       },
       {
         "type": "link",
         "label": "Changelog",
-        "href": "/PREFS/docs/about/changelog"
+        "href": "/PREFS/docs/next/about/changelog"
       },
       {
         "type": "link",
         "label": "License",
-        "href": "/PREFS/docs/about/license"
+        "href": "/PREFS/docs/next/about/license"
       }
     ]
   }

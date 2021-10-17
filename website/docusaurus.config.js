@@ -48,6 +48,26 @@ const config = {
       colorMode: {
         defaultMode: "dark", 
       }, 
+      algolia: {
+        // If Algolia did not provide you any appId, use 'BH4D9OD16A'
+        appId: 'BH4D9OD16A',
+
+        // Public API key: it is safe to commit it
+        apiKey: '9119a2246757d6f92e85f2038a85b2ee',
+
+        indexName: 'patitotective',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: see doc section below
+        appId: 'YOUR_APP_ID',
+
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        //... other Algolia params
+      },      
       announcementBar: {
         id: 'github_star',
         content:
@@ -85,8 +105,7 @@ const config = {
             type: 'docsVersionDropdown', 
             position: 'right', 
           },     
-        ],
-      
+        ],np
       },
 
       footer: {
@@ -106,6 +125,10 @@ const config = {
               {
                 label: 'Documentation',
                 href: 'https://patitotective.github.io/PREFS/',
+              }, 
+              {
+                label: 'Discord', 
+                href: 'https://discord.gg/as85Q4GnR6', 
               }
             ],
           },
@@ -114,10 +137,10 @@ const config = {
             items: [
               {
                 label: 'Discord: Patitotective#0127',
-                href: "https://patitotective.github.io/PREFS/About/about"
+                href: "https://patitotective.github.io/PREFS/docs/about/about"
               },
               {
-                label: 'Mail: cristobalriaga@gmail.com',
+                label: 'Email: cristobalriaga@gmail.com',
                 href: 'mailto:cristobalriaga@gmail.com',
               },
             ],

@@ -7,13 +7,13 @@
   "source": "@site/docs/start.md",
   "sourceDirName": ".",
   "slug": "/start",
-  "permalink": "/PREFS/docs/start",
+  "permalink": "/PREFS/docs/next/start",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/docs/start.md",
   "tags": [],
   "version": "current",
-  "lastUpdatedBy": "Author",
-  "lastUpdatedAt": 1539502055,
-  "formattedLastUpdatedAt": "10/14/2018",
+  "lastUpdatedBy": "Patitotective",
+  "lastUpdatedAt": 1634426265,
+  "formattedLastUpdatedAt": "10/16/2021",
   "sidebarPosition": 0,
   "frontMatter": {
     "id": "start",
@@ -24,6 +24,6 @@
   "sidebar": "docs",
   "next": {
     "title": "PREFS resources",
-    "permalink": "/PREFS/docs/resources"
+    "permalink": "/PREFS/docs/next/resources"
   }
 }
