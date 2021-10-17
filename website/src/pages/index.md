@@ -8,7 +8,7 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <ThemedImage
-  alt="PREFS logo"
+  alt="PREFS LOGO"
   sources={{
     light: useBaseUrl('/img/light_logo.png'),
     dark: useBaseUrl('/img/dark_logo.png'),
@@ -29,11 +29,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 [![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)  
 [![Made with python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
-**PREFS** is a Python library to manage and store preferences and settings for your program, application or game.  
-It stores a Python dictionary in a total human-readable file, you need to pass to it a default prefs that will be used when there are no preferences. 
+**PREFS** is a Python library to manage, store preferences and settings for your program, application or game.  
+It stores a Python dictionary in a total human-readable file, you need to pass to it a default prefs that will be used when there are no preferences.
 
 ### Features
-- Creates a total human-readable file.
+- Creates a human-readable file.
 - Supports tree/cascade in nested dictionaries.
 - Supports [`export`](docs/api/prefs-class#convert_to_json)/[`import`](docs/api/functions#read_json_file) JSON files.
 - Supports [`export`](docs/api/prefs-class#convert_to_yaml)/[`import`](docs/api/functions#read_yaml_file) YAML files.
@@ -44,6 +44,7 @@ It stores a Python dictionary in a total human-readable file, you need to pass t
 ### Limitations
 - Keys can only be strings.
 - The supported types are Python default ones (int, float, str, list, tuple, set, dict, etc.).
+- Since the files stored are in human-readable format people can modify and change values.
 
 ### Example
 ```python

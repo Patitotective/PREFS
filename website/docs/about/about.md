@@ -9,6 +9,7 @@ import {useActiveVersion} from '@theme/hooks/useDocs';
 # Contact me
 - Discord: **Patitotective#0127**.
 - Email: **cristobalriaga@gmail.com**.
+- Github: **https://github.com/Patitotective/**.
 
 ## Links
 - GitHub page: https://github.com/Patitotective/PREFS.
@@ -18,3 +19,4 @@ import {useActiveVersion} from '@theme/hooks/useDocs';
 <span>This documentation stands for <i>{useActiveVersion().label}</i> version.</span>
 
 Written by **Patitotective**.
+Website help from [extremepro999](https://github.com/extremepro999/)

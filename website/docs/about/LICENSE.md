@@ -6,6 +6,7 @@ sidebar_position: 6
 ---
 
 # LICENSE
+Prefs is licensed under the MIT license read more bellow.
 ---
 
 ## MIT license
