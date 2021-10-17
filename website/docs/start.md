@@ -25,7 +25,6 @@ pip install PREFS
 Or if you already have PREFS and you want to upgrade it use <code>pip install PREFS --upgrade</code> (and look at the <a href='https://patitotective.github.io./'>latest version of the documentation</a>).
 :::
 
-
 </TabItem>
 <TabItem value="linux" label="Linux and MacOs">
 
