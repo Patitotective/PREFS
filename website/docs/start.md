@@ -1,7 +1,6 @@
 ---
 id: start
 title: Getting started
-description: Learn how to get started with PREFS
 sidebar_position: 0
 hide_title: true
 ---
@@ -25,6 +24,7 @@ pip install PREFS
 <span>If you want to install {useActiveVersion().label === 'Next' ? 'some version' : useActiveVersion().label} and not the latest use </span><code>pip install PREFS={useActiveVersion().label === 'Next' ? 'versionNumber' : useActiveVersion().label}</code>.  
 Or if you already have PREFS and you want to upgrade it use <code>pip install PREFS --upgrade</code> (and look at the <a href='https://patitotective.github.io./'>latest version of the documentation</a>).
 :::
+
 
 </TabItem>
 <TabItem value="linux" label="Linux and MacOs">
