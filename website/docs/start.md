@@ -1,7 +1,6 @@
 ---
 id: start
 title: Getting started
-description: Learn how to get started with PREFS
 sidebar_position: 0
 hide_title: true
 ---
