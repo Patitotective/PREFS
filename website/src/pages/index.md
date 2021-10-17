@@ -8,7 +8,7 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <ThemedImage
-  alt="PREFS LOGO"
+  alt="PREFS logo"
   sources={{
     light: useBaseUrl('/img/light_logo.png'),
     dark: useBaseUrl('/img/dark_logo.png'),
@@ -44,7 +44,6 @@ It stores a Python dictionary in a total human-readable file, you need to pass t
 ### Limitations
 - Keys can only be strings.
 - The supported types are Python default ones (int, float, str, list, tuple, set, dict, etc.).
-- Since the files stored are in human-readable format people can modify and change values.
 
 ### Example
 ```python
