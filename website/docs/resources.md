@@ -64,7 +64,7 @@ import theme_resource
 theme = PREFS.read_prefs_file(":/theme.prefs")
 print(theme)
 ```
-Noy you can build your app without any issue.
+Now you can build your app without any issue.
 
 :::info Info
 See [`bundle`'s API Reference](./api/cli) for more options. 

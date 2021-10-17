@@ -29,8 +29,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 [![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)  
 [![Made with python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
-**PREFS** is a Python library to manage and store preferences and settings for your program, application or game.  
-It stores a Python dictionary in a total human-readable file, you need to pass to it a default prefs that will be used when there are no preferences. 
+**PREFS** is a Python library to manage and store user preferences for your program, application or game.  
+It stores a Python dictionary in a total human-readable file, you need to pass to it a default prefs that will be used when there are no preferences.
 
 ### Features
 - Creates a total human-readable file.
