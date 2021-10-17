@@ -74,4 +74,4 @@ About
   - Discord: **Patitotective#0127**.
   - Email: **cristobalriaga@gmail.com**.
 
-***v0.2.55***
+***v0.2.56***

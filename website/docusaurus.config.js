@@ -105,7 +105,7 @@ const config = {
             type: 'docsVersionDropdown', 
             position: 'right', 
           },     
-        ],np
+        ],
       },
 
       footer: {

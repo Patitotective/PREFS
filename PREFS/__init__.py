@@ -6,7 +6,7 @@ Requirements:
 
 Content:
 	PrefsBase (class): This class have all the functions to manage a PREFS file
-	Prefs (class): Inherits from PrefsBase, checks if a file exists and reade it, otherwise create it.
+	Prefs (class): Inherits from PrefsBase, checks if a file exists and read it, otherwise create it.
 	check_for_resources (function): Given a list of modules check if any of them is a PREFS resource.
 	bundle_prefs_file (function): Given the path of a PREFS file generates a resource file.
 	read_json_file (function): Simple Reads a json file and returns it's value.
@@ -36,7 +36,7 @@ from typing import List, Dict # To specify arguments types
 from .extra import check_path, remove_comments
 
 VERSION = "v0.2.55"
-RESOURCE_FILE_HEADER = "# Prefs resource file\n# Created using Prefs Python library\n# https://patitotective.github.io/Prefs/\n# Do not modify this file\n\n"
+RESOURCE_FILE_HEADER = "# PREFS resource file\n# Created using PREFS Python library\n# https://patitotective.github.io/PREFS/\n# Do not modify this file\n\n"
 
 
 class InvalidKeyError(Exception):

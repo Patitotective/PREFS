@@ -80,61 +80,61 @@ export default [
   },
   {
     path: '/PREFS/docs',
-    component: ComponentCreator('/PREFS/docs','a07'),
+    component: ComponentCreator('/PREFS/docs','927'),
     routes: [
       {
         path: '/PREFS/docs/about/about',
-        component: ComponentCreator('/PREFS/docs/about/about','742'),
+        component: ComponentCreator('/PREFS/docs/about/about','146'),
         exact: true,
-        'sidebar': "version-0.2.55/about"
+        'sidebar': "version-0.2.56/about"
       },
       {
         path: '/PREFS/docs/about/changelog',
-        component: ComponentCreator('/PREFS/docs/about/changelog','ceb'),
+        component: ComponentCreator('/PREFS/docs/about/changelog','20e'),
         exact: true,
-        'sidebar': "version-0.2.55/about"
+        'sidebar': "version-0.2.56/about"
       },
       {
         path: '/PREFS/docs/about/license',
-        component: ComponentCreator('/PREFS/docs/about/license','120'),
+        component: ComponentCreator('/PREFS/docs/about/license','3a9'),
         exact: true,
-        'sidebar': "version-0.2.55/about"
+        'sidebar': "version-0.2.56/about"
       },
       {
         path: '/PREFS/docs/about/support',
-        component: ComponentCreator('/PREFS/docs/about/support','cdd'),
+        component: ComponentCreator('/PREFS/docs/about/support','99f'),
         exact: true,
-        'sidebar': "version-0.2.55/about"
+        'sidebar': "version-0.2.56/about"
       },
       {
         path: '/PREFS/docs/api/cli',
-        component: ComponentCreator('/PREFS/docs/api/cli','2a4'),
+        component: ComponentCreator('/PREFS/docs/api/cli','7e3'),
         exact: true,
-        'sidebar': "version-0.2.55/api"
+        'sidebar': "version-0.2.56/api"
       },
       {
         path: '/PREFS/docs/api/functions',
-        component: ComponentCreator('/PREFS/docs/api/functions','657'),
+        component: ComponentCreator('/PREFS/docs/api/functions','86e'),
         exact: true,
-        'sidebar': "version-0.2.55/api"
+        'sidebar': "version-0.2.56/api"
       },
       {
         path: '/PREFS/docs/api/prefs-class',
-        component: ComponentCreator('/PREFS/docs/api/prefs-class','288'),
+        component: ComponentCreator('/PREFS/docs/api/prefs-class','cd2'),
         exact: true,
-        'sidebar': "version-0.2.55/api"
+        'sidebar': "version-0.2.56/api"
       },
       {
         path: '/PREFS/docs/resources',
-        component: ComponentCreator('/PREFS/docs/resources','fcb'),
+        component: ComponentCreator('/PREFS/docs/resources','fa8'),
         exact: true,
-        'sidebar': "version-0.2.55/docs"
+        'sidebar': "version-0.2.56/docs"
       },
       {
         path: '/PREFS/docs/start',
-        component: ComponentCreator('/PREFS/docs/start','dd9'),
+        component: ComponentCreator('/PREFS/docs/start','e54'),
         exact: true,
-        'sidebar': "version-0.2.55/docs"
+        'sidebar': "version-0.2.56/docs"
       }
     ]
   },

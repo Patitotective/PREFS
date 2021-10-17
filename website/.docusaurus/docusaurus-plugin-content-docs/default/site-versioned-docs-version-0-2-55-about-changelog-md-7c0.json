@@ -1,16 +1,16 @@
 {
   "unversionedId": "about/changelog",
-  "id": "version-0.2.55/about/changelog",
+  "id": "version-0.2.56/about/changelog",
   "isDocsHomePage": false,
   "title": "Changelog",
-  "description": "v0.2.55 (16/10/2021)",
-  "source": "@site/versioned_docs/version-0.2.55/about/CHANGELOG.md",
+  "description": "v0.2.56 (16/10/2021)",
+  "source": "@site/versioned_docs/version-0.2.56/about/CHANGELOG.md",
   "sourceDirName": "about",
   "slug": "/about/changelog",
   "permalink": "/PREFS/docs/about/changelog",
-  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.55/about/CHANGELOG.md",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/about/CHANGELOG.md",
   "tags": [],
-  "version": "0.2.55",
+  "version": "0.2.56",
   "sidebarPosition": 5,
   "frontMatter": {
     "id": "changelog",
@@ -18,7 +18,7 @@
     "hide_title": true,
     "sidebar_position": 5
   },
-  "sidebar": "version-0.2.55/about",
+  "sidebar": "version-0.2.56/about",
   "previous": {
     "title": "Support",
     "permalink": "/PREFS/docs/about/support"

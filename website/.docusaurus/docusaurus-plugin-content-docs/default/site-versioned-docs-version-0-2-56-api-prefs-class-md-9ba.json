@@ -1,0 +1,26 @@
+{
+  "unversionedId": "api/prefs-class",
+  "id": "version-0.2.56/api/prefs-class",
+  "isDocsHomePage": false,
+  "title": "Prefs class",
+  "description": "---",
+  "source": "@site/versioned_docs/version-0.2.56/api/prefs-class.md",
+  "sourceDirName": "api",
+  "slug": "/api/prefs-class",
+  "permalink": "/PREFS/docs/api/prefs-class",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/api/prefs-class.md",
+  "tags": [],
+  "version": "0.2.56",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "id": "prefs-class",
+    "title": "Prefs class",
+    "sidebar_position": 2,
+    "hide_title": true
+  },
+  "sidebar": "version-0.2.56/api",
+  "next": {
+    "title": "Functions",
+    "permalink": "/PREFS/docs/api/functions"
+  }
+}

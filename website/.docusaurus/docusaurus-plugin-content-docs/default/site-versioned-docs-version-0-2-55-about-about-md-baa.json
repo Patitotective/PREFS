@@ -1,16 +1,16 @@
 {
   "unversionedId": "about/about",
-  "id": "version-0.2.55/about/about",
+  "id": "version-0.2.56/about/about",
   "isDocsHomePage": false,
   "title": "About",
   "description": "- Discord: Patitotective#0127.",
-  "source": "@site/versioned_docs/version-0.2.55/about/about.md",
+  "source": "@site/versioned_docs/version-0.2.56/about/about.md",
   "sourceDirName": "about",
   "slug": "/about/about",
   "permalink": "/PREFS/docs/about/about",
-  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.55/about/about.md",
+  "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/about/about.md",
   "tags": [],
-  "version": "0.2.55",
+  "version": "0.2.56",
   "sidebarPosition": 7,
   "frontMatter": {
     "id": "about",
@@ -18,7 +18,7 @@
     "hide_title": true,
     "sidebar_position": 7
   },
-  "sidebar": "version-0.2.55/about",
+  "sidebar": "version-0.2.56/about",
   "next": {
     "title": "Support",
     "permalink": "/PREFS/docs/about/support"

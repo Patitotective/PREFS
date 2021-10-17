@@ -6,7 +6,7 @@ sidebar_position: 5
 ---
 # Changelog
 
-### v0.2.55 (16/10/2021)
+### v0.2.56 (16/10/2021)
 - Added resources suport so you can build your app without any issue.
 - Added CLI tool.
 - Cleaned directory tree.

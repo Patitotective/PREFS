@@ -1,13 +1,13 @@
 {
   "pluginId": "default",
-  "version": "0.2.55",
-  "label": "0.2.55",
+  "version": "0.2.56",
+  "label": "0.2.56",
   "banner": null,
   "badge": true,
-  "className": "docs-version-0.2.55",
+  "className": "docs-version-0.2.56",
   "isLast": true,
   "docsSidebars": {
-    "version-0.2.55/docs": [
+    "version-0.2.56/docs": [
       {
         "type": "link",
         "label": "Getting started",
@@ -19,7 +19,7 @@
         "href": "/PREFS/docs/resources"
       }
     ],
-    "version-0.2.55/api": [
+    "version-0.2.56/api": [
       {
         "type": "link",
         "label": "Prefs class",
@@ -36,7 +36,7 @@
         "href": "/PREFS/docs/api/cli"
       }
     ],
-    "version-0.2.55/about": [
+    "version-0.2.56/about": [
       {
         "type": "link",
         "label": "About",
