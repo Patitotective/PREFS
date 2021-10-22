@@ -67,5 +67,8 @@ def get_built_file_path(filename: str) -> str:
     bundle_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
     bundle_path = os.path.abspath(os.path.join(bundle_dir, filename))			
 
-    return bundle_path
+    # This is just the base folder concatenated to the filename, it means there is no built file
+    normal_path = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), filename))
+
+    return bundle_path if bundle_path != normal_path else None
 

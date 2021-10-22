@@ -755,7 +755,10 @@ def read_prefs_file(filename: str, build_priority: bool=False, **kwargs) -> dict
 		# If there is no resources with that alias, raise an error
 		raise InvalidResourceAlias(f"Couldn't find {filename!r} alias.")
 
-	filename = get_built_file_path(filename) # Will return the build path if there is one otherwise the normal one
+	built_filename = get_built_file_path(filename) # Will return the build path if there is one otherwise None
+
+	if built_filename is not None:
+		filename = built_filename
 
 	prefs_instance = PrefsBase(prefs={}, **kwargs)
 
