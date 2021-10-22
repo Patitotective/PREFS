@@ -7,7 +7,7 @@
   "source": "@site/versioned_docs/version-0.2.56/api/functions.md",
   "sourceDirName": "api",
   "slug": "/api/functions",
-  "permalink": "/PREFS/docs/api/functions",
+  "permalink": "/PREFS/docs/0.2.56/api/functions",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/api/functions.md",
   "tags": [],
   "version": "0.2.56",
@@ -24,10 +24,10 @@
   "sidebar": "version-0.2.56/api",
   "previous": {
     "title": "Prefs class",
-    "permalink": "/PREFS/docs/api/prefs-class"
+    "permalink": "/PREFS/docs/0.2.56/api/prefs-class"
   },
   "next": {
     "title": "Command Line Interface",
-    "permalink": "/PREFS/docs/api/cli"
+    "permalink": "/PREFS/docs/0.2.56/api/cli"
   }
 }

@@ -7,7 +7,7 @@ Requirements:
 Content:
 	PrefsBase (class): This class have all the functions to manage a PREFS file
 	Prefs (class): Inherits from PrefsBase, checks if a file exists and read it, otherwise create it.
-	check_for_resources (function): Given a list of modules check if any of them is a PREFS resource.
+	check_for_module_resources (function): Given a list of modules check if any of them is a PREFS resource.
 	bundle_prefs_file (function): Given the path of a PREFS file generates a resource file.
 	read_json_file (function): Simple Reads a json file and returns it's value.
 	read_yaml_file (function): Simple Reads a yaml file and returns it's value.
@@ -24,18 +24,19 @@ Contact me:
 	Email: cristobalriaga@gmail.com.
 """
 
-#Libraries
+# Libraries
 import json # To support export/import json files
 import yaml # To support export/import yaml files
 import os # To manage paths, folders and files
 import ast # To eval code without using eval built-in module
-import inspect
-import types
-import warnings
-from typing import List, Dict # To specify arguments types
-from .extra import check_path, remove_comments
+import inspect # To get the module where PREFS was imported from and list all the libraries/modules in a module
+import types # To get Python types
+import warnings # To warn of differente PREFS resource file versions
+import pkgutil # To get binary data in binary files (when it's built with pyinstaller)
+from typing import List, Dict # To better document the code
+from .extra import check_path, remove_comments, get_built_file_path
 
-VERSION = "v0.2.55"
+VERSION = "v0.2.60"
 RESOURCE_FILE_HEADER = "# PREFS resource file\n# Created using PREFS Python library\n# https://patitotective.github.io/PREFS/\n# Do not modify this file\n\n"
 
 
@@ -45,7 +46,7 @@ class InvalidKeyError(Exception):
 	pass
 
 
-class InvalidResource(Exception): 
+class InvalidResourceAlias(Exception): 
 	"""This error will be raised when a PREFS resource is not valid.
 	"""
 	pass
@@ -99,31 +100,36 @@ class PrefsBase:
 	@property
 	def file(self):
 		return self.read_prefs()
-	
-	def read_prefs(self) -> dict:
+
+	def read_prefs(self, filename=None) -> dict:
 		"""Reads prefs file and returns it's value in a dictionary.
+	
+		Parameters:
+			filename=None: the filename of the prefs file to read, if no specified self.filename.
 
 		Returns:
 			A dictionary with all the prefs.
 		"""
+		if filename is None:
+			filename = self.filename
 
-		if self.verbose: print(f"Trying to read {self.filename}")
+		if self.verbose: print(f"Trying to read {filename}")
 
 		content = {} # Content will be where the prefs will be stored when reading
 
-		with open(self.filename, "r") as file: # Open the file with read permissions
+		with open(filename, "r") as file: # Open the file with read permissions
 			lines = file.read().split("\n") # Read lines
 			lines = self.clean_lines(lines)
 
 			if len(lines) == 0:
-				if self.verbose: print(f"Emtpy file {self.filename}")
+				if self.verbose: print(f"Emtpy file {filename}")
 				return {}
 
 			content = self.get_lines_properties(lines) # Get lines properties (key, val, indentLevel)
 			content = self.tree_to_dict(content) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
 			content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
 
-		if self.verbose: print(f"Read {self.filename}")
+		if self.verbose: print(f"Read {filename}")
 
 		return content # Return prefs file as dictionary
 
@@ -622,8 +628,8 @@ class Prefs(PrefsBase):
 		self.check_file()
 		
 
-def check_for_resources(modules: list):
-	"""Check for resources in the given list of modules.
+def check_for_module_resources(modules: list):
+	"""Check for module resources in a modules list.
 	"""
 	result = []
 
@@ -706,35 +712,56 @@ def read_yaml_file(filename: str, Loader=yaml.loader.SafeLoader, **kwargs) -> di
 
 	return data 
 
-def read_prefs_file(filename: str, **kwargs) -> dict:
+def read_prefs_file(filename: str, build_priority: bool=False, **kwargs) -> dict:
 	"""Return the value of Prefs file given it's filename.
+	
+	Parameters:
+		build_priority (bool=True): Give priority built prefs files.
+
+
 	Notes:
 		`module` variable means the module where Prefs was imported in.
 		`modules_inside` variable means the modules inside `module`.	
+	
 	Returns:
 		A dictionary.
 
 	"""
-	if filename[:2] == ":/": # Means it's a resource
+	if filename[:2] == ":/": # Means it's a resource (module or binary)
+		"""Check for resources in the given list of modules.
+
+		Notes:
+			There are two types of resources, module resources and binary resources:
+				- Module resources are stored like another Python module.
+				- Binary resources are data stored in a binary file with pyisntaller (or so).
+			
+			Checks first for module resources, if there are no resources check for binary ones.
+		"""
+		
+		## Check for module resources ###
+
 		# Get the module where this function was called from
 		module_frame = inspect.getouterframes(inspect.currentframe())[1].frame # https://stackoverflow.com/a/7151403/15339152
 		module = inspect.getmodule(module_frame)
 		modules_inside = inspect.getmembers(module, predicate=lambda obj: isinstance(obj, types.ModuleType))
 		
 		# Check for resources inside the modules inside the module this function was called frm
-		resources = check_for_resources(modules_inside)
+		resources = check_for_module_resources(modules_inside)
 		for resource in resources:
 			if filename[2:] == resource.ALIAS: # If the filename (without :/) is the same as the resource alias
 				# Return the resource prefs
 				return resource.PREFS
+		
+		# If there is no resources with that alias, raise an error
+		raise InvalidResourceAlias(f"Couldn't find {filename!r} alias.")
 
-		raise InvalidResource(f"Couldn't find {filename!r} resource file. Make sure to import it.")
+	filename = get_built_file_path(filename) # Will return the build path if there is one otherwise the normal one
 
-	prefs_instance = PrefsBase(prefs={}, filename=filename, **kwargs)
+	prefs_instance = PrefsBase(prefs={}, **kwargs)
 
-	return prefs_instance.read_prefs()
+	return prefs_instance.read_prefs(filename=filename)
 
-def convert_to_prefs(*args, **kwargs) -> str:
+def convert_to_prefs(*args, output: str=None, **kwargs) -> (str, None):
 	
 	"""Given a dictionary convert that dictionary into Prefs format and return it as string. 
 	
@@ -745,7 +772,13 @@ def convert_to_prefs(*args, **kwargs) -> str:
 
 	prefs_instance = PrefsBase(*args, filename=None, **kwargs)
 
-	return prefs_instance.dump()
+	if output is None:
+		return prefs_instance.dump()
+
+	check_path(output)
+
+	with open(output, "w+") as file:
+		file.write(prefs_instance.dump())
 
 if __name__ == "__main__":
 	pass

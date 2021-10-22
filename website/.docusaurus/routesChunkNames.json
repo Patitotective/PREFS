@@ -10,6 +10,46 @@
   "/PREFS/search-c99": {
     "component": "78a245d3"
   },
+  "/PREFS/docs/0.2.56-ea0": {
+    "component": "1be78505",
+    "versionMetadata": "8c3c6a70"
+  },
+  "/PREFS/docs/0.2.56/about/about-62b": {
+    "component": "17896441",
+    "content": "28f50e5c"
+  },
+  "/PREFS/docs/0.2.56/about/changelog-332": {
+    "component": "17896441",
+    "content": "ae5a3810"
+  },
+  "/PREFS/docs/0.2.56/about/license-580": {
+    "component": "17896441",
+    "content": "4c4b3e65"
+  },
+  "/PREFS/docs/0.2.56/about/support-252": {
+    "component": "17896441",
+    "content": "352e07e7"
+  },
+  "/PREFS/docs/0.2.56/api/cli-7b4": {
+    "component": "17896441",
+    "content": "503d9942"
+  },
+  "/PREFS/docs/0.2.56/api/functions-d09": {
+    "component": "17896441",
+    "content": "c23c2a1b"
+  },
+  "/PREFS/docs/0.2.56/api/prefs-class-d91": {
+    "component": "17896441",
+    "content": "9ba43e1d"
+  },
+  "/PREFS/docs/0.2.56/resources-502": {
+    "component": "17896441",
+    "content": "1707d5d2"
+  },
+  "/PREFS/docs/0.2.56/start-0af": {
+    "component": "17896441",
+    "content": "b871e8cd"
+  },
   "/PREFS/docs/next-6d5": {
     "component": "1be78505",
     "versionMetadata": "935f2afb"
@@ -50,44 +90,44 @@
     "component": "17896441",
     "content": "98ce8162"
   },
-  "/PREFS/docs-927": {
+  "/PREFS/docs-a18": {
     "component": "1be78505",
-    "versionMetadata": "8c3c6a70"
+    "versionMetadata": "493d3379"
   },
-  "/PREFS/docs/about/about-146": {
+  "/PREFS/docs/about/about-173": {
     "component": "17896441",
-    "content": "28f50e5c"
+    "content": "77846fbf"
   },
-  "/PREFS/docs/about/changelog-20e": {
+  "/PREFS/docs/about/changelog-af8": {
     "component": "17896441",
-    "content": "ae5a3810"
+    "content": "b28a1d19"
   },
-  "/PREFS/docs/about/license-3a9": {
+  "/PREFS/docs/about/license-82b": {
     "component": "17896441",
-    "content": "4c4b3e65"
+    "content": "ea522214"
   },
-  "/PREFS/docs/about/support-99f": {
+  "/PREFS/docs/about/support-636": {
     "component": "17896441",
-    "content": "352e07e7"
+    "content": "de217bae"
   },
-  "/PREFS/docs/api/cli-7e3": {
+  "/PREFS/docs/api/cli-e4f": {
     "component": "17896441",
-    "content": "503d9942"
+    "content": "a7261df4"
   },
-  "/PREFS/docs/api/functions-86e": {
+  "/PREFS/docs/api/functions-323": {
     "component": "17896441",
-    "content": "c23c2a1b"
+    "content": "a2929b88"
   },
-  "/PREFS/docs/api/prefs-class-cd2": {
+  "/PREFS/docs/api/prefs-class-ee7": {
     "component": "17896441",
-    "content": "9ba43e1d"
+    "content": "2cc2cacd"
   },
-  "/PREFS/docs/resources-fa8": {
+  "/PREFS/docs/resources-89a": {
     "component": "17896441",
-    "content": "1707d5d2"
+    "content": "ebf0cde6"
   },
-  "/PREFS/docs/start-e54": {
+  "/PREFS/docs/start-c42": {
     "component": "17896441",
-    "content": "b871e8cd"
+    "content": "acfd56ff"
   }
 }

@@ -7,7 +7,7 @@
   "source": "@site/versioned_docs/version-0.2.56/about/CHANGELOG.md",
   "sourceDirName": "about",
   "slug": "/about/changelog",
-  "permalink": "/PREFS/docs/about/changelog",
+  "permalink": "/PREFS/docs/0.2.56/about/changelog",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/about/CHANGELOG.md",
   "tags": [],
   "version": "0.2.56",
@@ -24,10 +24,10 @@
   "sidebar": "version-0.2.56/about",
   "previous": {
     "title": "Support",
-    "permalink": "/PREFS/docs/about/support"
+    "permalink": "/PREFS/docs/0.2.56/about/support"
   },
   "next": {
     "title": "License",
-    "permalink": "/PREFS/docs/about/license"
+    "permalink": "/PREFS/docs/0.2.56/about/license"
   }
 }

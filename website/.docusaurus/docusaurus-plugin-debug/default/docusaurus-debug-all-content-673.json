@@ -129,7 +129,7 @@
               "id": "about/license",
               "isDocsHomePage": false,
               "title": "License",
-              "description": "---",
+              "description": "MIT license",
               "source": "@site/docs/about/LICENSE.md",
               "sourceDirName": "about",
               "slug": "/about/license",
@@ -465,7 +465,7 @@
               "id": "version-0.2.56/about/license",
               "isDocsHomePage": false,
               "title": "License",
-              "description": "---",
+              "description": "MIT license",
               "source": "@site/versioned_docs/version-0.2.56/about/LICENSE.md",
               "sourceDirName": "about",
               "slug": "/about/license",
@@ -698,6 +698,9 @@
     "default": null
   },
   "docusaurus-theme-classic": {
+    "default": null
+  },
+  "docusaurus-theme-search-algolia": {
     "default": null
   }
 }

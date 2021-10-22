@@ -1,4 +1,5 @@
 import os
+import sys
 
 def check_path(path: str):
 	"""Check if a path exists, if some directory is missing it creates it.
@@ -61,3 +62,10 @@ def remove_comments(string: str, comment_char: str="#") -> str:
 			break # And break
 
 	return string # Return the string
+
+def get_built_file_path(filename: str) -> str:
+    bundle_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
+    bundle_path = os.path.abspath(os.path.join(bundle_dir, filename))			
+
+    return bundle_path
+

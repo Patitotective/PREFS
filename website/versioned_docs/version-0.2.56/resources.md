@@ -67,5 +67,5 @@ print(theme)
 Noy you can build your app without any issue.
 
 :::info Info
-See [`bundle`'s API Reference](./api/cli) for more options. 
+See [`bundle`'s API Reference](./api/cli#bundle) for more options. 
 :::

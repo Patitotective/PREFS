@@ -1,0 +1,62 @@
+{
+  "pluginId": "default",
+  "version": "0.2.60",
+  "label": "0.2.60",
+  "banner": null,
+  "badge": true,
+  "className": "docs-version-0.2.60",
+  "isLast": true,
+  "docsSidebars": {
+    "version-0.2.60/docs": [
+      {
+        "type": "link",
+        "label": "Getting started",
+        "href": "/PREFS/docs/start"
+      },
+      {
+        "type": "link",
+        "label": "PREFS resources",
+        "href": "/PREFS/docs/resources"
+      }
+    ],
+    "version-0.2.60/api": [
+      {
+        "type": "link",
+        "label": "Prefs class",
+        "href": "/PREFS/docs/api/prefs-class"
+      },
+      {
+        "type": "link",
+        "label": "Functions",
+        "href": "/PREFS/docs/api/functions"
+      },
+      {
+        "type": "link",
+        "label": "Command Line Interface",
+        "href": "/PREFS/docs/api/cli"
+      }
+    ],
+    "version-0.2.60/about": [
+      {
+        "type": "link",
+        "label": "About",
+        "href": "/PREFS/docs/about/about"
+      },
+      {
+        "type": "link",
+        "label": "Support",
+        "href": "/PREFS/docs/about/support"
+      },
+      {
+        "type": "link",
+        "label": "Changelog",
+        "href": "/PREFS/docs/about/changelog"
+      },
+      {
+        "type": "link",
+        "label": "License",
+        "href": "/PREFS/docs/about/license"
+      }
+    ]
+  }
+}

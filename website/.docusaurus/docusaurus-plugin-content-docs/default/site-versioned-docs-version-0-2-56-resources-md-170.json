@@ -7,7 +7,7 @@
   "source": "@site/versioned_docs/version-0.2.56/resources.md",
   "sourceDirName": ".",
   "slug": "/resources",
-  "permalink": "/PREFS/docs/resources",
+  "permalink": "/PREFS/docs/0.2.56/resources",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/resources.md",
   "tags": [],
   "version": "0.2.56",
@@ -24,6 +24,6 @@
   "sidebar": "version-0.2.56/docs",
   "previous": {
     "title": "Getting started",
-    "permalink": "/PREFS/docs/start"
+    "permalink": "/PREFS/docs/0.2.56/start"
   }
 }

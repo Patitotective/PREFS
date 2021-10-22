@@ -61,11 +61,8 @@ def main():
         if args.output is None:
             print(convert_to_prefs(prefs=ast.literal_eval(args.prefs), indent_char=args.indent_char).strip())
             return
-
-        check_path(args.output)
-
-        with open(args.output, "w+") as file:
-            file.write(convert_to_prefs(prefs=ast.literal_eval(args.prefs), indent_char=args.indent_char))
+            
+        convert_to_prefs(prefs=ast.literal_eval(args.prefs), indent_char=args.indent_char, output=args.output)
 
 if __name__ == '__main__':
     main()

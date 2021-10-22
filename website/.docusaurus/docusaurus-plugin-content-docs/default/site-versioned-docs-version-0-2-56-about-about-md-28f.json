@@ -7,7 +7,7 @@
   "source": "@site/versioned_docs/version-0.2.56/about/about.md",
   "sourceDirName": "about",
   "slug": "/about/about",
-  "permalink": "/PREFS/docs/about/about",
+  "permalink": "/PREFS/docs/0.2.56/about/about",
   "editUrl": "https://github.com/Patitotective/PREFS/tree/main/website/versioned_docs/version-0.2.56/about/about.md",
   "tags": [],
   "version": "0.2.56",
@@ -24,6 +24,6 @@
   "sidebar": "version-0.2.56/about",
   "next": {
     "title": "Support",
-    "permalink": "/PREFS/docs/about/support"
+    "permalink": "/PREFS/docs/0.2.56/about/support"
   }
 }

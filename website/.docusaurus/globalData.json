@@ -58,8 +58,8 @@
           ]
         },
         {
-          "name": "0.2.56",
-          "label": "0.2.56",
+          "name": "0.2.60",
+          "label": "0.2.60",
           "isLast": true,
           "path": "/PREFS/docs",
           "mainDocId": "start",
@@ -67,46 +67,100 @@
             {
               "id": "about/about",
               "path": "/PREFS/docs/about/about",
-              "sidebar": "version-0.2.56/about"
+              "sidebar": "version-0.2.60/about"
             },
             {
               "id": "about/changelog",
               "path": "/PREFS/docs/about/changelog",
-              "sidebar": "version-0.2.56/about"
+              "sidebar": "version-0.2.60/about"
             },
             {
               "id": "about/license",
               "path": "/PREFS/docs/about/license",
-              "sidebar": "version-0.2.56/about"
+              "sidebar": "version-0.2.60/about"
             },
             {
               "id": "about/support",
               "path": "/PREFS/docs/about/support",
-              "sidebar": "version-0.2.56/about"
+              "sidebar": "version-0.2.60/about"
             },
             {
               "id": "api/cli",
               "path": "/PREFS/docs/api/cli",
-              "sidebar": "version-0.2.56/api"
+              "sidebar": "version-0.2.60/api"
             },
             {
               "id": "api/functions",
               "path": "/PREFS/docs/api/functions",
-              "sidebar": "version-0.2.56/api"
+              "sidebar": "version-0.2.60/api"
             },
             {
               "id": "api/prefs-class",
               "path": "/PREFS/docs/api/prefs-class",
-              "sidebar": "version-0.2.56/api"
+              "sidebar": "version-0.2.60/api"
             },
             {
               "id": "resources",
               "path": "/PREFS/docs/resources",
-              "sidebar": "version-0.2.56/docs"
+              "sidebar": "version-0.2.60/docs"
             },
             {
               "id": "start",
               "path": "/PREFS/docs/start",
+              "sidebar": "version-0.2.60/docs"
+            }
+          ]
+        },
+        {
+          "name": "0.2.56",
+          "label": "0.2.56",
+          "isLast": false,
+          "path": "/PREFS/docs/0.2.56",
+          "mainDocId": "start",
+          "docs": [
+            {
+              "id": "about/about",
+              "path": "/PREFS/docs/0.2.56/about/about",
+              "sidebar": "version-0.2.56/about"
+            },
+            {
+              "id": "about/changelog",
+              "path": "/PREFS/docs/0.2.56/about/changelog",
+              "sidebar": "version-0.2.56/about"
+            },
+            {
+              "id": "about/license",
+              "path": "/PREFS/docs/0.2.56/about/license",
+              "sidebar": "version-0.2.56/about"
+            },
+            {
+              "id": "about/support",
+              "path": "/PREFS/docs/0.2.56/about/support",
+              "sidebar": "version-0.2.56/about"
+            },
+            {
+              "id": "api/cli",
+              "path": "/PREFS/docs/0.2.56/api/cli",
+              "sidebar": "version-0.2.56/api"
+            },
+            {
+              "id": "api/functions",
+              "path": "/PREFS/docs/0.2.56/api/functions",
+              "sidebar": "version-0.2.56/api"
+            },
+            {
+              "id": "api/prefs-class",
+              "path": "/PREFS/docs/0.2.56/api/prefs-class",
+              "sidebar": "version-0.2.56/api"
+            },
+            {
+              "id": "resources",
+              "path": "/PREFS/docs/0.2.56/resources",
+              "sidebar": "version-0.2.56/docs"
+            },
+            {
+              "id": "start",
+              "path": "/PREFS/docs/0.2.56/start",
               "sidebar": "version-0.2.56/docs"
             }
           ]

@@ -2,60 +2,60 @@
   "pluginId": "default",
   "version": "0.2.56",
   "label": "0.2.56",
-  "banner": null,
+  "banner": "unmaintained",
   "badge": true,
   "className": "docs-version-0.2.56",
-  "isLast": true,
+  "isLast": false,
   "docsSidebars": {
     "version-0.2.56/docs": [
       {
         "type": "link",
         "label": "Getting started",
-        "href": "/PREFS/docs/start"
+        "href": "/PREFS/docs/0.2.56/start"
       },
       {
         "type": "link",
         "label": "PREFS resources",
-        "href": "/PREFS/docs/resources"
+        "href": "/PREFS/docs/0.2.56/resources"
       }
     ],
     "version-0.2.56/api": [
       {
         "type": "link",
         "label": "Prefs class",
-        "href": "/PREFS/docs/api/prefs-class"
+        "href": "/PREFS/docs/0.2.56/api/prefs-class"
       },
       {
         "type": "link",
         "label": "Functions",
-        "href": "/PREFS/docs/api/functions"
+        "href": "/PREFS/docs/0.2.56/api/functions"
       },
       {
         "type": "link",
         "label": "Command Line Interface",
-        "href": "/PREFS/docs/api/cli"
+        "href": "/PREFS/docs/0.2.56/api/cli"
       }
     ],
     "version-0.2.56/about": [
       {
         "type": "link",
         "label": "About",
-        "href": "/PREFS/docs/about/about"
+        "href": "/PREFS/docs/0.2.56/about/about"
       },
       {
         "type": "link",
         "label": "Support",
-        "href": "/PREFS/docs/about/support"
+        "href": "/PREFS/docs/0.2.56/about/support"
       },
       {
         "type": "link",
         "label": "Changelog",
-        "href": "/PREFS/docs/about/changelog"
+        "href": "/PREFS/docs/0.2.56/about/changelog"
       },
       {
         "type": "link",
         "label": "License",
-        "href": "/PREFS/docs/about/license"
+        "href": "/PREFS/docs/0.2.56/about/license"
       }
     ]
   }

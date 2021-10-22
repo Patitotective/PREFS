@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.2.60 (20/10/2021)
+- When adding a prefs file as a data when using _pyinstaller_ now it can read the file.
+- Added `output` parameter in `convert_to_prefs` function.
+
 ### v0.2.56 (16/10/2021)
 - Added resources suport so you can build your app without any issue.
 - Added CLI tool.
