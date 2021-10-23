@@ -113,7 +113,7 @@ print(user_prefs.file)
 ```
 
 :::tip TIP
-Remember to write quotes around all the strings.
+Remember to write quotes around all the strings and indent with tabulations `\t`.
 :::
 
 ### `read_json_file()`

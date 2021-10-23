@@ -58,8 +58,8 @@
           ]
         },
         {
-          "name": "0.2.60",
-          "label": "0.2.60",
+          "name": "0.2.65",
+          "label": "0.2.65",
           "isLast": true,
           "path": "/PREFS/docs",
           "mainDocId": "start",
@@ -67,47 +67,47 @@
             {
               "id": "about/about",
               "path": "/PREFS/docs/about/about",
-              "sidebar": "version-0.2.60/about"
+              "sidebar": "version-0.2.65/about"
             },
             {
               "id": "about/changelog",
               "path": "/PREFS/docs/about/changelog",
-              "sidebar": "version-0.2.60/about"
+              "sidebar": "version-0.2.65/about"
             },
             {
               "id": "about/license",
               "path": "/PREFS/docs/about/license",
-              "sidebar": "version-0.2.60/about"
+              "sidebar": "version-0.2.65/about"
             },
             {
               "id": "about/support",
               "path": "/PREFS/docs/about/support",
-              "sidebar": "version-0.2.60/about"
+              "sidebar": "version-0.2.65/about"
             },
             {
               "id": "api/cli",
               "path": "/PREFS/docs/api/cli",
-              "sidebar": "version-0.2.60/api"
+              "sidebar": "version-0.2.65/api"
             },
             {
               "id": "api/functions",
               "path": "/PREFS/docs/api/functions",
-              "sidebar": "version-0.2.60/api"
+              "sidebar": "version-0.2.65/api"
             },
             {
               "id": "api/prefs-class",
               "path": "/PREFS/docs/api/prefs-class",
-              "sidebar": "version-0.2.60/api"
+              "sidebar": "version-0.2.65/api"
             },
             {
               "id": "resources",
               "path": "/PREFS/docs/resources",
-              "sidebar": "version-0.2.60/docs"
+              "sidebar": "version-0.2.65/docs"
             },
             {
               "id": "start",
               "path": "/PREFS/docs/start",
-              "sidebar": "version-0.2.60/docs"
+              "sidebar": "version-0.2.65/docs"
             }
           ]
         },

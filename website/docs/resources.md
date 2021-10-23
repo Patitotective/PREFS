@@ -13,7 +13,7 @@ So if you have created a PREFS file manually and you want to build your app you 
 
 :::note Note
 PREFS resources won't work when you build your app with _PyInstaller_, it's just a way to convert a PREFS file into a Python module.
-See [PyInstaller](#PyInstaller) section to build your app with _PyInstaller_.
+See [PyInstaller](#PyInstaller) section to bundle your PREFS files with _PyInstaller_.
 :::
 
 ### PyInstaller
@@ -89,7 +89,7 @@ After running that command you should be able to see a new Python module called 
 # https://patitotective.github.io/PREFS/
 # Do not modify this file
 
-VERSION = 'v0.2.56'
+VERSION = 'v0.2.65'
 PREFS = {'font_family': 'UbuntuMono', 'light': {'background_color': '#dcdee0', 'font_color': '#000000', 'link_color': '#0000EE'}, 'dark': {'background_color': '#25282d', 'font_color': '#ffffff', 'link_color': '#006FEE'}}
 ALIAS = 'theme.prefs'
 ```
@@ -101,7 +101,7 @@ import theme_resource
 theme = PREFS.read_prefs_file("theme.prefs")
 print(theme)
 ```
-Then just add `:/` to the begining of your PREFS file path (`prefs.prefs -> :/prefs.prefs`):
+Then just add `:/` to the beginning of your PREFS file path (`prefs.prefs -> :/prefs.prefs`):
 ```py title="main.py"
 import PREFS
 import theme_resource
@@ -109,7 +109,6 @@ import theme_resource
 theme = PREFS.read_prefs_file(":/theme.prefs")
 print(theme)
 ```
-Noy you can build your app without any issue.
 
 :::info Info
 See [`bundle`'s API Reference](./api/cli#bundle) for more options. 
