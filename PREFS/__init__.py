@@ -61,10 +61,9 @@ class DeprecationWarning(Warning):
 class PrefsBase: 	
 	def __init__(
 		self, 
-		prefs: dict, 
+		prefs: dict=None, 
 		filename: str="prefs.prefs", 
 		verbose: bool=False, 
-		indent_char: str="\t", 
 		auto_generate_keys: bool=True
 	):
 
@@ -72,13 +71,13 @@ class PrefsBase:
 		self.ENDER_CHAR = "\n"
 		self.CONTINUER_CHAR = ">"
 		self.COMMENT_CHAR = "#"
+		self.INDENT_CHAR = "\t"
 
 		self.prefs = prefs
 		self.filename = filename
 
 		self.verbose = verbose
 
-		self.indent_char = indent_char
 
 		self.auto_generate_keys = auto_generate_keys
 		
@@ -119,127 +118,137 @@ class PrefsBase:
 
 		with open(filename, "r") as file: # Open the file with read permissions
 			lines = file.read().split("\n") # Read lines
-			lines = self.clean_lines(lines)
 
 			if len(lines) == 0:
 				if self.verbose: print(f"Emtpy file {filename}")
 				return {}
 
-			content = self.get_lines_properties(lines) # Get lines properties (key, val, indentLevel)
-			content = self.tree_to_dict(content) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
-			content = self.eval_dict(content) # Pass content to eval_dict function that eval each value.
+			content = self.tree_to_dict(lines) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
 
 		if self.verbose: print(f"Read {filename}")
 
 		return content # Return prefs file as dictionary
 
-	# The below code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
-	def get_lines_properties(self, lines: list) -> dict:
-		"""Given the list of lines of the prefs file returns a dictionary with 
-			each line's properties, such as key, val and indentLevel.
-		
-			Note:
-				This code is based on this answer https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533.
-
-			Args:
-				lines (list): The list of the prefs file lines.
-
-			Returns:
-				A list of dictionaries, each dictionary contains the line's properties, such as key (pref). the pref's value and the indentLevel (representing nested dictionaries).
-		"""
-
-		result = []
-
-		for e, line in enumerate(lines): # Iterate through the lines (of the file)
-
-			indentLevel = len(line) - len(line.lstrip(self.indent_char)) # Count the indents of the line 
-			keyVal = line.strip().split(self.SEPARATOR_CHAR, 1) # Split the line by the default separator only once
-			try:
-				result.append({"key": keyVal[0], "val": keyVal[1], "indentLevel": indentLevel}) # Append the above values in dict format to the result list
-			except IndexError:
-				raise IndexError(f"Couldn't read line {e} '{line.strip()} in {self.filename}'")
-
-		return result
-
-	def clean_lines(self, lines: list) -> list:
-		result = []
-		
-		for line in lines:
-			line = remove_comments(line, comment_char=self.COMMENT_CHAR)
-			
-			if line.strip() == "":
-				continue # If line emtpy continue
-
-			result.append(line)
-
-		return result
-
-	def tree_to_dict(self, ttree: dict, level: int=0) -> dict:
+	def tree_to_dict(self, lines: dict, level: int=0) -> dict:
 		"""Given the result of get_lines_properties() returns a dictionary with the prefs.
-
+		Given the list of lines of the prefs file returns a dictionary with 
+		each line's properties, such as key, val and indent_level.
+		
 			Note:
 				This code is based on this answer https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533.
 
 			Args:
-				ttree (dict): List of dictionaries with lines properties, such as key, val and indentLevel.
+				lines (dict): List of dictionaries with lines properties, such as key, val and indent_level.
 
 			Returns:
-				A dictionary interpreting ttree.
+				A dictionary interpreting lines.
 		"""
-		result = {}
-		
-		for i, cn in enumerate(ttree):
-			cn = ttree[i]
-			
-			try:
-				nn  = ttree[i + 1]
-			except:
-				nn = {'indentLevel': -1}
+		def get_line_num(line_num):
+			"""Return the right line number.
+			"""
+			return level + line_num + 1 if level < 1 else level + line_num + 2
 
-			# Edge cases
-			if cn['indentLevel'] > level:
+		def get_line_info(line: str, raw_line: str, line_num: int):
+			indent_level = len(line) - len(line.lstrip(self.INDENT_CHAR)) # Count the indents of the line 
+
+			try:
+				key, val = line.strip().split(self.SEPARATOR_CHAR, 1) # Split the line by the default separator only once
+				if key == "" or val == "":
+					raise SyntaxError(f"Could not read line {get_line_num(line_num)}: \n\t{line.strip()}\nin {self.filename} file (hint: empty key or value)")
+
+			except ValueError:
+				raise SyntaxError(f"Could not read line {get_line_num(line_num)}: \n\t{raw_line.strip()}\nin {self.filename} file (hint: missing separator {self.SEPARATOR_CHAR!r})")
+
+			return {"key": key, "val": val, "indent_level": indent_level} # Append the above values in dict format to the result list
+				
+		def clean_line(line: str) -> list:		
+			line = remove_comments(line, comment_char=self.COMMENT_CHAR)
+			line = line.rstrip() # To keep left indentations
+
+			return None if line.strip() == "" else line
+		
+		def eval_val(val: str) -> any:
+			def eval_string(string: str) -> any:
+				"""Evaluates representation of python types, str, bool, list.
+					
+					Args:
+						string (str): A string to evaluate.
+
+					Returns:
+						The string evalueated.
+				"""
+				if len(string) == 0: return string # If empty string return empty
+
+				elif string == "True": # If string equals True return True
+					result = True
+				elif string == "False": # If string equals False return False
+					result = False
+				else: # If none of above types evaluate with eval
+					result = ast.literal_eval(string)
+
+				return result
+			
+			if isinstance(val, dict): # If dictionary type calls itself to evaluate
+				return self.eval_dict(val) # Using recursive function to get all values in cascade/tree.
+			
+			return eval_string(val) # If don't dictionary call eval_string() method.
+
+		result = {}
+
+		for line_num, line in enumerate(lines):
+			raw_line = line
+			line = clean_line(line)
+			
+			if line is None: # Means it's emtpy
+				continue
+
+			## Get line info ##
+			line_info = get_line_info(line, raw_line, line_num)
+
+			if line_info['key'] in result:
+				if self.verbose: warnings.warn(f"Repeated key {line_info['key']!r} at {get_line_num(line_num)}", SyntaxWarning)
+
+			## Eval value ##
+			if line_info["val"] != self.CONTINUER_CHAR:
+				try:
+					line_info["val"] = eval_val(line_info["val"])
+				except (SyntaxError, ValueError):
+					raise SyntaxError(f"Could not eval line {get_line_num(line_num)}: \n\t{raw_line.strip()}\nin {self.filename}")
+
+			## Check for indentation errors and next line ##
+			if line_num < len(lines) - 1 and not clean_line(lines[line_num + 1]) is None:
+				raw_next_line = lines[line_num + 1]
+				next_line = clean_line(raw_next_line)
+							
+				next_line_info = get_line_info(next_line, raw_next_line, line_num + 1)
+				if line_info['val'] == self.CONTINUER_CHAR and next_line_info["indent_level"] != line_info["indent_level"] + 1:
+					raise IndentationError(f"Expected indent block after line ~{get_line_num(line_num)} (remember to indent with tabulations)")
+				
+				if next_line_info["indent_level"] == line_info["indent_level"] + 1 and line_info["val"] != self.CONTINUER_CHAR:
+					raise IndentationError(f"Unexpected indentation found at line {get_line_num(line_num + 1)}: \n\t{lines[line_num + 1].strip()}\nin {self.filename}")
+
+			else:
+				if line_info['val'] == self.CONTINUER_CHAR:
+					raise IndentationError(f"Expected indent block after line ~{get_line_num(line_num)} (remember to indent with tabulations)")
+
+				next_line_info = {"indent_level": -1}
+
+			## Edge cases ##
+			if line_info['indent_level'] > level:
 				continue
 			
-			if cn['indentLevel'] < level:
+			if line_info['indent_level'] < level:
 				return result
 
-			# Recursion
-			if nn['indentLevel'] == level:
-				self.dict_instert_append(result, cn['key'], cn['val'])
-			
-			elif nn['indentLevel'] > level:
-				rr = self.tree_to_dict(ttree[i + 1:], level=nn['indentLevel'])
-				self.dict_instert_append(result, cn['key'], rr)
+			## Add keys and values ##
+			if next_line_info['indent_level'] > level:
+				nested_dict = self.tree_to_dict(lines[line_num + 1:], level=next_line_info['indent_level'])
+				result[line_info['key']] = nested_dict
 
-			else:    
-				self.dict_instert_append(result, cn['key'], cn['val'])
-		
-				return result
+			else:
+				result[line_info['key']] = line_info['val']
 		
 		return result
-
-	def dict_instert_append(self, adict: dict, key: str, val: any):
-		"""Insert a value in dict at key if one does not exist
-			Otherwise, convert value to list and append
-		
-			Note:
-				This code is based on this answer https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533.
-			
-			Args:
-				adict (dict): A dictionary to insert or append info.
-				key (str): The key to insert of append.
-				val (any): The values to insert of append to the key.
-		"""
-		
-		if key in adict:
-			if not isinstance(adict[key], list):
-				adict[key] = [adict[key]]
-
-			adict[key].append(val)
-		else:
-			adict[key] = val
-	
-	# The above code is from https://stackoverflow.com/questions/17858404/creating-a-tree-deeply-nested-dict-from-an-indented-text-file-in-python/24966533#24966533
 
 	def dump(self, prefs=None) -> str:
 		"""Given a dictionary return it on Prefs format.
@@ -305,7 +314,7 @@ class PrefsBase:
 				raise TypeError(f"prefs argument must be a dictionary or a function with a dictionary as return value, gived {type(prefs)}")
 		
 		result = "" # String to append each pref:value combination
-		indent_char = self.indent_char * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
+		indent_char = self.INDENT_CHAR * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
 
 		for key, val in prefs.items(): # Iterate through prefs dictionary items
 			self.check_key(key)
@@ -327,50 +336,6 @@ class PrefsBase:
 
 		if "/" in key or "=" in key:
 			raise InvalidKeyError(f"Invalid key {key!r}. A key cannot include the following characters '/='")
-
-	def eval_dict(self, prefs: dict) -> dict:
-		"""Evaluate dict with strings representing python types (using eval_string() method).
-
-		Args:
-			prefs (dict): A dictionary to evalueta and iterate through.
-
-		Returns:
-			The same dictionary with all values intrepreted.
-		"""
-		def eval_string(string: str) -> any:
-			"""Evaluates representation of python types, str, bool, list.
-				
-				Args:
-					string (str): A string to evaluate.
-
-				Returns:
-					The string evalueated.
-			"""
-			if len(string) == 0: return string # If empty string return empty
-
-			elif string == "True": # If string equals True return True
-				result = True
-			elif string == "False": # If string equals False return False
-				result = False
-			else: # If none of above types evaluate with eval
-				result = ast.literal_eval(string)
-
-			return result
-
-		result = {}
-
-		for e, (key, val) in enumerate(prefs.items()): # Iterate through prefs dictionary
-		
-			if isinstance(val, dict): # If dictionary type calls itself to evaluate
-				result[key] = self.eval_dict(val) # Using recursive function to get all values in cascade/tree.
-				continue
-
-			try:
-				result[key] = eval_string(val) # If don't dictionary call eval_string() method.
-			except SyntaxError as error:
-				raise SyntaxError(f"Couldn't eval line {e} in {self.filename}: '{val}'\n{error}")
-
-		return result
 
 	def write_prefs(self, pref: str, value: any) -> None:
 		"""Change the pref that you pass with the value that you pass, if doesn't exist, new pref.
@@ -583,9 +548,9 @@ class Prefs(PrefsBase):
 
 		read_prefs() -> dict: Call get_lines_properties and pass that value to tree_to_dict to get the prefs inside the file. Returns the prefs in a dictionary.
 
-		get_lines_properties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indentLevel.
+		get_lines_properties(lines: list) -> dict: Given a lines of a prefs file returns a dictionary with each line key, value and indent_level.
 		
-		tree_to_dict(ttree: dict, level: int=0) -> dict: Given the result of get_lines_properties() interprets the indentLevel and returns a dictionary with the prefs.
+		tree_to_dict(ttree: dict, level: int=0) -> dict: Given the result of get_lines_properties() interprets the indent_level and returns a dictionary with the prefs.
 
 		create_prefs(prefs: dict) -> None: Creates a file with the given prefs and the 
 		Prefs class filename, returns None.
@@ -609,7 +574,7 @@ class Prefs(PrefsBase):
 		convert_to_yaml(self, filename: str="") -> None: Creates a yaml file with the actual prefs, if filename don't passed the prefs filename will be the yaml filename, returns None.
 	"""
 		
-	def __init__(self, *args, **kwargs):
+	def __init__(self, prefs: dict, *args, **kwargs):
 		
 		"""	
 		Args
@@ -623,7 +588,7 @@ class Prefs(PrefsBase):
 			auto_generate_keys (bool, optional=True): When using write_prefs if nested path doesn't exist create it.
 		"""
 		
-		super().__init__(*args, **kwargs)
+		super().__init__(prefs, *args, **kwargs)
 
 		self.check_file()
 		
@@ -712,13 +677,9 @@ def read_yaml_file(filename: str, Loader=yaml.loader.SafeLoader, **kwargs) -> di
 
 	return data 
 
-def read_prefs_file(filename: str, build_priority: bool=False, **kwargs) -> dict:
+def read_prefs_file(filename: str, **kwargs) -> dict:
 	"""Return the value of Prefs file given it's filename.
 	
-	Parameters:
-		build_priority (bool=True): Give priority built prefs files.
-
-
 	Notes:
 		`module` variable means the module where Prefs was imported in.
 		`modules_inside` variable means the modules inside `module`.	
@@ -758,9 +719,10 @@ def read_prefs_file(filename: str, build_priority: bool=False, **kwargs) -> dict
 	built_filename = get_built_file_path(filename) # Will return the build path if there is one otherwise None
 
 	if built_filename is not None:
+		if "verbose" in kwargs and kwargs["verbose"]: print(f"Found PREFS data at {built_filename} ({filename})")
 		filename = built_filename
 
-	prefs_instance = PrefsBase(prefs={}, **kwargs)
+	prefs_instance = PrefsBase(**kwargs)
 
 	return prefs_instance.read_prefs(filename=filename)
 

@@ -38,6 +38,6 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pip install .
+        pip install . # Install PREFS
         cd PREFS/Test      
         pytest

@@ -25,7 +25,6 @@ def main():
     )
     
     read_prefs_parser.add_argument("path", type=str, help='The path of the .prefs file to bundle')
-    read_prefs_parser.add_argument("-i", "--indent_char", type=str, help='The indentation character used in the PREFS file.', default="\t")
 
     convert_to_prefs_parser = subparsers.add_parser(
         "convert_to_prefs", 
@@ -35,7 +34,6 @@ def main():
     
     convert_to_prefs_parser.add_argument("prefs", type=str, help="The prefs (dictionary) to convert as a string")
     convert_to_prefs_parser.add_argument("-o", "--output", type=str, help='Output path to write the result, if no output path specified, print it.', default=None)
-    convert_to_prefs_parser.add_argument("-i", "--indent_char", type=str, help='The indentation character used in the PREFS file.', default="\t")
 
     args = parser.parse_args()
 
@@ -55,14 +53,14 @@ def main():
         bundle_prefs_file(path=path, output=output_path, alias=alias)
 
     elif args.command == "read_prefs_file":
-        print(read_prefs_file(args.path, indent_char=args.indent_char))
+        print(read_prefs_file(args.path))
 
     elif args.command == "convert_to_prefs":
         if args.output is None:
-            print(convert_to_prefs(prefs=ast.literal_eval(args.prefs), indent_char=args.indent_char).strip())
+            print(convert_to_prefs(prefs=ast.literal_eval(args.prefs)))
             return
             
-        convert_to_prefs(prefs=ast.literal_eval(args.prefs), indent_char=args.indent_char, output=args.output)
+        convert_to_prefs(prefs=ast.literal_eval(args.prefs), output=args.output)
 
 if __name__ == '__main__':
     main()

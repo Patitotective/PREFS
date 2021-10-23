@@ -15,7 +15,7 @@
 [![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
 [![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)
 <br/>
-[![made-with-python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
+[![Made with Python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
 
 **PREFS** stores a Python dictionary in a total human-readable file, the PREFS file is created when it can't find it (normally the first time you run the program), otherwise if the file already exists it just read it's content.
 
@@ -74,4 +74,4 @@ About
   - Discord: **Patitotective#0127**.
   - Email: **cristobalriaga@gmail.com**.
 
-***v0.2.60***
+***v0.2.65***

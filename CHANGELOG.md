@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.65 (22/10/2021)
+- Improved error messages.
+- Improved efficiency.
+- Removed `indent_char` parameter from `PrefsBase` class.
+- Now you MUST to indent with tabulations `\t`.
+
 ### v0.2.60 (20/10/2021)
 - When adding a prefs file as a data when using _pyinstaller_ now it can read the file.
 - Added `output` parameter in `convert_to_prefs` function.
