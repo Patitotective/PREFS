@@ -93,7 +93,9 @@ class PrefsBase:
 		if os.path.isfile(self.filename): # Try to open the file and if it doesn't exist create it
 			return self.read_prefs()
 
-		if self.verbose: print(f"File not found. Trying to create {self.filename}")
+		if self.verbose:
+			print(f"File not found. Trying to create {self.filename}")
+		
 		self.create_prefs(self.prefs) # Create Prefs file with default prefs dict
 
 	@property
@@ -112,7 +114,8 @@ class PrefsBase:
 		if filename is None:
 			filename = self.filename
 
-		if self.verbose: print(f"Trying to read {filename}")
+		if self.verbose:
+			print(f"Trying to read {filename}")
 
 		content = {} # Content will be where the prefs will be stored when reading
 
@@ -120,12 +123,14 @@ class PrefsBase:
 			lines = file.read().split("\n") # Read lines
 
 			if len(lines) == 0:
-				if self.verbose: print(f"Emtpy file {filename}")
+				if self.verbose:
+					print(f"Emtpy file {filename}")
 				return {}
 
 			content = self.tree_to_dict(lines) # Interpreting the result of get_lines_properties() returns the dictionary with the prefs. 
 
-		if self.verbose: print(f"Read {filename}")
+		if self.verbose:
+			print(f"Read {filename}")
 
 		return content # Return prefs file as dictionary
 
@@ -177,7 +182,8 @@ class PrefsBase:
 					Returns:
 						The string evalueated.
 				"""
-				if len(string) == 0: return string # If empty string return empty
+				if len(string) == 0:
+					return string # If empty string return empty
 
 				elif string == "True": # If string equals True return True
 					result = True
@@ -287,14 +293,16 @@ class PrefsBase:
 
 		with open(self.filename, "w+") as prefs_file: # Opening the file with all permissions
 
-			if self.verbose: print(f"Creating {self.filename}")
+			if self.verbose:
+				print(f"Creating {self.filename}")
 
 			prefs_file.write(f"{self.first_line}{self.ENDER_CHAR}") # First line will be self.first_line to recognize Prefs files
 			
 			lines = self.dict_to_tree(prefs) # Calls dict_to_tree() method which convert a dictionary into prefs file
 			prefs_file.write(lines) # Writes the result of dict_to_tree() in the prefs file.
 
-			if self.verbose: print(f"{self.filename} created")
+			if self.verbose:
+				print(f"{self.filename} created")
 
 		self.check_file() # Read prefs to check the Prefs file and update file attribute 
 
@@ -351,7 +359,8 @@ class PrefsBase:
 
 		"""
 
-		if self.verbose: print(f"Trying to write {pref} with {value} value in {self.filename}")
+		if self.verbose:
+			print(f"Trying to write {pref} with {value} value in {self.filename}")
 		
 		content = self.read_prefs() # Get prefs dictionary
 
@@ -363,7 +372,8 @@ class PrefsBase:
 
 		self.create_prefs(content) # Replace old file with updated file
 
-		if self.verbose: print(f"Writed {pref} with {value} value in {self.filename}")
+		if self.verbose:
+			print(f"Writed {pref} with {value} value in {self.filename}")
 
 		self.check_file() # Read prefs to check the Prefs file and update file attribute 
 
