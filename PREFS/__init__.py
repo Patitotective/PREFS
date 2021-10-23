@@ -206,7 +206,8 @@ class PrefsBase:
 			line_info = get_line_info(line, raw_line, line_num)
 
 			if line_info['key'] in result:
-				if self.verbose: warnings.warn(f"Repeated key {line_info['key']!r} at {get_line_num(line_num)}", SyntaxWarning)
+				if self.verbose:
+					warnings.warn(f"Repeated key {line_info['key']!r} at {get_line_num(line_num)}", SyntaxWarning)
 
 			## Eval value ##
 			if line_info["val"] != self.CONTINUER_CHAR:
@@ -719,7 +720,9 @@ def read_prefs_file(filename: str, **kwargs) -> dict:
 	built_filename = get_built_file_path(filename) # Will return the build path if there is one otherwise None
 
 	if built_filename is not None:
-		if "verbose" in kwargs and kwargs["verbose"]: print(f"Found PREFS data at {built_filename} ({filename})")
+		if "verbose" in kwargs and kwargs["verbose"]:
+			print(f"Found PREFS data at {built_filename} ({filename})")
+		
 		filename = built_filename
 
 	prefs_instance = PrefsBase(**kwargs)
