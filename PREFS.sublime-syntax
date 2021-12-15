@@ -1,0 +1,44 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: PREFS
+scope: source.PREFS
+file_extensions:
+  - prefs
+
+first_line_match: \s* \#PREFS \s*
+extends: Packages/Python/Python.sublime-syntax
+contexts:
+  main:
+    - include: pairs
+    - include: comments
+
+  pairs:
+    - include: comments
+    - match: \w*
+      push:
+        - match: \=
+          scope: keyword.control.python
+          push: value
+          pop: true
+
+  value:
+    - include: nones
+    - include: strings
+    - include: numbers
+    - include: booleans
+    - include: comments
+    - include: case-pattern-dictionaries
+
+    # Continuer
+    - match: \>\s?$
+      scope: keyword.control.python
+      push: pairs
+
+    - match: \n
+      pop: true
+
+  strings:
+    - include: string-quoted-double
+    - include: string-quoted-single
+
