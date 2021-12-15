@@ -1,0 +1,13 @@
+#PREFS
+dark=True # Boolean
+theme=> # Nested dict
+	background="#ffffff" # Hex
+	font="UbuntuMono" # String
+	font_size=15 # Integer
+	pi=3.1415926535897932384626433 # Float
+
+robot=b'Beep-Boop' # Bytes
+light=None # None
+fruits=("Banana", "Apple", "Dinosaur") # Tuple
+vegetables=["Avocado is a fruit", "Tomato too", "Maybe cat?"] # List
+breakfast={"Which goes first?", "Milk?", "Cereal?"} # Set

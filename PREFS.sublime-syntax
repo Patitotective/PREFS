@@ -1,6 +1,7 @@
 %YAML 1.2
 ---
 # See http://www.sublimetext.com/docs/syntax.html
+# https://patitotective.github.io/PREFS/
 name: PREFS
 scope: source.PREFS
 file_extensions:
@@ -28,7 +29,9 @@ contexts:
     - include: numbers
     - include: booleans
     - include: comments
-    - include: case-pattern-dictionaries
+    - include: case-pattern-lists
+    - include: dictionaries-and-sets
+    - include: case-pattern-groups-or-tuples
 
     # Continuer
     - match: \>\s?$
