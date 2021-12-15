@@ -11,13 +11,14 @@ first_line_match: \s* \#PREFS \s*
 extends: Packages/Python/Python.sublime-syntax
 contexts:
   main:
-    - include: pairs
     - include: comments
+    - include: pairs
 
   pairs:
     - include: comments
     - match: \w*
       push:
+        - include: comments
         - match: \=
           scope: keyword.control.python
           push: value
@@ -34,11 +35,11 @@ contexts:
     - include: case-pattern-groups-or-tuples
 
     # Continuer
-    - match: \>\s?$
+    - match: \>\s*
       scope: keyword.control.python
       push: pairs
 
-    - match: \n
+    - match: $
       pop: true
 
   strings:
