@@ -1,3 +1,9 @@
+---
+id: changelog
+title: Changelog
+hide_title: true
+sidebar_position: 5
+---
 # Changelog
 
 ## v0.3.0 (20/12/2021)
