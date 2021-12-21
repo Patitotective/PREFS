@@ -7,8 +7,8 @@
 [![PREFS version](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
 [![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
 [![Stars](https://img.shields.io/github/stars/patitotective/prefs)](https://github.com/Patitotective/PREFS/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)
 
-[![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)  
 [![Build](https://img.shields.io/appveyor/build/Patitotective/PREFS)](https://ci.appveyor.com/project/Patitotective/prefs)
 [![Last commit](https://img.shields.io/github/last-commit/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/commits/main)
 ![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)
@@ -27,7 +27,7 @@ On _MacOS_ and _Linux_:
 `pip3 install PREFS`
 
 ### Getting started
-To initialize your preferences you will need to instance the `Prefs` class with the first argument as the default preferences (the first time the program is ran or every time the file gets deleted).
+To initialize your preferences you will need to instance the `Prefs` class with the first argument as the default preferences (the ones used the first time the program is ran or when the file gets deleted).
 
 ```py
 import prefs
