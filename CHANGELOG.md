@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.3.0 (\~/12/2021)
+## v0.3.0 (20/12/2021)
 - New parse system using [_Lark_](https://github.com/lark-parser/lark).
 - Added support for bytes and ranges.
 - Now it checks what type are written into the _PREFS_ file to avoid errors.
