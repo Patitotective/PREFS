@@ -27,7 +27,7 @@ On _MacOS_ and _Linux_:
 `pip3 install PREFS`
 
 ### Getting started
-To initialize your preferences you will need to instance the `Prefs` class with the first argument as the default preferences (the ones used the first time the program is ran or when the file gets deleted).
+To initialize your preferences you will need to instance the `Prefs` class with the first argument as the default preferences (the ones used the first time the program runs or whenever the file gets deleted).
 
 ```py
 import prefs
@@ -51,7 +51,7 @@ theme=>
   background='#ffffff' 
   font='UbuntuMono'
 ```
-Then you can change values as it were a dictionary
+Then you can change values as if it were a dictionary.
 ```py
 my_prefs["lang"] = "es"
 ```
@@ -64,7 +64,7 @@ theme=>
   font='UbuntuMono'
 ```
 
-You can write your own _PREFS_ file manually as well, to manage your application's color scheme or the translations.
+You can write your own _PREFS_ files manually as well, to manage your application's color scheme or the translations.
 
 ***
 
