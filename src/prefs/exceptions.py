@@ -1,19 +1,10 @@
-# src/exceptions.py
-
-
-class InvalidPath(Exception):
-	"""This exception is raised when a given path is not valid.
-	"""
-	pass
-
-
 class InvalidKeyError(Exception):
 	"""This error is raised when a key is not valid.
 	"""
 	pass
 
 
-class InvalidResourceAlias(Exception): 
+class InvalidResourceError(Exception): 
 	"""This error will be raised when a PREFS resource is not valid.
 	"""
 	pass

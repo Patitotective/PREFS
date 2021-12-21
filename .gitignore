@@ -1,2 +1,7 @@
 __pycache__
+*.sublime-*
 *trial*.*
+.idea
+.venv
+# Temporal
+website1

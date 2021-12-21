@@ -1,0 +1,44 @@
+!start: _content
+_content: (_NEWLINE* line _NEWLINE*)*
+
+value: set
+	| list
+	| dict
+	| range
+	| tuple
+	| INT
+	| BOOL
+	| NONE
+	| FLOAT
+	| STRING
+
+line: _pair _NEWLINE
+	| KEY "=>" _nested
+
+_pair: KEY "=" value
+
+set: "{" _iter "}"
+list: "[" _iter "]"
+tuple: "(" _iter ")"
+range: "range(" INT [("," INT) ~ 1..2] ","? ")"
+dict: "{}" // Emtpy dict
+_iter: [value ("," value)* ","?]
+_nested: _NEWLINE _INDENT _content _DEDENT
+
+NONE: "None"
+KEY: (LETTER|" ")+
+BOOL: "True"|"False"
+
+%declare _INDENT _DEDENT
+
+%ignore COMMENT
+%ignore WS_INLINE
+
+%import python.STRING
+%import python.COMMENT
+%import python._NEWLINE
+%import common.LETTER
+%import common.HEXDIGIT
+%import common.WS_INLINE
+%import common.SIGNED_INT -> INT
+%import common.SIGNED_FLOAT -> FLOAT

@@ -1,77 +1,82 @@
 # PREFS
 > **Store and manage preferences easily.**  
 
-[![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/img/logo.png?raw=true)](https://patitotective.github.io/PREFS)
+[![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/assets/logo.png?raw=true)](https://patitotective.github.io/PREFS)
 
-[![Python Version](https://img.shields.io/pypi/pyversions/prefs)](https://pypi.org/project/prefs/)
-[![PYPI](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/prefs)](https://pypi.org/project/prefs/)
+[![PREFS version](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
 [![Downloads](https://pepy.tech/badge/prefs)](https://pepy.tech/project/prefs)
 [![Stars](https://img.shields.io/github/stars/patitotective/prefs)](https://github.com/Patitotective/PREFS/stargazers)
-[![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)
-<br/>
+
+[![Watchers](https://img.shields.io/github/watchers/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/watchers)  
 [![Build](https://img.shields.io/appveyor/build/Patitotective/PREFS)](https://ci.appveyor.com/project/Patitotective/prefs)
 [![Last commit](https://img.shields.io/github/last-commit/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/commits/main)
-[![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
-[![Top languages](https://img.shields.io/github/languages/top/Patitotective/PREFS)](https://github.com/Patitotective/PREFS)
-[![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)
-<br/>
+![Size](https://img.shields.io/github/repo-size/Patitotective/PREFS)
+[![License MIT](https://img.shields.io/github/license/Patitotective/PREFS)](https://github.com/Patitotective/PREFS/)  
+
 [![Made with Python](https://img.shields.io/badge/made%20with-python-blue)](https://www.python.org/)
+[![Discord server](https://img.shields.io/discord/891409914533118012?logo=discord)](https://discord.gg/as85Q4GnR6)
 
-**PREFS** stores a Python dictionary in a total human-readable file, the PREFS file is created when it can't find it (normally the first time you run the program), otherwise if the file already exists it just read it's content.
+**PREFS** is Python library that stores preferences in a text file with a dictionary-like structure.
 
-## Installation:
-On windows:
+## Installation
+On _Windows_:  
 `pip install PREFS`
 
-On MacOS and Linux:
+On _MacOS_ and _Linux_:  
 `pip3 install PREFS`
 
-### Syntax:
+### Getting started
+To initialize your preferences you will need to instance the `Prefs` class with the first argument as the default preferences (the first time the program is ran or every time the file gets deleted).
 
-Each PREFS file is an instance of the `PREFS` class:  
-The `PREFS` class has one required parameter, which is a dictionary with the default preferences (used to create the file when it can't it).
+```py
+import prefs
 
-```Python
 default_prefs = {
-  "theme": "light", 
   "lang": "en", 
-  "keybindings": {"Ctrl+C": "Copy", "Ctrl+V": "Paste", "Ctrl+X": "Cut"}
+  "theme": {
+    "background": "#ffffff", 
+    "font": "UbuntuMono", 
+  }, 
 }
 
-user_prefs = PREFS.Prefs(default_prefs)
+my_prefs = prefs.Prefs(default_prefs)
 ```
 
-This code will create a file like this:
-```python
+The above code will create a file called `prefs.prefs` that looks like:
+```py
 #PREFS
-theme='light'
 lang='en'
-keybindings=>
-  Ctrl+C='Copy'
-  Ctrl+V='Paste'
-  Ctrl+X='Cut'
+theme=>
+  background='#ffffff' 
+  font='UbuntuMono'
 ```
-A total human readable file that supports cascade/tree in nested dictionaries.
+Then you can change values as it were a dictionary
+```py
+my_prefs["lang"] = "es"
+```
+And now `prefs.prefs` will look like:
+```py
+#PREFS
+lang='es'
+theme=>
+  background='#ffffff'
+  font='UbuntuMono'
+```
 
-## Other functions
-- `read_json_file()`.
-- `read_yaml_file()`.
-- `read_prefs_file()`.
-- `convert_to_prefs()`.
+You can write your own _PREFS_ file manually as well, to manage your application's color scheme or the translations.
 
-## Documentation
-PREFS documentation can be found at https://patitotective.github.io/PREFS/docs/ with more examples and information.
+***
 
-[Extra info](https://github.com/Patitotective/PREFS/blob/main/EXTRAINFO.md).
+## About
+- Docs: https://patitotective.github.io/PREFS/docs/start.
+- GitHub: https://github.com/Patitotective/PREFS.
+- Pypi: https://pypi.org/project/PREFS/.
+- Discord: https://discord.gg/as85Q4GnR6.
 
-About
----
-
-- GitHub page: https://github.com/Patitotective/PREFS.
-- Pypi page: https://pypi.org/project/PREFS/.
-
-- Contact me:
+Contact me:
   - Discord: **Patitotective#0127**.
+  - Tiwtter: [@patitotective](https://twitter.com/patitotective).
   - Email: **cristobalriaga@gmail.com**.
 
-***v0.2.65***
+***v0.3.0***

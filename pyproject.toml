@@ -1,12 +1,22 @@
 [tool.poetry]
 name = "prefs"
 version = "0.3.0"
-description = ""
+description = "Store and manage preferences easily."
+license = "MIT"
 authors = ["Patitotective <cristobalriaga@gmail.com>"]
+repository = "https://github.com/Patitotective/PREFS"
+documentation = "https://patitotective.github.io/PREFS/docs/start"
+keywords = ["preferences", "settings"]
+include = ["src/prefs/parser/grammar.lark"]
+
+[tool.poetry.scripts]
+prefs = "prefs.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.8"
 PyYAML = "^6.0"
+lark = "^1.0.0"
+click = "^8.0.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
