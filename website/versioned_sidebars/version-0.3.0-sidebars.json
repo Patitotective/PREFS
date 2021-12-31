@@ -1,0 +1,16 @@
+{
+  "docs": [
+    "start",
+    "resources",
+    {
+      "type": "category",
+      "label": "API Reference",
+      "collapsed": false,
+      "items": [
+        "api/prefs",
+        "api/functions",
+        "api/cli"
+      ]
+    }
+  ]
+}

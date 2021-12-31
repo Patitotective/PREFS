@@ -1,13 +1,11 @@
-# Libraries
 import os
 import json
-import yaml
 from typing import Dict
+import yaml
 
-# Dependencies
-from .utils import check_path, change_nested_key
+from .parser import parser # parser(directory).parser(module)
+from .utils import check_path
 from .exceptions import InvalidKeyError
-from .parser import parser  # parser(folder).parser(module)
 
 
 class PrefsBase:
@@ -32,15 +30,13 @@ class PrefsBase:
 	def content(self) -> dict:
 		return self.read()
 
-	def read(self) -> dict:
-		"""Reads the prefs file.
-	
-		Returns:
-			The prefs.
-		"""
-		prefs = parser.parse(path=self.path, parser=self.parser)
+	def get(self, key: str) -> any:
+		return get_key(key, self.content, self.KEY_PATH_SEP)
 
-		return prefs # Return prefs file as dictionary
+	def read(self) -> dict:
+		"""Read and return the prefs file's content.
+		"""
+		return parser.parse(path=self.path, parser=self.parser)
 
 	def check_file(self) -> None:
 		"""Creates the prefs file if it doesn't exist.
@@ -49,7 +45,7 @@ class PrefsBase:
 			self.create()
 
 	def check_prefs(self, prefs: dict=None) -> dict:
-		"""Checks if self.prefs or the given prefs are callable and if they're dictionaries.
+		"""Checks if the given prefs (no given results in self.prefs) is a dictionary (or functions with a dictionary as return value).
 		"""
 		if prefs is None:
 			prefs = self.prefs
@@ -72,7 +68,7 @@ class PrefsBase:
 			raise InvalidKeyError(f"Invalid key {key!r}. A key cannot include the following characters {self.INVALID_KEY_CHARS}")
 
 	def to_prefs(self, prefs: dict=None) -> str:
-		"""Returns the string gets written in the prefs file.
+		"""Returns the string that gets written in the prefs file.
 		"""
 		prefs = self.check_prefs(prefs)
 
@@ -82,22 +78,21 @@ class PrefsBase:
 		return result
 
 	def to_tree(self, prefs: dict, depth=0) -> str:
-		"""Converts the prefs dictionary a tree (string).
-
-			Args:
-				prefs (dict): a dictionary with the prefs to convert to text.
-				depth (int=0): The depth level (to indent).
-
-			Returns:
-				A string with the prefs, ready to write.
+		"""Converts the prefs dictionary into a tree (string).
+		Args:
+			prefs (dict): a dictionary with the prefs to convert to text.
+			depth (int=0): The indent level.
 		"""	
 		def check_obj(obj: object):
+			"""Checks for valid object type.
+			"""
 			if type(obj) not in self.SUPPORTED_TYPES:
 				raise TypeError(f"Unsupported {type(obj).__name__!r} type at {key!r} key, supported types are {[i.__name__ for i in self.SUPPORTED_TYPES]}")
 		
 			if isinstance(obj, (list, tuple, set)):
 				for i in obj:
 					check_obj(i)
+
 			elif isinstance(obj, dict):
 				for k, v in obj.items():
 					self.check_key(k)
@@ -105,119 +100,114 @@ class PrefsBase:
 
 		prefs = self.check_prefs(prefs)
 
-		result = "" # String to append each pref:value combination
-		indent_char = self.INDENT_CHAR * depth # Multiply depth by a tabulation, e.i.: if depth 0 no tabulation.
+		result = ""
+		indent_char = self.INDENT_CHAR * depth
 
-		for key, val in prefs.items(): # Iterate through prefs dictionary items
+		for key, val in prefs.items():
 			self.check_key(key)
 			check_obj(val)
 
-			if isinstance(val, dict) and val != {}: # If values is a dictionary and cascade is True and isn't an empty dictionary
+			if isinstance(val, dict) and val != {}: # To avoid writing emtpy dictionaries as nested
 				result += f"{indent_char}{key}{self.SEPARATOR_CHAR}{self.CONTINUER_CHAR}{self.ENDER_CHAR}"
 				result += self.to_tree(val, depth=depth + 1) # Calls itself to generate cascade/tree
 				continue
 
-			result += f"{indent_char}{key}{self.SEPARATOR_CHAR}{val!r}{self.ENDER_CHAR}" # Write key:value (str) with quotes
+			result += f"{indent_char}{key}{self.SEPARATOR_CHAR}{val!r}{self.ENDER_CHAR}"
 
 		return result
 
 	def create(self, prefs: dict=None) -> None:
-		"""Creates a file with the given prefs.
+		"""Creates a file with the given prefs (or the default ones).
 
-			Args:
-				prefs (dict): The prefs to write in self.path.
+		Args:
+			prefs (dict): The prefs to write at self.path.
 		"""
 		prefs = self.check_prefs(prefs)
 		check_path(self.path)
 
-		# Both do the same thing
-		# Open a file, and if any exception is raised, remove it
-		"""
-		try:
-			file = open(self.path, "w+")
-			file.write(self.to_prefs(prefs))
-		except Exception as error:
-			os.remove(self.path)
-			raise error
-		finally:
-			file.close()
-		"""
 		with open(self.path, "w+") as file:			
+			# If any exception is raised, remove it
 			try:
 				file.write(self.to_prefs(prefs))
 			except Exception as error:
 				os.remove(self.path)
 				raise error
-		# """
 
 	def write(self, key: str, val: any) -> None:
-		"""Change content key to the given value.
-			To change nested key value, pass its path, e.g.: write(key="keybindings/Copy", val="ctrl+c")
+		"""Change the value of a given key.
+		To change a nested value, pass its path, e.g.: write("theme/background", "#129396")
 			
-			Args:
-				key (str): The name of the key to change or create.
-				val (any): The value of the key.
+		Args:
+			key (str): The name of the key.
+			val (any): The value to assign to the key.
 		"""
 		prefs = self.content
 		
 		if self.KEY_PATH_SEP in key:
-			prefs = change_nested_key(prefs, key, val, auto_gen_keys=self.AUTO_GEN_KEYS, key_path_sep=self.KEY_PATH_SEP)
-		else:
-			prefs[key] = val
+			prefs = change_key(key, val, prefs, self.KEY_PATH_SEP, self.AUTO_GEN_KEYS)
 
-		self.create(prefs) # Overwrite file
+		self.create(prefs) # Overwrite the file with the updated prefs
 
 	def write_many(self, items: Dict[str, any]) -> None:
-		"""Change multiple prefs with the given items, this way it only opens the file once.
-			
+		"""Change multiple keys with the given items, this way it only opens the file once.
+
 		Args:
 			items (Dict[str, any]): The dictionary with the key:val pairs to change.
 		"""		
 		prefs = self.content
 
 		for key, val in items.items():
-			if self.KEY_PATH_SEP in key:
-				prefs = change_nested_key(prefs, key, val, auto_gen_keys=self.AUTO_GEN_KEYS, key_path_sep=self.KEY_PATH_SEP)
-			else:
-				prefs[key] = val
+			prefs = change_key(key, val, prefs, self.KEY_PATH_SEP, self.AUTO_GEN_KEYS)
 
-		self.create(prefs) # Overwrite file
+		self.create(prefs) # Overwrite the file with the updated prefs
 
 	def remove_key(self, key: str, *args):
 		prefs = self.content
-		result = prefs.pop(key, *args)
+		if self.KEY_PATH_SEP in key:
+			keys = key.split(self.KEY_PATH_SEP)
+			dict_ = prefs[keys[0]]
+			keys.pop(0)
+
+			for e, key in enumerate(keys):
+				if e == len(keys) -1:
+					result = dict_.pop(key)
+					continue
+
+				dict_ = dict_[key]
+		else:
+			result = prefs.pop(key, *args) # Returns the removed value
 
 		self.create(prefs)
 		return result
 
 	def overwrite(self, prefs: dict=None, key: str=None) -> None:
-		"""Overwrites the key in the prefs file with the given prefs.
+		"""Overwrites the key in the prefs file with the given prefs (if no key given overwrites the whole file).
 			
-			Args:
-				prefs (dict=None): Prefs to overwrite with, by default prefs.
-				key (str=None): Overwrite this key in the prefs file, by default everything.
+		Args:
+			prefs (dict=None): Prefs to overwrite with, by default prefs.
+			key (str=None): Overwrite this key in the prefs file, by default everything.
 		"""
 		if not os.path.isfile(self.path):
 			raise FileNotFoundError(f"Cannot overwrite nonexistent file {self.path}") # If file isn't in the path raise error
 
 		prefs = self.check_prefs(prefs)
-		
+
+		if prefs is None:
+			prefs = get_key(key, prefs, self.KEY_PATH_SEP)
 		if key is not None:
-			prefs[key] = self.prefs[key]
+			self.write(key, prefs)
+			return
 
 		self.create(prefs)
 
 	def delete(self) -> None:
 		"""Deletes the prefs file.
 		"""
-		if not os.path.isfile(self.path):
-			raise FileNotFoundError(f"Cannot delete nonexistent file ({self.path})")
-		
 		os.remove(self.path)
 		
 	def to_json(self, path: str=None, **kwargs) -> None:
 		"""Converts the prefs file into a json file.
-		
+
 		Args:
 			path (str=None): If no path given, prefs file with .json as extension.
 		"""
@@ -243,39 +233,57 @@ class PrefsBase:
 class Prefs(PrefsBase): 
 	"""This class creates a dictionary-like interface for PrefsBase.
 	"""
-	def __init__(self, prefs: Dict[str, any], path: str="prefs.prefs"):
+	def __init__(self, prefs: (Dict[str, any], callable), path: str="prefs.prefs"):
 		"""
 		Args
 			See PrefsBase.
 		"""
 		super().__init__(prefs, path)
-
 		self.check_file()
 
 	def __str__(self):
+		"""Called when `print(self)`.
+		"""
 		return str(self.content)
-
-	# FIXIT Print prefs differently when repr
-	def __repr__(self):
-		return f"<{type(self).__name__!r} {self.content} at {self.path!r}>"
 
 	def __len__(self):
 		return len(self.content)
 
 	def __delitem__(self, key):
+		"""Called when `del self[key]`.
+		"""
 		self.remove_key(key)
 
 	def __getitem__(self, key):
-		return self.content[key]
+		"""Called when `self[key]`.
+		"""
+		return super().get(key) # Calling PrefsBase.get, not Prefs.get 
 
-	def __setitem__(self, key, value):
-		self.write(key, value)
+	def __setitem__(self, key, val):
+		"""Called when `self[key] = val`.
+		"""
+		self.write(key, val)
 
 	def __contains__(self, item):
+		"""Called when `item in self`.
+		"""
 		return item in self.content
 
 	def __iter__(self):
+		"""Called when `for i in self`.
+		"""
 		return iter(self.content)
+
+	def get(self, key, *args):
+		if len(args) > 1:
+			raise TypeError(f"Expected one or two arguments, got {len(args)+1}")
+		try:
+			self.__getitem__(key)
+		except KeyError as error:
+			if len(args) > 0:
+				return args[0]
+			
+			raise error
 
 	def keys(self):
 		return self.content.keys()
@@ -288,9 +296,6 @@ class Prefs(PrefsBase):
 
 	def pop(self, *args):
 		return self.remove_key(*args)
-
-	def get(self, *args):
-		return self.content.get(*args)
 
 	def has_key(self, key: str):
 		return key in self.content
@@ -312,3 +317,72 @@ class Prefs(PrefsBase):
 		result = prefs.popitem()
 		self.create(prefs)
 		return result
+
+
+def change_key(key: str, val: any, dict_: dict, key_path_sep: str, auto_gen_keys: bool):
+	if key_path_sep in key:
+		return change_nested_key(
+			dict_, 
+			key, 
+			val, 
+			key_path_sep, 
+			auto_gen_keys,  
+		)
+	
+	dict_[key] = val
+
+	return dict_
+
+def get_key(key: str, dict_: dict, key_path_sep: str) -> any:
+	if key_path_sep in key: # Means a key path ("theme/background")
+		keys = key.split(key_path_sep)
+		result = dict_[keys[0]]
+		keys.pop(0)
+		
+		for i in keys:
+			try:
+				result = result[i]
+			except KeyError:
+				raise KeyError(key)
+
+		return result
+
+	return dict_[key]
+
+def change_nested_key(
+	dict_: dict, 
+	key_path: str, 
+	val: any, 
+	key_path_sep: str, 
+	auto_gen_keys: bool
+) -> dict:
+	"""Change a nested key with the given key path to the given value.
+
+	Args:
+		dict_ (dict): The dictionary to change.
+		key_path (str): The path to the key, e.g.: "keybindings/Copy".
+		val (any): The val to assign to the key.
+		auto_gen_keys (bool=True): If some key is not found, generate it automatically.
+		key_path_sep (str="/"): The character that separates nested keys.
+	"""
+	key_path = key_path.split(key_path_sep)
+	
+	if not key_path[0] in dict_ and auto_gen_keys:
+		dict_[key_path[0]] = {}
+
+	scn_dict = dict_[key_path[0]] # Set scn_dict to the first key of dict_
+
+	key_path.pop(0)
+
+	for e, i in enumerate(key_path):
+		if e == len(key_path) - 1:
+			scn_dict[i] = val
+			continue
+
+		if ((not i in scn_dict or (i in scn_dict and not isinstance(scn_dict[i], dict))) and 
+			auto_gen_keys):
+			scn_dict[i] = {}
+
+		scn_dict = scn_dict[i] # Set scn_dict to scn_dict key
+	
+	return dict_

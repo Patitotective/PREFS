@@ -1,6 +1,6 @@
 !start: _content
-_content: (_NEWLINE* line _NEWLINE*)*
-
+_content: (_NEWLINE* _line _NEWLINE*)*
+	
 value: set
 	| list
 	| dict
@@ -12,10 +12,10 @@ value: set
 	| FLOAT
 	| STRING
 
-line: _pair _NEWLINE
-	| KEY "=>" _nested
+_line: pair _NEWLINE
+	| nested
 
-_pair: KEY "=" value
+pair: KEY "=" value
 
 set: "{" _iter "}"
 list: "[" _iter "]"
@@ -23,10 +23,10 @@ tuple: "(" _iter ")"
 range: "range(" INT [("," INT) ~ 1..2] ","? ")"
 dict: "{}" // Emtpy dict
 _iter: [value ("," value)* ","?]
-_nested: _NEWLINE _INDENT _content _DEDENT
+nested: KEY "=>" _NEWLINE _INDENT _content _DEDENT
 
 NONE: "None"
-KEY: (LETTER|" ")+
+KEY: (LETTER|DIGIT|" "|"_"|"-")+
 BOOL: "True"|"False"
 
 %declare _INDENT _DEDENT
@@ -37,6 +37,7 @@ BOOL: "True"|"False"
 %import python.STRING
 %import python.COMMENT
 %import python._NEWLINE
+%import common.DIGIT
 %import common.LETTER
 %import common.HEXDIGIT
 %import common.WS_INLINE

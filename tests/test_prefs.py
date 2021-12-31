@@ -1,36 +1,44 @@
-# Libraries
+"""
+Run the tests with:
+```
+python -m unittest
+```
+Where python is your python interpreter.
+(Remember to do it inside the tests directory)
+"""
 import os
-import prefs
 import unittest
+import prefs
 
 
 class TestPrefs(unittest.TestCase):
     PATH = "prefs.prefs"
     DEFAULT_PREFS = {
         "theme": "light", 
-        "lang": "en", 
+        "scheme": {
+            "background": "#ffffff", 
+            "font": "UbuntuMono", 
+        }, 
+        "range1": range(100), 
+        "range2": range(14, 84), 
+        "range3": range(0, 30, 2), 
         "keybindings": {
             "duplicate": {
                 "keys": "Ctrl+D", 
                 "command": "dup", 
             }, 
-            "copy": {
-                "keys": "Ctrl+C", 
-                "command": "cop", 
-            }, 
-            "paste": {
-                "keys": "Ctrl+V", 
-                "command": "pas", 
-            }, 
             "cut": {
                 "keys": "Ctrl+X", 
                 "command": "cut", 
             }, 
+            "enabled": False,
             "quit": {
                 "keys": "Ctrl+Q", 
                 "command": "qut", 
-            }
-        }
+            }, 
+            "secret": b"aliens do exist, outside earth"
+        }, 
+        "lang": "en", 
     }
 
     def setUp(self):
@@ -88,7 +96,7 @@ class TestPrefsSyntax(unittest.TestCase):
             =1
             """
 
-            my_prefs = prefs.from_string(string)
+            my_prefs = prefs.parse(string)
 
     def test_sep(self):
         """Test no separator.
@@ -99,7 +107,7 @@ class TestPrefsSyntax(unittest.TestCase):
             1
             """
 
-            my_prefs = prefs.from_string(string)
+            my_prefs = prefs.parse(string)
 
     def test_indent(self):
         """Test indentation edge cases.
@@ -110,9 +118,18 @@ class TestPrefsSyntax(unittest.TestCase):
             lol=True
             """
 
-            my_prefs = prefs.from_string(string)
+            my_prefs = prefs.parse(string)
 
-if __name__ == "__main__":
-    val = [[lambda x: x ** 2]]
-    my_prefs = prefs.Prefs({"list": val})
-    print(my_prefs["list"])
+    def test_types(self):
+        with self.assertRaises(TypeError):
+            my_prefs = prefs.to_prefs(
+                {
+                    "func": lambda x: x+1, 
+                    "list": [1, "a", ["b", self]], 
+                    "set": {1, 2, 3, 2, "a", self.test_sep}, 
+                    "dict": {
+                        "1": TestPrefs, 
+                        "2": os
+                    }
+                }
+            )

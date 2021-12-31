@@ -1,7 +1,6 @@
-# Libraries
 import ast
-import lark
 import pkgutil
+import lark
 from lark.indenter import Indenter
 
 
@@ -15,30 +14,11 @@ class PrefsIndenter(Indenter):
 
 
 class PrefsTransformer(lark.Transformer):
-    def process(self, data):
-        return {ele[0]:(ele[1:] if len(ele) > 2 else ele[1]) for ele in data}
+    def nested(self, x):
+        return x[0], dict(x[1:])
 
-    def clean(self, data):
-        for key, val in data.items():
-            if isinstance(val, (tuple, list)):
-                data[key] = self.process(val)
-                self.clean(data[key])
-        
-        return data
-
-    def to_dict(self, data):
-        return self.clean(self.process(data))
-
-    def start(self, x):
-        return self.to_dict(x)
-
-    def STRING(self, x):
-        if x[0] == "b": # Bytes
-            return ast.literal_eval(x)
-
-        return x[1:-1]
-
-    line = tuple
+    start = dict
+    pair = tuple
     value = lambda self, x: x[0]
 
     list = list
@@ -50,12 +30,13 @@ class PrefsTransformer(lark.Transformer):
     NONE = lambda self, x: None
     BOOL = lambda self, x: True if x == "True" else False
     KEY = lambda self, x: x.value
+    STRING = lambda self, x: ast.literal_eval(x)
 
     INT = int
     FLOAT = float
 
 
-def create_parser():
+def create_parser() -> lark.Lark:
     if __name__ == "__main__":
         with open("grammar.lark", "r") as file:
             grammar = file.read()
@@ -71,7 +52,7 @@ def create_parser():
 
     return parser
 
-def parse(string=None, path=None, parser=None):
+def parse(string=None, path=None, parser=None) -> dict:
     if (string is None and path is None) or (string is not None and path is not None):
         raise ValueError("One of 'string' and 'path' paramters must be specified, neither both nor none.")
 

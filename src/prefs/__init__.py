@@ -5,7 +5,7 @@ Preferences are stored as dictionaries in a text file with an special and simple
 Notes:
 	Resources:
 		- Module resources are refered to PREFS files converted into Python modules (see https://patitotective.github.io/PREFS/docs/resources)
-		- Binary resources are data stored in a binary file with pyisntaller (or so).
+		- Binary resources are data stored in a binary file with PyInstaller.
 		Checks first for module resources, if there are no resources check for binary ones.
 
 About:
@@ -20,21 +20,18 @@ Contact:
 	GitHub: github.com/Patitotective.
 	Email: cristobalriaga@gmail.com.
 """
-
-# Libraries
-import json
-import yaml
 import os
-import inspect
+import json
 import types
+import inspect
 import warnings
+import yaml
 
-# Dependencies
-from .utils import check_path, get_built_file_path, load_module_from_path
-from .prefs import PrefsBase, Prefs
-from .exceptions import InvalidResourceError
 from .parser import parser
+from .prefs import PrefsBase, Prefs
 from .exceptions import DeprecationWarning
+from .exceptions import InvalidResourceError
+from .utils import check_path, get_built_file_path, load_module_from_path
 
 
 __version__ = '0.3.0'
@@ -44,7 +41,7 @@ RESOURCE_FILE_HEADER = """# PREFS resource module
 # Do not modify this file
 """
 
-def is_resource_module(module: types.ModuleType):
+def is_resource_module(module: types.ModuleType) -> bool:
 	if not hasattr(module, "__file__"): # Meaning is a built-in
 		return False
 
@@ -59,12 +56,13 @@ def is_resource_module(module: types.ModuleType):
 
 	return True
 
-def bundle(path: str, output: str=None, alias: str=None):
+def bundle(path: str, output: str=None, alias: str=None) -> None:
 	if output is None:
 		output = f"{os.path.splitext(path)[0]}_resource.py"
 	if alias is None:
 		alias = os.path.basename(path)
 
+	path = os.path.join(os.getcwd(), path)
 	content = read(path)
 	
 	check_path(output)
@@ -75,47 +73,7 @@ def bundle(path: str, output: str=None, alias: str=None):
 
 	print(f"'{output}' resource module created with '{alias}' as alias.")
 
-def read_json(path: str, **kwargs):
-	with open(path, "r") as file:
-		return json.load(file, **kwargs)
-
-def read_yaml(path: str, Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
-	with open(path, "r") as file:
-		return yaml.load(file, Loader=Loader, **kwargs)
-
-def read(path: str) -> dict:
-	"""Return the content of a PREFS file or a python module given it's path.
-	"""
-	if os.path.splitext(path)[1] == ".py": # Python resource module
-		module = load_module_from_path(path)
-
-		if not is_resource_module(module):
-			raise InvalidResourceError(f"{path} file doesn't seem to be a PREFS resource.")
-
-		return module.CONTENT
-
-	elif path[:2] == ":/": # Resource module
-		stack = inspect.stack(0)[1] # https://stackoverflow.com/a/7151403/15339152
-		module = inspect.getmodule(stack.frame) # Module where prefs was imported in
-		modules_inside = inspect.getmembers( # Modules inside `module`.
-			module, 
-			predicate=lambda obj: isinstance(obj, types.ModuleType)
-		)
-
-		resources = [module for module in modules_inside if is_resource_module(module)] # Check for resource modules
-
-		for resource in resources:
-			if path[2:] == resource.ALIAS: # If the path (without :/) is the same as the resource alias
-				return resource.CONTENT
-		
-		raise InvalidResourceError(f"Couldn't find any resource module with {path[2:]!r} alias. Make sure to import it at the top")
-
-	path = get_built_file_path(path) # Will return the binary resource path if there is one otherwise the given one
-
-	with open(path, "r") as file:
-		return from_string(file.read())
-
-def to_prefs(content: dict, output: str=None) -> (str, None):
+def to_prefs(content: dict, output: str=None) -> str:
 	"""Given a dictionary convert that dictionary into Prefs format and return it as string. 
 	
 	Args:
@@ -134,5 +92,48 @@ def to_prefs(content: dict, output: str=None) -> (str, None):
 	with open(output, "w+") as file:
 		file.write(result)
 
-def from_string(string: str) -> dict:
+	return result
+
+def parse(string: str) -> dict:
 	return parser.parse(string=string)
+
+def read(path: str) -> dict:
+	"""Return the content of a PREFS file or a Python module given it's path.
+	"""
+	if os.path.splitext(path)[1] == ".py": # Python resource module
+		module = load_module_from_path(path)
+
+		if not is_resource_module(module):
+			raise InvalidResourceError(f"{path} file doesn't seem to be a PREFS resource.")
+
+		return module.CONTENT
+
+	elif path[:2] == ":/": # Resource module
+		stack = inspect.stack(0)[1] # https://stackoverflow.com/a/7151403/15339152
+		module = inspect.getmodule(stack.frame) # Module where prefs was imported in
+		modules_inside = inspect.getmembers( # Modules inside `module`.
+			module, 
+			predicate=lambda obj: isinstance(obj, types.ModuleType)
+		)
+
+		resources = filter(lambda x: is_resource_module(x[1]), modules_inside)
+
+		# resource_name, resource
+		for _, resource in resources:
+			if path[2:] == resource.ALIAS: # If the path (without :/) is the same as the resource alias
+				return resource.CONTENT
+		
+		raise InvalidResourceError(f"Couldn't find any resource module with {path[2:]!r} alias. Make sure to import it at the top")
+
+	path = get_built_file_path(path) # Will return the binary resource path if there is one otherwise the given one
+
+	with open(path, "r") as file:
+		return parse(file.read())
+
+def read_json(path: str, **kwargs) -> dict:
+	with open(path, "r") as file:
+		return json.load(file, **kwargs)
+
+def read_yaml(path: str, Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
+	with open(path, "r") as file:
+		return yaml.load(file, Loader=Loader, **kwargs)

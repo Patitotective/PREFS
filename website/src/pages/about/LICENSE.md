@@ -2,7 +2,7 @@
 id: license
 title: License
 hide_title: true
-sidebar_position: 6
+hide_table_of_contents: true
 ---
 
 ## MIT license

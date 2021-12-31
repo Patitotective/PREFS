@@ -1,0 +1,16 @@
+{
+  "version-0.2.56/docs": [
+    "version-0.2.56/start",
+    "version-0.2.56/resources",
+    {
+      "type": "category",
+      "label": "API Reference",
+      "collapsed": false,
+      "items": [
+        "api/prefs-class",
+        "api/functions",
+        "api/cli"
+      ]
+    }
+  ]
+}

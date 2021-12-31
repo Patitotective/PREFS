@@ -75,8 +75,8 @@ You can write your own _PREFS_ files manually as well, to manage your applicatio
 - Discord: https://discord.gg/as85Q4GnR6.
 
 Contact me:
-  - Discord: **Patitotective#0127**.
-  - Tiwtter: [@patitotective](https://twitter.com/patitotective).
-  - Email: **cristobalriaga@gmail.com**.
+- Discord: **Patitotective#0127**.
+- Tiwtter: [@patitotective](https://twitter.com/patitotective).
+- Email: **cristobalriaga@gmail.com**.
 
 ***v0.3.0***

@@ -40,13 +40,13 @@ const config = {
       }),
     ],
   ],
-
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: 'img/dark_logo.png', 
       colorMode: {
         defaultMode: "dark", 
+        disableSwitch: true,
       }, 
       algolia: {
         // If Algolia did not provide you any appId, use 'BH4D9OD16A'
@@ -90,15 +90,8 @@ const config = {
             label: 'Docs',
           }, 
           {
-            type: 'doc',
-            position: 'left',
-            docId: 'api/prefs-class',
-            label: 'API Reference',
-          }, 
-          {
-            type: 'doc',
+            to: '/about',
             position: 'left', 
-            docId: 'about/about', 
             label: 'About'
           }, 
           {
@@ -120,12 +113,8 @@ const config = {
               },
               {
                 label: 'Pypi page',
-                href: 'https://pypi.org/project/PREFS/',
+                href: 'https://pypi.org/project/PREFS',
               },
-              {
-                label: 'Documentation',
-                href: 'https://patitotective.github.io/PREFS/',
-              }, 
               {
                 label: 'Discord', 
                 href: 'https://discord.gg/as85Q4GnR6', 
@@ -133,11 +122,24 @@ const config = {
             ],
           },
           {
+            title: 'About', 
+            items: [
+              {
+                label: 'Changelog', 
+                href: '/about/changelog'
+              },
+              {
+                label: 'License', 
+                href: '/about/license'
+              }
+            ]
+          },
+          {
             title: 'Contact me',
             items: [
               {
                 label: 'Discord: Patitotective#0127',
-                href: "https://patitotective.github.io/PREFS/docs/about/about"
+                href: "/about"
               },
               {
                 label: 'Email: cristobalriaga@gmail.com',
@@ -154,6 +156,18 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+  plugins: [
+    [
+      "docusaurus-plugin-remote-content",
+      {
+        // options here
+        name: "changelog", // used by CLI, must be path safe
+        sourceBaseUrl: "https://raw.githubusercontent.com/Patitotective/PREFS/develop/", // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: "src/pages/about", // the base directory to output to.
+        documents: ["CHANGELOG.md"], // the file names to download
+      },
+    ],
+  ],
 };
 
 module.exports = config;

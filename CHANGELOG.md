@@ -2,21 +2,65 @@
 id: changelog
 title: Changelog
 hide_title: true
-sidebar_position: 5
+hide_table_of_contents: true
 ---
 # Changelog
-
-## v0.3.0 (20/12/2021)
+### v0.3.0 (20/12/2021)
 - New parse system using [_Lark_](https://github.com/lark-parser/lark).
-- Added support for bytes and ranges.
-- Now it checks what type are written into the _PREFS_ file to avoid errors.
+	- Using _Lark_ indenting with spaces or tabs is allowed.
+- Added support for bytes and ranges types.
+- Now it checks what objects are written into the prefs file to avoid errors.
 - Improved CLI tool with [_Click_](https://click.palletsprojects.com).
-- Added dictionary-like interface for `Prefs` class.
-- New and better tests with _unittest_.
+- Better tests with _unittest_.
+- Now using poetry.
 - Improved code quality in general.
 - Ordered directories layout.
+- Added dictionary-like interface for the `Prefs` class:
+	- `Prefs.__str__`
+	- `Prefs.__repr__`
+	- `Prefs.__len__`
+	- `Prefs.__delitem__`
+	- `Prefs.__getitem__`
+	- `Prefs.__setitem__`
+	- `Prefs.__contains__`
+	- `Prefs.__iter__`
+	- `Prefs.keys`
+	- `Prefs.values`
+	- `Prefs.items`
+	- `Prefs.pop`
+	- `Prefs.get`
+	- `Prefs.has_key`
+	- `Prefs.clear`
+	- `Prefs.update`
+	- `Prefs.popitem`
+- Renamed:
+	- `PrefsBase.file` -> `PrefsBase.content`
+	- `PrefsBase.read_prefs` -> `PrefsBase.read`
+	- `PrefsBase.write_prefs` -> `PrefsBase.write`
+	- `PrefsBase.write_multiple_prefs` -> `PrefsBase.write_many`
+	- `PrefsBase.overwrite_prefs` -> `PrefsBase.overwrite`
+	- `PrefsBase.delete_file` -> `PrefsBase.delete`
+	- `PrefsBase.convert_to_json` -> `PrefsBase.to_json`
+	- `PrefsBase.convert_to_yaml` -> `PrefsBase.to_yaml`
+	- `convert_to_prefs` -> `to_prefs`
+	- `read_prefs_file` -> `read`
+	- `read_json_file` -> `read_json`
+	- `read_yaml_file` -> `read_yaml`
+- Renamed CLI commands:
+	- `read_prefs_file` -> `read`
+- New:
+	- `PrefsBase.get`
+	- `PrefsBase.remove_key`
+	- `bundle`
+	- `parse`
+- New CLI commands:
+	- `about`
+- Removed:
+	- `Prefs.change_filename`
+- Removed CLI commands:
+	`convert_to_prefs`
 
-## v0.2.65 (22/10/2021)
+### v0.2.65 (22/10/2021)
 - Improved error messages.
 - Improved efficiency.
 - Removed `indent_char` parameter from `PrefsBase` class.

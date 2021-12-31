@@ -3,5 +3,5 @@
 # https://patitotective.github.io/PREFS
 # Do not modify this file
 __version__ = '0.3.0'
-CONTENT = {'theme': 'dark', 'keybindings': {'duplicate': {'keys': 'Ctrl+D', 'command': 'dup'}, 'copy': {'keys': 'Ctrl+C', 'command': 'cop'}, 'paste': {'keys': 'Ctrl+V', 'command': 'pas'}, 'cut': {'keys': 'Ctrl+X', 'command': 'cut'}, 'quit': {'keys': 'Ctrl+Q', 'command': 'qut'}}, 'lang': 'en'}
+CONTENT = {'theme': 'dark', 'scheme': {'background': '#ffffff', 'font': 'UbuntuMono'}, 'range1': range(0, 100), 'range2': range(14, 84), 'range3': range(0, 30, 2), 'keybindings': {'duplicate': {'keys': 'Ctrl+D', 'command': 'dup'}, 'cut': {'keys': 'Ctrl+X', 'command': 'cut'}, 'enabled': False, 'quit': {'keys': 'Ctrl+Q', 'command': 'qut'}, 'secret': b'aliens do exist, outside earth'}, 'lang': 'en'}
 ALIAS = 'prefs.prefs'
