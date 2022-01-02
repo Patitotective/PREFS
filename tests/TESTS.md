@@ -1,9 +1,8 @@
 # Tests
 To run the tests do
 ```sh
-python3 -m unittest
+pytest
 ```
-(Change `python3` to your python intepreter)
 (Remember to do it inside your virtual enviroment with `prefs` installed)
 
 ## Test bundle
