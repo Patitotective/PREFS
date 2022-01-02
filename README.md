@@ -1,7 +1,7 @@
 # PREFS
 > **Store and manage preferences easily.**  
 
-[![PREFS logo](https://github.com/Patitotective/PREFS/blob/develop/assets/logo.png?raw=true)](https://patitotective.github.io/PREFS)
+[![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/assets/logo.png?raw=true)](https://patitotective.github.io/PREFS)
 
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/prefs)](https://pypi.org/project/prefs/)
 [![PREFS version](https://img.shields.io/pypi/v/prefs)](https://pypi.org/project/prefs/)
