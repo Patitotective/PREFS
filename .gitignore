@@ -1,7 +1,6 @@
+dist
 __pycache__
 *.sublime-*
 *trial*.*
 .idea
 .venv
-# Temporal
-website1

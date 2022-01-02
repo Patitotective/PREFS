@@ -34,7 +34,7 @@ from .exceptions import InvalidResourceError
 from .utils import check_path, get_built_file_path, load_module_from_path
 
 
-__version__ = '0.3'
+__version__ = '0.4.0'
 RESOURCE_FILE_HEADER = """# PREFS resource module
 # Created using PREFS Python library
 # https://patitotective.github.io/PREFS

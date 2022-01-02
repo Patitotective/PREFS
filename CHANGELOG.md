@@ -5,7 +5,7 @@ hide_title: true
 hide_table_of_contents: true
 ---
 # Changelog
-### v0.3 (02/01/2022)
+### v0.4.0 (02/01/2022)
 - New parse system using [_Lark_](https://github.com/lark-parser/lark).
 	- Using _Lark_ indenting with spaces or tabs is allowed.
 - Added support for bytes and ranges types.
