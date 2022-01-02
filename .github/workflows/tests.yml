@@ -18,9 +18,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: knowsuchagency/poetry-install@v2
-      env:
-        POETRY_VIRTUALENVS_CREATE: false
+    - uses: snok/install-poetry@v1.3.0
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
