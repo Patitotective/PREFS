@@ -79,4 +79,4 @@ Contact me:
 - Tiwtter: [@patitotective](https://twitter.com/patitotective).
 - Email: **cristobalriaga@gmail.com**.
 
-***v0.3.0***
+***v0.3***

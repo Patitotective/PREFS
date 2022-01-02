@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "prefs"
-version = "0.3.0"
+version = "0.3"
 description = "Store and manage preferences easily."
 license = "MIT"
+readme = "README.md"
 authors = ["Patitotective <cristobalriaga@gmail.com>"]
 repository = "https://github.com/Patitotective/PREFS"
 documentation = "https://patitotective.github.io/PREFS/docs/start"

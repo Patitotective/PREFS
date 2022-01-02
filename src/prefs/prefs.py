@@ -141,10 +141,7 @@ class PrefsBase:
 			key (str): The name of the key.
 			val (any): The value to assign to the key.
 		"""
-		prefs = self.content
-		
-		if self.KEY_PATH_SEP in key:
-			prefs = change_key(key, val, prefs, self.KEY_PATH_SEP, self.AUTO_GEN_KEYS)
+		prefs = change_key(key, val, self.content, self.KEY_PATH_SEP, self.AUTO_GEN_KEYS)
 
 		self.create(prefs) # Overwrite the file with the updated prefs
 

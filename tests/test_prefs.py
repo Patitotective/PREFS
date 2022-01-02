@@ -50,7 +50,7 @@ class TestPrefs(unittest.TestCase):
         self.assertEqual(self.my_prefs.content, self.DEFAULT_PREFS)
 
     def test_version(self):
-        self.assertEqual(prefs.__version__, "0.3.0")
+        self.assertEqual(prefs.__version__, "0.3")
     
     def test_write(self):        
         self.DEFAULT_PREFS["lang"] = "es"
