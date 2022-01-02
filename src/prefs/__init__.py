@@ -34,7 +34,7 @@ from .exceptions import InvalidResourceError
 from .utils import check_path, get_built_file_path, load_module_from_path
 
 
-__version__ = '0.4.0'
+__version__ = '1.0.0'
 RESOURCE_FILE_HEADER = """# PREFS resource module
 # Created using PREFS Python library
 # https://patitotective.github.io/PREFS
@@ -123,7 +123,7 @@ def read(path: str) -> dict:
 			if path[2:] == resource.ALIAS: # If the path (without :/) is the same as the resource alias
 				return resource.CONTENT
 		
-		raise InvalidResourceError(f"Couldn't find any resource module with {path[2:]!r} alias. Make sure to import it at the top")
+		raise InvalidResourceError(f"Couldn't find any resource module with {path[2:]!r} alias. Make sure to import it at the top and that the versions are compatible.")
 
 	path = get_built_file_path(path) # Will return the binary resource path if there is one otherwise the given one
 

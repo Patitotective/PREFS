@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "prefs"
-version = "0.4.0"
+version = "1.0.0"
 description = "Store and manage preferences easily."
 license = "MIT"
 readme = "README.md"
