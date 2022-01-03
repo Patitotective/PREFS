@@ -165,6 +165,7 @@ const config = {
         sourceBaseUrl: "https://raw.githubusercontent.com/Patitotective/PREFS/main/", // the base url for the markdown (gets prepended to all of the documents when fetching)
         outDir: "src/pages/about", // the base directory to output to.
         documents: ["CHANGELOG.md"], // the file names to download
+        performCleanup: false,
       },
     ],
   ],

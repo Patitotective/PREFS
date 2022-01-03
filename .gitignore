@@ -4,3 +4,4 @@ __pycache__
 *trial*.*
 .idea
 .venv
+.pytest_cache

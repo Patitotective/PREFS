@@ -81,6 +81,9 @@ clear
 update
 popitem
 ```
+:::info
+Check https://docs.python.org/3/library/stdtypes.html#mapping-types-dict to see what those methods do.
+:::
 
 ## Init
 - `prefs (Dict[str, any], callable)`: A dictionary or a function that returns a dictionary to use as the default preferences.
