@@ -10,6 +10,13 @@ repository = "https://github.com/Patitotective/PREFS/"
 documentation = "https://patitotective.github.io/PREFS/docs/"
 keywords = ["preferences", "settings", "prefs"]
 include = ["src/prefs/parser/grammar.lark"]
+classifiers = [
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
 
 [tool.poetry.urls]
 "Changelog" = "https://patitotective.github.io/PREFS/about/changelog"
