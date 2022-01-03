@@ -21,11 +21,9 @@ Contact:
 	Email: cristobalriaga@gmail.com.
 """
 import os
-import json
 import types
 import inspect
 import warnings
-import yaml
 
 from .parser import parser
 from .prefs import PrefsBase, Prefs
@@ -130,13 +128,3 @@ def read(path: str) -> dict:
 
 	with open(path, "r") as file:
 		return parse(file.read())
-
-
-def read_json(path: str, **kwargs) -> dict:
-	with open(path, "r") as file:
-		return json.load(file, **kwargs)
-
-def read_yaml(path: str, Loader=yaml.loader.SafeLoader, **kwargs) -> dict:
-	with open(path, "r") as file:
-		return yaml.load(file, Loader=Loader, **kwargs)
-

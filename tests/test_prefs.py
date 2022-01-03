@@ -6,6 +6,8 @@ import os
 import unittest
 import prefs
 
+import test_func_resource
+
 
 class TestPrefs(unittest.TestCase):
     PATH = "tests/test_prefs.prefs"
@@ -89,15 +91,9 @@ class TestFunc(unittest.TestCase):
         with open(self.PATH, "r") as file:
             self.assertEqual(self.my_prefs.content, prefs.parse(file.read()))
 
-    
-    def test_json(self):
-        self.my_prefs.to_json()
-        # self.assertEqual(prefs.read_json(f"{os.path.splitext(self.PATH)[0]}.json"), self.my_prefs.to_export(prefs.utils.ExportTypes.JSON))
-
-    def test_yaml(self):
-        self.my_prefs.to_yaml()
-        # self.assertEqual(prefs.read_yaml(f"{os.path.splitext(self.PATH)[0]}.yaml"), self.my_prefs.to_export(prefs.utils.ExportTypes.YAML))
-    
+    def test_resources(self):
+        prefs.bundle(self.PATH)
+        self.assertEqual(prefs.read(f":/test_func.prefs"), self.my_prefs.content)
 
 
 class TestPrefsSyntax(unittest.TestCase):

@@ -1,13 +1,7 @@
 import os
 import sys
 import types
-from enum import Enum, auto
 from importlib.util import spec_from_file_location, module_from_spec
-
-
-class ExportTypes(Enum):
-	JSON = auto()
-	YAML = auto()
 
 
 def check_path(path: str) -> None:

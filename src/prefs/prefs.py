@@ -1,10 +1,8 @@
 import os
-import json
 from typing import Dict
-import yaml
 
 from .parser import parser # parser(directory).parser(module)
-from .utils import check_path, ExportTypes
+from .utils import check_path
 from .exceptions import InvalidKeyError
 
 
@@ -202,63 +200,6 @@ class PrefsBase:
 		"""Deletes the prefs file.
 		"""
 		os.remove(self.path)
-	
-	
-	def to_export(self, type_: ExportTypes, data: NESTED_TYPES=None):
-		"""Prepares the prefs file content to be exported to json or yaml by converting incompatible types (ranges and bytes).
-		"""
-		def check(obj):
-			if isinstance(obj, self.NESTED_TYPES):
-				return self.to_export(type_, obj)
-			if isinstance(obj, range):
-				return list(obj)
-			if isinstance(obj, bytes) and type_ == ExportTypes.JSON:
-				return obj.decode("utf-8")
-
-		if data is None:
-			data = self.check_prefs()
-
-		if isinstance(data, dict):
-			for key, val in data.items():
-				data[key] = check(val)
-
-		elif isinstance(data, (list, set)):
-			for e, ele in enumerate(data):
-				data[e] = check(ele)
-
-		elif isinstance(data, tuple):
-			data = list(data)
-			for e, ele in enumerate(data):
-				data[e] = check(ele)
-
-			data = tuple(data)
-
-		return data
-
-	def to_json(self, path: str=None, **kwargs) -> None:
-		"""Converts the prefs file into a json file.
-
-		Args:
-			path (str=None): If no path given, prefs file with .json as extension.
-		"""
-		if path is None:
-			path = f"{os.path.splitext(self.path)[0]}.json"
-
-		with open(path, "w+") as file:
-			json.dump(self.to_export(ExportTypes.JSON), file, **kwargs)
-
-	def to_yaml(self, path: str=None, **kwargs) -> None:
-		"""Converts the prefs file into a yaml file.
-		
-		Args:
-			path (str=None): If no path given, prefs file with .yaml as extension.
-		"""
-		if path is None:
-			path = f"{os.path.splitext(self.path)[0]}.yaml"
-
-		with open(path, "w+") as file:
-			yaml.dump(self.to_export(ExportTypes.YAML), file, **kwargs)
-	
 
 
 class Prefs(PrefsBase): 

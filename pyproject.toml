@@ -30,7 +30,6 @@ prefs = "prefs.cli:main"
 python = "^3.6"
 lark = "^1.0.0"
 click = "^8.0.3"
-PyYAML = "^6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
