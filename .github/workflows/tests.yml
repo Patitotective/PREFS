@@ -36,6 +36,10 @@ jobs:
         poetry install
         cd tests
         poetry run pytest
+    - name: Tests PREFS resources
+      run: |
+        ls
+        poetry run prefs
 
   windows:
     runs-on: windows-latest
@@ -55,7 +59,7 @@ jobs:
       run: |
         poetry install
         cd tests
-        poetry run pytest tests
+        poetry run pytest
     - name: Tests PREFS resources
       run: |
         ls
