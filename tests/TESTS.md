@@ -1,7 +1,7 @@
 # Tests
 To run the tests do
 ```sh
-pytest
+pytest tests
 ```
 (Remember to do it inside your virtual enviroment with `prefs` installed)
 

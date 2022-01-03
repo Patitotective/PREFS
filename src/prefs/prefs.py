@@ -4,7 +4,7 @@ from typing import Dict
 import yaml
 
 from .parser import parser # parser(directory).parser(module)
-from .utils import check_path
+from .utils import check_path, ExportTypes
 from .exceptions import InvalidKeyError
 
 
@@ -18,7 +18,8 @@ class PrefsBase:
 	KEY_PATH_SEP = "/"
 	INVALID_KEY_CHARS = (SEPARATOR_CHAR, CONTINUER_CHAR, KEY_PATH_SEP)
 	AUTO_GEN_KEYS = True
-	SUPPORTED_TYPES = (int, float, str, list, set, dict, tuple, range, bytes, bool, type(None))
+	NESTED_TYPES = (list, set, dict, tuple)
+	SUPPORTED_TYPES = (int, float, str, range, bytes, bool, type(None)) + NESTED_TYPES
 
 	def __init__(self, prefs: Dict[str, any]=None, path: str=None):
 		self.prefs = prefs
@@ -201,7 +202,39 @@ class PrefsBase:
 		"""Deletes the prefs file.
 		"""
 		os.remove(self.path)
-		
+	
+	
+	def to_export(self, type_: ExportTypes, data: NESTED_TYPES=None):
+		"""Prepares the prefs file content to be exported to json or yaml by converting incompatible types (ranges and bytes).
+		"""
+		def check(obj):
+			if isinstance(obj, self.NESTED_TYPES):
+				return self.to_export(type_, obj)
+			if isinstance(obj, range):
+				return list(obj)
+			if isinstance(obj, bytes) and type_ == ExportTypes.JSON:
+				return obj.decode("utf-8")
+
+		if data is None:
+			data = self.check_prefs()
+
+		if isinstance(data, dict):
+			for key, val in data.items():
+				data[key] = check(val)
+
+		elif isinstance(data, (list, set)):
+			for e, ele in enumerate(data):
+				data[e] = check(ele)
+
+		elif isinstance(data, tuple):
+			data = list(data)
+			for e, ele in enumerate(data):
+				data[e] = check(ele)
+
+			data = tuple(data)
+
+		return data
+
 	def to_json(self, path: str=None, **kwargs) -> None:
 		"""Converts the prefs file into a json file.
 
@@ -212,7 +245,7 @@ class PrefsBase:
 			path = f"{os.path.splitext(self.path)[0]}.json"
 
 		with open(path, "w+") as file:
-			json.dump(self.content, file, **kwargs)
+			json.dump(self.to_export(ExportTypes.JSON), file, **kwargs)
 
 	def to_yaml(self, path: str=None, **kwargs) -> None:
 		"""Converts the prefs file into a yaml file.
@@ -224,7 +257,8 @@ class PrefsBase:
 			path = f"{os.path.splitext(self.path)[0]}.yaml"
 
 		with open(path, "w+") as file:
-			yaml.dump(self.content, file, **kwargs)
+			yaml.dump(self.to_export(ExportTypes.YAML), file, **kwargs)
+	
 
 
 class Prefs(PrefsBase): 

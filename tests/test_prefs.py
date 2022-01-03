@@ -1,10 +1,6 @@
 """
 Run the tests with:
-```
-python -m unittest
-```
-Where python is your python interpreter.
-(Remember to do it inside the tests directory)
+pytest tests
 """
 import os
 import unittest
@@ -12,7 +8,7 @@ import prefs
 
 
 class TestPrefs(unittest.TestCase):
-    PATH = "prefs.prefs"
+    PATH = "tests/test_prefs.prefs"
     DEFAULT_PREFS = {
         "theme": "light", 
         "scheme": {
@@ -50,8 +46,8 @@ class TestPrefs(unittest.TestCase):
         self.assertEqual(self.my_prefs.content, self.DEFAULT_PREFS)
 
     def test_version(self):
-        self.assertEqual(prefs.__version__, "1.0.0")
-    
+        self.assertEqual(prefs.__version__, "1.0.1")
+
     def test_write(self):        
         self.DEFAULT_PREFS["lang"] = "es"
         self.my_prefs["lang"] = "es"
@@ -75,14 +71,34 @@ class TestPrefs(unittest.TestCase):
             }, 
         )
 
-'''
-class ZxyPrefsEnd(unittest.TestCase):
-    """It is called this way to be executed at the end of TestPrefs.
+
+class TestFunc(unittest.TestCase):
+    """Test the functions defined in __init__.py.
     """
-    def test_end(self):
-        if os.path.isfile(TestPrefs.PATH):
-            os.remove(TestPrefs.PATH)
-'''
+    PATH = "tests/test_func.prefs"
+
+    def setUp(self):
+        self.maxDiff = None
+        self.my_prefs = prefs.Prefs(TestPrefs.DEFAULT_PREFS, self.PATH)
+        self.my_prefs.overwrite()
+
+    def test_read(self):
+        self.assertEqual(self.my_prefs.content, prefs.read(self.PATH))
+
+    def test_parse(self):
+        with open(self.PATH, "r") as file:
+            self.assertEqual(self.my_prefs.content, prefs.parse(file.read()))
+
+    
+    def test_json(self):
+        self.my_prefs.to_json()
+        # self.assertEqual(prefs.read_json(f"{os.path.splitext(self.PATH)[0]}.json"), self.my_prefs.to_export(prefs.utils.ExportTypes.JSON))
+
+    def test_yaml(self):
+        self.my_prefs.to_yaml()
+        # self.assertEqual(prefs.read_yaml(f"{os.path.splitext(self.PATH)[0]}.yaml"), self.my_prefs.to_export(prefs.utils.ExportTypes.YAML))
+    
+
 
 class TestPrefsSyntax(unittest.TestCase):
     """Test PREFS syntax errors.

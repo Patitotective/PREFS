@@ -1,7 +1,14 @@
 import os
 import sys
 import types
+from enum import Enum, auto
 from importlib.util import spec_from_file_location, module_from_spec
+
+
+class ExportTypes(Enum):
+	JSON = auto()
+	YAML = auto()
+
 
 def check_path(path: str) -> None:
 	"""Check if a path exists, if some directory is missing it creates it.
@@ -41,7 +48,7 @@ def get_built_file_path(path: str) -> str:
 
     normal_path = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), path))
 
-    return bundle_path if bundle_path != normal_path else normal_path
+    return bundle_path if bundle_path != normal_path else path
 
 def load_module_from_path(path: str) -> types.ModuleType:
 	"""Given a path of a Python module, returns it (as an object).
