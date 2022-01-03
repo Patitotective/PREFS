@@ -126,7 +126,7 @@ const config = {
             items: [
               {
                 label: 'Changelog', 
-                href: '/about/changelog'
+                href: 'https://github.com/Patitotective/PREFS/blob/main/CHANGELOG.md'
               },
               {
                 label: 'License', 
@@ -156,19 +156,6 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-  plugins: [
-    [
-      "docusaurus-plugin-remote-content",
-      {
-        // options here
-        name: "changelog", // used by CLI, must be path safe
-        sourceBaseUrl: "https://raw.githubusercontent.com/Patitotective/PREFS/main/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: "src/pages/about", // the base directory to output to.
-        documents: ["CHANGELOG.md"], // the file names to download
-        performCleanup: false,
-      },
-    ],
-  ],
 };
 
 module.exports = config;

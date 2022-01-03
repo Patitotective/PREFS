@@ -1,9 +1,3 @@
----
-id: changelog
-title: Changelog
-hide_title: true
-hide_table_of_contents: true
----
 # Changelog
 ### v1.0.1 (03/01/2022)
 - Fixed bug when trying to read a PREFS file using the `read` function.
