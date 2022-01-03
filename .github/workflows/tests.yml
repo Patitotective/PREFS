@@ -17,8 +17,8 @@ on:
 jobs:
   build:
     runs-on: 
-      - ubuntu-latest
-      - windows-latest
+      - "ubuntu-latest"
+      - "windows-latest"
     strategy:
       fail-fast: false
       matrix:
