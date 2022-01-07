@@ -67,9 +67,9 @@ You can write your own _PREFS_ files manually as well, to manage your applicatio
 ***
 
 ## About
-- Docs: https://patitotective.github.io/PREFS/docs/start.
+- Docs: https://patitotective.github.io/PREFS/docs.
 - GitHub: https://github.com/Patitotective/PREFS.
-- Pypi: https://pypi.org/project/PREFS/.
+- Pypi: https://pypi.org/project/PREFS.
 - Discord: https://discord.gg/as85Q4GnR6.
 
 Contact me:
