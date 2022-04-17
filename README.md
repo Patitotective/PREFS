@@ -1,4 +1,4 @@
-# PREFS
+# PREFS (abandoned)
 > **Store and manage preferences easily.**  
 
 [![PREFS logo](https://github.com/Patitotective/PREFS/blob/main/assets/logo.png?raw=true)](https://patitotective.github.io/PREFS)
